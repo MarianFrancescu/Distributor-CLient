@@ -12,4 +12,9 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //this will return true if user is logged in and false if user is not logged
+  getUserState() {
+    return true;
+  }
+
 }

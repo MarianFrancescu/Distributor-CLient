@@ -1,40 +1,84 @@
-.companyName{
-    font-size: 150%;
+.toolbar {
+  background: rgb(97, 26, 26);
+}
+
+.app-name {
+  font-size: 150%;
+  color: white;
 }
 
 .mat-toolbar{
-  height: 7vh;
+  height: 50px;
 }
 
-div {
-    overflow: inherit;
+.bank {
+  height: 100%; 
 }
 
-.mat-sidenav-container{
+.menu-items {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: white;
+
+  .menu-item {
+      height: inherit;
+      color: inherit;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+}
+
+.menu-button {
+  background: inherit;
+  border: none;
+  color: white;
+  display: flex;
+}
+
+.menu-item:hover {
+  background-color: rgb(97, 63, 63);
+}
+
+.mat-sidenav-container {
   background-color: lightskyblue;
   min-height: 93vh !important;
 }
 
-a{
+mat-nav-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 100%;
+}
+
+.mobile-menu {
+  display: none;
+  color: white;
+}
+
+a {
     text-decoration: none;
-    font-size: 110%;
     white-space: normal;
 }
 
-button{
+button {
     font-size: 110%;
     min-width: min-content;
 }
 
-.example-icon {
-    padding: 0 14px;
-  }
-  
-  .example-spacer {
-    flex: 1 1 auto;
+@media screen and (max-width: 960px) {
+  .mobile-menu {
+    display: block;
   }
 
-  .mat-sidenav-content{
-      font-size: 200%;
-      text-align: center;
+  .bank {
+    display: none;
   }
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

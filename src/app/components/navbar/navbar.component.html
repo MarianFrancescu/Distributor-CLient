@@ -1,37 +1,44 @@
 <div> 
-    <mat-toolbar color="primary">
-      <div fxShow="true" fxHide.gt-sm="true">
-        <button mat-icon-button (click)="sidenav.toggle()">
+    <mat-toolbar class="toolbar">
+
+      <a mat-button class="app-name" [routerLink]="['/']">
+        <p>Distributor</p>
+      </a>
+
+      <div class="bank">
+        <div fxShow="true" fxHide.lt-md="true" class="menu-items">
+          <a mat-button *ngIf="getUserState()" [routerLink]="['/login']" class="menu-item">Dashboard</a>
+        </div>
+      </div>
+
+      <span class="spacer"></span>
+      <div class="bank">
+        <div fxShow="true" fxHide.lt-md="true" class="menu-items">
+            <a mat-button *ngIf="getUserState()" [routerLink]="['/login']" class="menu-item">Profile</a>
+            <a mat-button *ngIf="!getUserState()" [routerLink]="['/login']" class="menu-item">Login</a>
+            <a mat-button *ngIf="getUserState()" [routerLink]="['/login']" class="menu-item">Logout</a>
+        </div>
+      </div>
+
+      <div fxShow="true" fxHide.gt-sm="true" class="mobile-menu">
+        <button mat-icon-button (click)="sidenav.toggle()" class="menu-button">
           <mat-icon>menu</mat-icon>
         </button>
       </div>
-  
-      <a mat-button class="companyName" routerLink="/">
-        <span>Site name</span>
-      </a>
-      <span class="example-spacer"></span>
-      <div fxShow="true" fxHide.lt-md="true">
-        <a mat-button routerLink="/about-us">About us</a>
-        <a mat-button routerLink="/prices">Prices</a>
-        <a mat-button routerLink="/start-page">Start page</a>
-        <a mat-button routerLink="/offer">Offer</a>
-        <a mat-button routerLink="/contact">Contact</a>
-      </div>
-  
+      
     </mat-toolbar>
     <mat-sidenav-container fxFlexFill class="example-container">
   
       <mat-sidenav color="primary" #sidenav fxLayout="column" mode="over"  opened="false" fxHide.gt-sm="true">
-        <div fxLayout="column">
-          <a mat-button routerLink="/about-us">About us</a>
-          <a mat-button routerLink="/prices">Prices</a>
-          <a mat-button routerLink="/start-page">Start page</a>
-          <a mat-button routerLink="/offer">Offer</a>
-          <a mat-button routerLink="/contact">Contact</a>
-        </div>
+        <mat-nav-list>
+          <a mat-button *ngIf="getUserState()" [routerLink]="['/login']">Dashboard</a>
+          <a mat-button *ngIf="getUserState()" [routerLink]="['/login']">Profile</a>
+          <a mat-button *ngIf="getUserState()" [routerLink]="['/login']">Logout</a>
+          <a mat-button *ngIf="!getUserState()" [routerLink]="['/login']">Login</a>
+        </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content fxFlexFill>
-        Awesome content
+  
       </mat-sidenav-content>
     </mat-sidenav-container>
   </div>
