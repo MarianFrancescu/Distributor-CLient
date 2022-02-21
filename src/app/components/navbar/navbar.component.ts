@@ -14,7 +14,7 @@ export class NavbarComponent implements OnInit {
 
   //this will return true if user is logged in and false if user is not logged
   getUserState() {
-    return true;
+    return false;
   }
 
 }

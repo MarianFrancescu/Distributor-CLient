@@ -10,11 +10,13 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button'
 import { RouterModule } from '@angular/router';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +28,7 @@ import { RouterModule } from '@angular/router';
     MatButtonModule,
     RouterModule.forRoot([
       { path: '', redirectTo: '/signin', pathMatch: 'full' },
+      { path: 'login', component: LoginComponent }
     ]),
   ],
   providers: [],
