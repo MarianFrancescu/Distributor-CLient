@@ -1,0 +1,56 @@
+<div class="register-container">
+    <header>
+        <div class="title-header">
+            <mat-icon>account_box</mat-icon>
+            <p>Register</p>
+        </div>
+    </header>
+    <form [formGroup]="registerForm">
+        <div class="form-group">
+            <mat-form-field appearance="fill">
+                <mat-label>Enter your email</mat-label>
+                <input matInput placeholder="Your email" formControlName="email">
+                <button mat-icon-button matSuffix [disabled]="true">
+                    <mat-icon>alternate_email</mat-icon>
+                </button>
+                <mat-error *ngIf="registerForm.controls.email.invalid">{{ getEmailErrorMessage() }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Enter your username</mat-label>
+                <input matInput placeholder="Your username" formControlName="username">
+                <button mat-icon-button matSuffix [disabled]="true">
+                    <mat-icon>account_circle</mat-icon>
+                </button>
+                <mat-error *ngIf="registerForm.controls.username.invalid">Please complete the username</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Password</mat-label>
+                <input matInput [type]="hideFlag ? 'password' : 'text'" formControlName="password">
+                <button mat-icon-button matSuffix (click)="hideFlag = !hideFlag" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideFlag">
+                    <mat-icon>{{ hideFlag ? 'visibility_off' : 'visibility' }}</mat-icon>
+                </button>
+                <mat-error *ngIf="registerForm.controls.password.invalid">{{ getPasswordErrorMessage() }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Confirm password</mat-label>
+                <input matInput [type]="hideFlag ? 'password' : 'text'" formControlName="confirmPassword">
+                    <button mat-icon-button matSuffix (click)="hideFlag = !hideFlag" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideFlag">
+                <mat-icon>{{ hideFlag ? 'visibility_off' : 'visibility' }}</mat-icon>
+                </button>
+                <mat-error *ngIf="registerForm.controls.confirmPassword.invalid">{{ getConfirmPasswordError() }}</mat-error>
+            </mat-form-field>
+        </div>
+    </form>
+    <button class="register-button" mat-raised-button (click)="submit()" [disabled]="registerForm.invalid">REGISTER</button>
+
+    <div class="tips">
+        <div>
+            <small>Already have an account? <a [routerLink]="['/login']">Sign in</a></small>
+        </div>
+    </div>
+</div>
+
+
