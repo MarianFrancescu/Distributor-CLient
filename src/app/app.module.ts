@@ -11,12 +11,16 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button'
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    LoginComponent
+    LoginComponent,
+    DashboardComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -27,8 +31,10 @@ import { LoginComponent } from './login/login.component';
     MatListModule,
     MatButtonModule,
     RouterModule.forRoot([
-      { path: '', redirectTo: '/signin', pathMatch: 'full' },
-      { path: 'login', component: LoginComponent }
+      { path: '', redirectTo: '/login', pathMatch: 'full' },
+      { path: 'login', component: LoginComponent },
+      { path: 'profile', component: ProfileComponent },
+      { path: 'dashboard', component: DashboardComponent },
     ]),
   ],
   providers: [],
