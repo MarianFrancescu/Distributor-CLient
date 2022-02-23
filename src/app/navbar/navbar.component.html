@@ -31,10 +31,10 @@
   
       <mat-sidenav color="primary" #sidenav fxLayout="column" mode="over"  opened="false" fxHide.gt-sm="true">
         <mat-nav-list>
-          <a mat-button *ngIf="getUserState()" [routerLink]="['/dashboard']">Dashboard</a>
-          <a mat-button *ngIf="getUserState()" [routerLink]="['/profile']">Profile</a>
-          <a mat-button *ngIf="getUserState()" [routerLink]="['/login']">Logout</a>
-          <a mat-button *ngIf="!getUserState()" [routerLink]="['/login']">Login</a>
+          <a mat-button *ngIf="getUserState()" [routerLink]="['/dashboard']" (click)="sidenav.close()">Dashboard</a>
+          <a mat-button *ngIf="getUserState()" [routerLink]="['/profile']" (click)="sidenav.close()">Profile</a>
+          <a mat-button *ngIf="getUserState()" [routerLink]="['/login']" (click)="sidenav.close()">Logout</a>
+          <a mat-button *ngIf="!getUserState()" [routerLink]="['/login']" (click)="sidenav.close()">Login</a>
         </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content fxFlexFill>
