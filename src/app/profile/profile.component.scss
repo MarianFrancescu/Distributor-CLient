@@ -33,11 +33,20 @@
         .tab-item {
             color: white;
         }
+    }
+}
 
-        .tab-item:hover {
-            background-color: rgb(97, 63, 63);
-            cursor: pointer;
-        }
+.details-tabs {
+    display: none;
+}
+
+@media screen and (max-width: 960px) {
+    .details-container {
+        display: none;
+    }
+    
+    .details-tabs {
+        display: block;
     }
 }
 
