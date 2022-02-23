@@ -6,23 +6,20 @@
     <div class="details-container">
         <mat-list class="tabs">
             <mat-list-item class="tab-item" role="listitem">
-                Details
+                <button mat-button (click)="tabOption = 1">Details</button>
             </mat-list-item>
             <mat-list-item class="tab-item" role="listitem">
-                Reset password
+                <button mat-button (click)="tabOption = 2">Reset password</button>
             </mat-list-item>
         </mat-list>
 
         <section>
             alabala
-            <app-profile-details></app-profile-details>
-            <app-reset-password></app-reset-password>
+            <ng-container [ngSwitch]="tabOption">
+                <app-profile-details *ngSwitchCase="1"></app-profile-details>
+                <app-reset-password *ngSwitchCase="2"></app-reset-password>
+            </ng-container>
         </section>
     </div>
-
-    <!-- <mat-tab-group mat-align-tabs="center">
-        <mat-tab label="My profile">Content 1</mat-tab>
-        <mat-tab label="Reset password">Content 2</mat-tab>
-    </mat-tab-group> -->
 
 </div>
