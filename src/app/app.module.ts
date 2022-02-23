@@ -19,6 +19,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
 import { RegisterComponent } from './register/register.component';
 import { ProfileDetailsComponent } from './profile-details/profile-details.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ProfileDetailsComponent } from './profile-details/profile-details.compo
     DashboardComponent,
     ProfileComponent,
     RegisterComponent,
-    ProfileDetailsComponent
+    ProfileDetailsComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,
