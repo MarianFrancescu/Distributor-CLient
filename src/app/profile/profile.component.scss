@@ -4,22 +4,44 @@
 }
 
 .username-container {
-    margin-top: 80px;
+    margin-top: 60px;
     background-color: rgba(97, 26, 26, 0.863);
     width: 100%;
     color: white;
+    border-radius: 5px;
 
     h1 {
         padding-left: 20px;
+        height: 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 }
 
 .details-container {
     display: grid;
-    grid-template-columns: 2fr 2fr;
+    grid-template-columns: 1fr 2fr;
 
     .tabs {
         display: flex;
         flex-direction: column;
+        background-color: rgba(97, 26, 26, 0.863);
+        padding: 0;
+        border-radius: 5px;
+
+        .tab-item {
+            color: white;
+        }
+
+        .tab-item:hover {
+            background-color: rgb(97, 63, 63);
+            cursor: pointer;
+        }
     }
+}
+
+.mat-tab-labels {
+    display: flex;
+    justify-content: space-evenly;
 }

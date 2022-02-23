@@ -18,6 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
 import { RegisterComponent } from './register/register.component';
+import { ProfileDetailsComponent } from './profile-details/profile-details.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { RegisterComponent } from './register/register.component';
     LoginComponent,
     DashboardComponent,
     ProfileComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfileDetailsComponent
   ],
   imports: [
     BrowserModule,
