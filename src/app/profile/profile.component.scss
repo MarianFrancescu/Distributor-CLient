@@ -5,7 +5,7 @@
 
 .username-container {
     margin-top: 60px;
-    background-color: rgba(97, 26, 26, 0.863);
+    background-color: rgba(97, 26, 26);
     width: 100%;
     color: white;
     border-radius: 5px;
@@ -26,11 +26,14 @@
     .tabs {
         display: flex;
         flex-direction: column;
-        background-color: rgba(97, 26, 26, 0.863);
+        background-color: rgba(97, 26, 26);
         padding: 0;
         border-radius: 5px;
 
         .tab-item {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            font-size: 20px;
             color: white;
         }
     }

@@ -20,6 +20,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { RegisterComponent } from './register/register.component';
 import { ProfileDetailsComponent } from './profile-details/profile-details.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { DeleteUserComponent } from './delete-user/delete-user.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     RegisterComponent,
     ProfileDetailsComponent,
     ResetPasswordComponent,
+    DeleteUserComponent,
   ],
   imports: [
     BrowserModule,

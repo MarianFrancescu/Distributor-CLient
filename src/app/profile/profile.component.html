@@ -7,19 +7,21 @@
         <mat-list class="tabs">
             <button mat-button class="tab-item" (click)="tabOption = 1">Details</button>
             <button mat-button class="tab-item" (click)="tabOption = 2">Reset password</button>
+            <button mat-button class="tab-item" (click)="tabOption = 3">Delete account</button>
         </mat-list>
 
         <section>
             <ng-container [ngSwitch]="tabOption">
                 <app-profile-details *ngSwitchCase="1"></app-profile-details>
                 <app-reset-password *ngSwitchCase="2"></app-reset-password>
+                <app-delete-user *ngSwitchCase="3"></app-delete-user>
             </ng-container>
         </section>
     </div>
 
     <!-- this will be used for mobile view -->
     <mat-tab-group mat-align-tabs="center" class="details-tabs">
-        <mat-tab label="My profile">
+        <mat-tab label="Details">
             <app-profile-details></app-profile-details>
         </mat-tab>
         <mat-tab label="Reset password">
