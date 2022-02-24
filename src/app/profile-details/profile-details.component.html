@@ -5,71 +5,73 @@
                 <mat-label>Enter your email</mat-label>
                 <input matInput placeholder="Your email" formControlName="email">
                 <button mat-icon-button matSuffix [disabled]="true">
-                    <mat-icon>alternate_email</mat-icon>
+                    <mat-icon>mail</mat-icon>
                 </button>
                 <mat-error *ngIf="detailsForm.controls.email.invalid">{{ getEmailErrorMessage() }}</mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="fill">
-                <mat-label>Enter your username</mat-label>
-                <input matInput placeholder="Your username" formControlName="username">
-                <button mat-icon-button matSuffix [disabled]="true">
-                    <mat-icon>account_circle</mat-icon>
-                </button>
-                <mat-error *ngIf="detailsForm.controls.username.invalid">Please complete the username</mat-error>
+                <mat-label>Enter your first name</mat-label>
+                <input matInput placeholder="Your first name" formControlName="firstName">
+                <mat-error *ngIf="detailsForm.controls.firstName.invalid">Please complete the first name</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Enter your last name</mat-label>
+                <input matInput placeholder="Your last name" formControlName="lastName">
+                <mat-error *ngIf="detailsForm.controls.lastNameinvalid">Please complete the last name</mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="fill">
-                <mat-label>Study institution</mat-label>
-                <input matInput placeholder="Your username" formControlName="username">
-                <button mat-icon-button matSuffix [disabled]="true">
-                    <mat-icon>location_city</mat-icon>
-                </button>
+                    <mat-label>Study institution</mat-label>
+                    <button mat-icon-button matSuffix [disabled]="true">
+                        <mat-icon>location_city</mat-icon>
+                    </button>
+                    <mat-select formControlName="studyInstitution">
+                      <mat-option *ngFor="let institution of institutions" [value]="institution">
+                        {{ institution }}
+                      </mat-option>
+                    </mat-select>    
                 <mat-error *ngIf="detailsForm.controls.studyInstitution.invalid">Please complete study institution</mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="fill">
                 <mat-label>Faculty</mat-label>
-                <input matInput placeholder="Your username" formControlName="username">
                 <button mat-icon-button matSuffix [disabled]="true">
                     <mat-icon>domain</mat-icon>
                 </button>
+                <mat-select formControlName="faculty">
+                    <mat-option *ngFor="let faculty of faculties" [value]="faculty">
+                      {{ faculty }}
+                    </mat-option>
+                  </mat-select>  
                 <mat-error *ngIf="detailsForm.controls.faculty.invalid">Please complete faculty</mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="fill">
                 <mat-label>Department</mat-label>
-                <input matInput placeholder="Your username" formControlName="username">
                 <button mat-icon-button matSuffix [disabled]="true">
                     <mat-icon>school</mat-icon>
                 </button>
+                <mat-select formControlName="department">
+                    <mat-option *ngFor="let department of departments" [value]="department">
+                      {{ department }}
+                    </mat-option>
+                </mat-select> 
                 <mat-error *ngIf="detailsForm.controls.department.invalid">Please complete faculty department</mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="fill">
                 <mat-label>Study year</mat-label>
-                <input matInput placeholder="Your username" formControlName="username">
+                <mat-select formControlName="studyYear">
+                    <mat-option *ngFor="let year of years" [value]="year">
+                      {{ year }}
+                    </mat-option>
+                </mat-select> 
                 <mat-error *ngIf="detailsForm.controls.studyYear.invalid">Please complete study year</mat-error>
             </mat-form-field>
-            
-
-            <!-- <mat-form-field appearance="fill">
-                <mat-label>Confirm password</mat-label>
-                <input matInput [type]="hideFlag ? 'password' : 'text'" formControlName="confirmPassword">
-                    <button mat-icon-button matSuffix (click)="hideFlag = !hideFlag" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideFlag">
-                <mat-icon>{{ hideFlag ? 'visibility_off' : 'visibility' }}</mat-icon>
-                </button>
-                <mat-error *ngIf="detailsForm.controls.confirmPassword.invalid">{{ getConfirmPasswordError() }}</mat-error>
-            </mat-form-field> -->
         </div>
     </form>
-    <button class="register-button" mat-raised-button (click)="submit()" [disabled]="detailsForm.invalid">REGISTER</button>
-
-    <div class="tips">
-        <div>
-            <small>Already have an account? <a [routerLink]="['/login']">Sign in</a></small>
-        </div>
-    </div>
+    <button class="submit-button" mat-raised-button (click)="submit()" [disabled]="detailsForm.invalid">SAVE</button>
 </div>
 
 

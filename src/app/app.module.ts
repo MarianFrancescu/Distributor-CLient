@@ -17,6 +17,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatSelectModule } from '@angular/material/select';
 import { RegisterComponent } from './register/register.component';
 import { ProfileDetailsComponent } from './profile-details/profile-details.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
@@ -47,6 +48,7 @@ import { DeleteUserComponent } from './delete-user/delete-user.component';
     ReactiveFormsModule,
     MatInputModule,
     MatTabsModule,
+    MatSelectModule,
     RouterModule.forRoot([
       { path: '', redirectTo: '/login', pathMatch: 'full' },
       { path: 'login', component: LoginComponent },

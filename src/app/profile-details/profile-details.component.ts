@@ -8,9 +8,17 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class ProfileDetailsComponent implements OnInit {
 
+  selectedValue: string;
+
+  institutions = ['Universitatea Politehnica Timisoara', 'Universitatea de Vest Timisoara'];
+  faculties = ['Automatica si Calculatoare', 'Telecomunicatii'];
+  departments = ['Calculatoare si tehnologia informatiei', 'Ingineria Sistemelor'];
+  years = [1, 2, 3, 4, 5, 6];
+
   detailsForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
-    username: new FormControl('', [Validators.required]),
+    firstName: new FormControl('', [Validators.required]),
+    lastName: new FormControl('', [Validators.required]),
     studyInstitution: new FormControl('', [Validators.required]),
     faculty: new FormControl('', [Validators.required]),
     department: new FormControl('', [Validators.required]),
@@ -25,7 +33,7 @@ export class ProfileDetailsComponent implements OnInit {
   }
 
   submit(){
-    console.log('User details updated');
+    console.log('User details updated', this.detailsForm.value);
   }
 
   getEmailErrorMessage() {

@@ -17,12 +17,14 @@
             </mat-form-field>
 
             <mat-form-field appearance="fill">
-                <mat-label>Enter your username</mat-label>
-                <input matInput placeholder="Your username" formControlName="username">
-                <button mat-icon-button matSuffix [disabled]="true">
-                    <mat-icon>account_circle</mat-icon>
-                </button>
-                <mat-error *ngIf="registerForm.controls.username.invalid">Please complete the username</mat-error>
+                <mat-label>Enter your first name</mat-label>
+                <input matInput placeholder="Your first name" formControlName="firstName">
+                <mat-error *ngIf="registerForm.controls.firstName.invalid">Please complete the first name</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Enter your last name</mat-label>
+                <input matInput placeholder="Your last name" formControlName="lastName">
+                <mat-error *ngIf="registerForm.controls.lastNameinvalid">Please complete the last name</mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="fill">
