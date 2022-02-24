@@ -1,7 +1,7 @@
 <div class="details-container">
     <form [formGroup]="detailsForm">
         <div class="form-group">
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="outline">
                 <mat-label>Enter your email</mat-label>
                 <input matInput placeholder="Your email" formControlName="email">
                 <button mat-icon-button matSuffix [disabled]="true">
@@ -10,18 +10,18 @@
                 <mat-error *ngIf="detailsForm.controls.email.invalid">{{ getEmailErrorMessage() }}</mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="outline">
                 <mat-label>Enter your first name</mat-label>
                 <input matInput placeholder="Your first name" formControlName="firstName">
                 <mat-error *ngIf="detailsForm.controls.firstName.invalid">Please complete the first name</mat-error>
             </mat-form-field>
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="outline">
                 <mat-label>Enter your last name</mat-label>
                 <input matInput placeholder="Your last name" formControlName="lastName">
                 <mat-error *ngIf="detailsForm.controls.lastNameinvalid">Please complete the last name</mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="outline">
                     <mat-label>Study institution</mat-label>
                     <button mat-icon-button matSuffix [disabled]="true">
                         <mat-icon>location_city</mat-icon>
@@ -34,7 +34,7 @@
                 <mat-error *ngIf="detailsForm.controls.studyInstitution.invalid">Please complete study institution</mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="outline">
                 <mat-label>Faculty</mat-label>
                 <button mat-icon-button matSuffix [disabled]="true">
                     <mat-icon>domain</mat-icon>
@@ -47,7 +47,7 @@
                 <mat-error *ngIf="detailsForm.controls.faculty.invalid">Please complete faculty</mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="outline">
                 <mat-label>Department</mat-label>
                 <button mat-icon-button matSuffix [disabled]="true">
                     <mat-icon>school</mat-icon>
@@ -60,7 +60,7 @@
                 <mat-error *ngIf="detailsForm.controls.department.invalid">Please complete faculty department</mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="outline">
                 <mat-label>Study year</mat-label>
                 <mat-select formControlName="studyYear">
                     <mat-option *ngFor="let year of years" [value]="year">
