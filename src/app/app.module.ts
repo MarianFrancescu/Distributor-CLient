@@ -24,6 +24,7 @@ import { ProfileDetailsComponent } from './profile-details/profile-details.compo
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { DeleteUserComponent } from './delete-user/delete-user.component';
 import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
     ResetPasswordComponent,
     DeleteUserComponent,
     AlertDialogComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,6 +59,7 @@ import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
       { path: '', redirectTo: '/login', pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
+      { path: 'forgot-password', component: ForgotPasswordComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'dashboard', component: DashboardComponent },
     ]),
