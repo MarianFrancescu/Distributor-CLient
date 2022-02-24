@@ -10,7 +10,7 @@
             <button mat-button class="tab-item" (click)="tabOption = 3">Delete account</button>
         </mat-list>
 
-        <section>
+        <section class="template-container">
             <ng-container [ngSwitch]="tabOption">
                 <div class="data-container">
                     <app-profile-details *ngSwitchCase="1"></app-profile-details>

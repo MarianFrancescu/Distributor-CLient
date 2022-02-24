@@ -25,8 +25,10 @@
     margin-bottom: 50px;
 
     .tabs {
+        height: 220px;
         display: flex;
         flex-direction: column;
+        justify-content: center;
         background-color: rgba(97, 26, 26);
         padding: 0;
         border-radius: 5px;
@@ -37,6 +39,10 @@
             font-size: 20px;
             color: white;
         }
+    }
+
+    .template-container {
+        display: flex;
     }
 
     .data-container {
