@@ -19,9 +19,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSelectModule } from '@angular/material/select';
 import { RegisterComponent } from './register/register.component';
+import {MatDialogModule} from '@angular/material/dialog';
 import { ProfileDetailsComponent } from './profile-details/profile-details.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { DeleteUserComponent } from './delete-user/delete-user.component';
+import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { DeleteUserComponent } from './delete-user/delete-user.component';
     ProfileDetailsComponent,
     ResetPasswordComponent,
     DeleteUserComponent,
+    AlertDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +52,7 @@ import { DeleteUserComponent } from './delete-user/delete-user.component';
     MatInputModule,
     MatTabsModule,
     MatSelectModule,
+    MatDialogModule,
     RouterModule.forRoot([
       { path: '', redirectTo: '/login', pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
