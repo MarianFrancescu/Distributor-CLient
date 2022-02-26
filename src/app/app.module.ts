@@ -11,7 +11,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button'
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DisciplinesComponent } from './disciplines/disciplines.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -31,7 +31,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     AppComponent,
     NavbarComponent,
     LoginComponent,
-    DashboardComponent,
+    DisciplinesComponent,
     ProfileComponent,
     RegisterComponent,
     ProfileDetailsComponent,
@@ -61,7 +61,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
       { path: 'register', component: RegisterComponent },
       { path: 'forgot-password', component: ForgotPasswordComponent },
       { path: 'profile', component: ProfileComponent },
-      { path: 'dashboard', component: DashboardComponent },
+      { path: 'disciplines', component: DisciplinesComponent },
     ]),
   ],
   providers: [],
