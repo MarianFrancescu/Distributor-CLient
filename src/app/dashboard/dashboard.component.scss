@@ -1,0 +1,24 @@
+.title-container {
+    background-color: aquamarine;
+}
+
+.actions-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+
+    .tabs {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: rgba(97, 26, 26);
+        padding: 0;
+        border-radius: 2px;
+    }
+
+    .template-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}

@@ -1,1 +1,40 @@
-<p>dashboard works!</p>
+<div class="disciplines-container">
+    <header class="title-container">
+        <h1>Disciplines</h1>
+    </header>
+
+    <div class="actions-container">
+        <mat-list class="tabs">
+            <h3>List of disciplines</h3>
+            <p>No disciplines yet</p>
+            <!-- <button mat-button class="tab-item" >Details</button>
+            <button mat-button class="tab-item" >Reset password</button>
+            <button mat-button class="tab-item" >Delete account</button> -->
+        </mat-list>
+
+        <section class="template-container">
+            <button mat-button>Add discipline</button>
+            <!-- <ng-container [ngSwitch]="tabOption">
+                <div class="data-container">
+                    <app-profile-details *ngSwitchCase="1"></app-profile-details>
+                    <app-reset-password *ngSwitchCase="2"></app-reset-password>
+                    <app-delete-user *ngSwitchCase="3"></app-delete-user>
+                </div>
+            </ng-container> -->
+        </section> 
+    </div>
+
+    <!-- this will be used for mobile view -->
+    <!-- <mat-tab-group mat-align-tabs="center" class="details-tabs">
+        <mat-tab label="Details">
+            <app-profile-details></app-profile-details>
+        </mat-tab>
+        <mat-tab label="Reset password">
+            <app-reset-password></app-reset-password>
+        </mat-tab>
+        <mat-tab label="Delete account">
+            <app-delete-user></app-delete-user>
+        </mat-tab>
+    </mat-tab-group> -->
+
+</div>
