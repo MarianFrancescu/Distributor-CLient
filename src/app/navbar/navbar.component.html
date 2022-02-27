@@ -7,16 +7,16 @@
 
       <div class="bank">
         <div fxShow="true" fxHide.lt-md="true" class="menu-items">
-          <a mat-button *ngIf="getUserState()" [routerLink]="['/disciplines']" class="menu-item">Disciplines</a>
+          <a mat-button *ngIf="getUserState()" [routerLink]="['/disciplines']" class="menu-item" routerLinkActive="active">Disciplines</a>
         </div>
       </div>
 
       <span class="spacer"></span>
       <div class="bank">
         <div fxShow="true" fxHide.lt-md="true" class="menu-items">
-            <a mat-button *ngIf="getUserState()" [routerLink]="['/profile']" class="menu-item">Profile</a>
-            <a mat-button *ngIf="!getUserState()" [routerLink]="['/login']" class="menu-item">Login</a>
-            <a mat-button *ngIf="getUserState()" [routerLink]="['/login']" class="menu-item">Logout</a>
+            <a mat-button *ngIf="getUserState()" [routerLink]="['/profile']" class="menu-item" routerLinkActive="active">Profile</a>
+            <a mat-button *ngIf="!getUserState()" [routerLink]="['/login']" class="menu-item" routerLinkActive="active">Login</a>
+            <a mat-button *ngIf="getUserState()" [routerLink]="['/login']" class="menu-item" routerLinkActive="active">Logout</a>
         </div>
       </div>
 

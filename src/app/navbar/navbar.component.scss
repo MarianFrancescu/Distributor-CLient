@@ -1,5 +1,6 @@
 .toolbar {
   background: rgb(97, 26, 26);
+  box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
 }
 
 .app-name {
@@ -8,7 +9,14 @@
 }
 
 .mat-toolbar{
-  height: 50px;
+  position: relative;
+  height: 64px;
+  z-index: 2;
+  box-shadow: 0 0px 20px black;
+}
+
+.active {
+  background: rgba(97, 63, 63, 0.856);
 }
 
 .bank {
@@ -36,6 +44,10 @@
   border: none;
   color: white;
   display: flex;
+}
+
+.mat-button {
+  border-radius: 0;
 }
 
 .menu-item:hover {
