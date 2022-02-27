@@ -19,6 +19,7 @@ export class ProfileDetailsComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
+    registrationNumber: new FormControl('', [Validators.required]),
     studyInstitution: new FormControl('', [Validators.required]),
     faculty: new FormControl('', [Validators.required]),
     department: new FormControl('', [Validators.required]),
