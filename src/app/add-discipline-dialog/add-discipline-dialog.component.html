@@ -1,0 +1,15 @@
+<h3 mat-dialog-title>Please select a discipline from the list below</h3>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill" class="content">
+    <mat-label>Faculty discipline</mat-label>
+    <mat-select  [(ngModel)]="data.selected">
+        <mat-option *ngFor="let discipline of data.disciplines" [value]="discipline.name">
+          {{ discipline.name }}
+        </mat-option>
+      </mat-select> 
+  </mat-form-field>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="data.selected" cdkFocusInitial>Save</button>
+</div>

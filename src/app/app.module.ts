@@ -19,12 +19,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSelectModule } from '@angular/material/select';
 import { RegisterComponent } from './register/register.component';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatStepperModule } from '@angular/material/stepper';
 import { ProfileDetailsComponent } from './profile-details/profile-details.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { DeleteUserComponent } from './delete-user/delete-user.component';
 import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { AddDisciplineDialogComponent } from './add-discipline-dialog/add-discipline-dialog.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     DeleteUserComponent,
     AlertDialogComponent,
     ForgotPasswordComponent,
+    AddDisciplineDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,6 +58,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     MatTabsModule,
     MatSelectModule,
     MatDialogModule,
+    MatStepperModule,
     RouterModule.forRoot([
       { path: '', redirectTo: '/login', pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
