@@ -6,8 +6,8 @@
     <div class="actions-container">
         <mat-list class="tabs">
             <h3>List of disciplines</h3>
-            <div *ngIf="mockDisciplines.length > 0; else noDisciplines">
-                <div *ngFor="let discipline of mockDisciplines">
+            <div *ngIf="disciplines.length > 0; else noDisciplines">
+                <div *ngFor="let discipline of disciplines">
                     {{ discipline.name }}
                 </div>
             </div>

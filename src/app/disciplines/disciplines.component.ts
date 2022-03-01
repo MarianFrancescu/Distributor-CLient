@@ -13,6 +13,7 @@ export class DisciplinesComponent implements OnInit {
   selected: string;
 
   mockDisciplines = mockedDisciplines;
+  disciplines =[];
   constructor(public dialog: MatDialog) {}
 
   openDialog(): void {
@@ -22,8 +23,7 @@ export class DisciplinesComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-     
-      this.animal = result;
+      this.disciplines.push(result);
       console.log('The dialog was closed', result);
     });
   }
