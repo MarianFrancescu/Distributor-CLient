@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { mockedDisciplines } from '../mock-data/disciplines.mock';
 
 @Component({
   selector: 'app-disciplines',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DisciplinesComponent implements OnInit {
 
+  mockDisciplines = mockedDisciplines;
   constructor() { }
 
   ngOnInit(): void {

@@ -6,7 +6,15 @@
     <div class="actions-container">
         <mat-list class="tabs">
             <h3>List of disciplines</h3>
-            <p>No disciplines yet</p>
+            <div *ngIf="mockDisciplines.length > 0; else noDisciplines">
+                <div *ngFor="let discipline of mockDisciplines">
+                    {{ discipline.name }}
+                </div>
+            </div>
+            <ng-template #noDisciplines>
+                <p>No disciplines yet</p>
+            </ng-template>
+            
             <!-- <button mat-button class="tab-item" >Details</button>
             <button mat-button class="tab-item" >Reset password</button>
             <button mat-button class="tab-item" >Delete account</button> -->

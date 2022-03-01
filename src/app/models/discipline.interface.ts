@@ -1,8 +1,8 @@
 export interface Discipline {
-    name: string;
+    name: string,
     timetable: [{
         option: string,
         students: [string]
-    }];
-    created: string;
+    }],
+    created: string
 }
