@@ -54,9 +54,8 @@
   background-color: rgb(97, 63, 63);
 }
 
-.mat-sidenav-container {
-  // background-color: lightskyblue;
-  min-height: 93vh !important;
+.sidenav-container {
+  height: calc(100% - 64px);
 }
 
 mat-nav-list {
