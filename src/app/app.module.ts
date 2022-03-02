@@ -29,7 +29,8 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { AddDisciplineDialogComponent } from './add-discipline-dialog/add-discipline-dialog.component';
 import { MatTableModule } from '@angular/material/table';
 import { DisciplineDetailsComponent } from './discipline-details/discipline-details.component';
-import { PreferencesComponent } from './preferences/preferences.component' 
+import { PreferencesComponent } from './preferences/preferences.component';
+import { DisciplinePreferencesComponent } from './discipline-preferences/discipline-preferences.component' 
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { PreferencesComponent } from './preferences/preferences.component'
     AddDisciplineDialogComponent,
     DisciplineDetailsComponent,
     PreferencesComponent,
+    DisciplinePreferencesComponent,
   ],
   imports: [
     BrowserModule,

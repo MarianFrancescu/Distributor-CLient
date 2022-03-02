@@ -1,0 +1,48 @@
+<div class="discipline-preferences">
+
+    <form [formGroup]="preferencesForm">
+        <div class="form-group">
+            <mat-form-field appearance="outline">
+                    <mat-label>Option 1</mat-label>
+                    <mat-select formControlName="option1">
+                      <mat-option *ngFor="let preference of disciplinePreferences" [value]="option1">
+                        {{ preference.value }}
+                      </mat-option>
+                    </mat-select>    
+                <mat-error *ngIf="preferencesForm.controls.option1.invalid">Please complete study institution</mat-error>
+            </mat-form-field>
+
+            <!-- <mat-form-field appearance="outline">
+                <mat-label>Option 2</mat-label>
+                <mat-select formControlName="faculty">
+                    <mat-option *ngFor="let faculty of faculties" [value]="faculty">
+                      {{ faculty }}
+                    </mat-option>
+                  </mat-select>  
+                <mat-error *ngIf="preferencesForm.controls.faculty.invalid">Please complete faculty</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Option 3</mat-label>
+                <mat-select formControlName="department">
+                    <mat-option *ngFor="let department of departments" [value]="department">
+                      {{ department }}
+                    </mat-option>
+                </mat-select> 
+                <mat-error *ngIf="preferencesForm.controls.department.invalid">Please complete faculty department</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Option 4</mat-label>
+                <mat-select formControlName="studyYear">
+                    <mat-option *ngFor="let year of years" [value]="year">
+                      {{ year }}
+                    </mat-option>
+                </mat-select> 
+                <mat-error *ngIf="preferencesForm.controls.studyYear.invalid">Please complete study year</mat-error>
+            </mat-form-field> -->
+        </div>
+    </form>
+    <button class="submit-button" mat-raised-button (click)="submit()" [disabled]="preferencesForm.invalid">SAVE</button>
+
+</div>
