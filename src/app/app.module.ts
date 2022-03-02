@@ -27,7 +27,8 @@ import { DeleteUserComponent } from './delete-user/delete-user.component';
 import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { AddDisciplineDialogComponent } from './add-discipline-dialog/add-discipline-dialog.component';
-import { MatTableModule } from '@angular/material/table' 
+import { MatTableModule } from '@angular/material/table';
+import { DisciplineDetailsComponent } from './discipline-details/discipline-details.component' 
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { MatTableModule } from '@angular/material/table'
     AlertDialogComponent,
     ForgotPasswordComponent,
     AddDisciplineDialogComponent,
+    DisciplineDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,6 +70,7 @@ import { MatTableModule } from '@angular/material/table'
       { path: 'forgot-password', component: ForgotPasswordComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'disciplines', component: DisciplinesComponent },
+      { path: 'discipline/:id', component: DisciplineDetailsComponent },
     ]),
   ],
   providers: [],

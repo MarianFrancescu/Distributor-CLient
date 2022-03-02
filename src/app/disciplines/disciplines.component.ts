@@ -4,6 +4,7 @@ import { AddDisciplineDialogComponent } from '../add-discipline-dialog/add-disci
 import { mockedDisciplines } from '../mock-data/disciplines.mock';
 import { Discipline } from '../models/discipline.interface';
 import {MatTableDataSource} from '@angular/material/table';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-disciplines',
@@ -16,7 +17,7 @@ export class DisciplinesComponent implements OnInit {
   mockDisciplines = mockedDisciplines;
   disciplines =[];
   myDataSource: MatTableDataSource<Discipline>;
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private router: Router) {}
 
   openDialog(): void {
     const dialogRef = this.dialog.open(AddDisciplineDialogComponent, {
@@ -41,6 +42,10 @@ export class DisciplinesComponent implements OnInit {
 
   makeTable() {
     this.myDataSource = new MatTableDataSource<Discipline>(this.disciplines);
+  }
+
+  getSelectedRow(discipline: Discipline) {
+    this.router.navigate(['/discipline', discipline.disciplineId]);
   }
 
 }
