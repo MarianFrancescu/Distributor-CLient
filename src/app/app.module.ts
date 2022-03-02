@@ -27,6 +27,7 @@ import { DeleteUserComponent } from './delete-user/delete-user.component';
 import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { AddDisciplineDialogComponent } from './add-discipline-dialog/add-discipline-dialog.component';
+import { MatTableModule } from '@angular/material/table' 
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { AddDisciplineDialogComponent } from './add-discipline-dialog/add-discip
     MatSelectModule,
     MatDialogModule,
     MatStepperModule,
+    MatTableModule,
     RouterModule.forRoot([
       { path: '', redirectTo: '/login', pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
