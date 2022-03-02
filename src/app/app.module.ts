@@ -28,7 +28,8 @@ import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { AddDisciplineDialogComponent } from './add-discipline-dialog/add-discipline-dialog.component';
 import { MatTableModule } from '@angular/material/table';
-import { DisciplineDetailsComponent } from './discipline-details/discipline-details.component' 
+import { DisciplineDetailsComponent } from './discipline-details/discipline-details.component';
+import { PreferencesComponent } from './preferences/preferences.component' 
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { DisciplineDetailsComponent } from './discipline-details/discipline-deta
     ForgotPasswordComponent,
     AddDisciplineDialogComponent,
     DisciplineDetailsComponent,
+    PreferencesComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,6 +73,7 @@ import { DisciplineDetailsComponent } from './discipline-details/discipline-deta
       { path: 'profile', component: ProfileComponent },
       { path: 'disciplines', component: DisciplinesComponent },
       { path: 'discipline/:id', component: DisciplineDetailsComponent },
+      { path: 'preferences', component: PreferencesComponent },
     ]),
   ],
   providers: [],

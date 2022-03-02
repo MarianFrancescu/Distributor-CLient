@@ -1,0 +1,14 @@
+.preferences-container {
+    width: 80%;
+    margin: auto;
+}
+
+.actions-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+
+    .tabs{
+        background: rgb(97, 26, 26);
+        color: white
+    }
+}

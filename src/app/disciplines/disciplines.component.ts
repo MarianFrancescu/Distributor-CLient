@@ -15,7 +15,7 @@ export class DisciplinesComponent implements OnInit {
   selected: string;
 
   mockDisciplines = mockedDisciplines;
-  disciplines =[];
+  disciplines = [];
   myDataSource: MatTableDataSource<Discipline>;
   constructor(public dialog: MatDialog, private router: Router) {}
 

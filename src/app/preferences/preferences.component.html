@@ -1,0 +1,21 @@
+<div class="preferences-container">
+    <header class="title-container">
+        <h1>My preferences</h1>
+    </header>
+
+    <div class="actions-container">
+        <mat-list class="tabs">
+            <h3>List of your disciplines</h3>
+            <div *ngIf="disciplines.length > 0; else noDisciplines">
+                <div *ngFor="let discipline of disciplines">
+                    {{ discipline.name }}
+                </div>
+            </div>
+            <ng-template #noDisciplines>
+                <p>No disciplines yet</p>
+            </ng-template>
+        </mat-list>
+        lroem ipsum aici pun chestii de preferinte per disciplina
+    </div>
+
+</div>
