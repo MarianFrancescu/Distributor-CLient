@@ -1,1 +1,12 @@
-<p>discipline-details works!</p>
+<div class="discipline-details">
+    <header class="name">
+        <h2>{{discipline.name}}</h2>
+    </header>
+
+    <div class="details">
+        <div *ngFor="let timetable of discipline.timetable">
+            {{ timetable.option }}
+            {{ getAvailablePlaces(timetable.option) }}
+        </div>
+    </div>
+</div>

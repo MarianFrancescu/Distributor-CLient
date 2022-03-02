@@ -6,7 +6,7 @@ export const mockedDisciplines: Discipline[] = [
             name: 'CHS',
             timetable: [
                 {
-                    option: '18-200',
+                    option: '18-20',
                     students: ['a']
                 }
             ],
@@ -17,7 +17,11 @@ export const mockedDisciplines: Discipline[] = [
             name: 'SMA',
             timetable: [
                 {
-                    option: '14-16',
+                    option: 'Mon 14-16',
+                    students: ['a', 'b', 'c']
+                },
+                {
+                    option: 'Mon 18-20',
                     students: ['a']
                 }
             ],
