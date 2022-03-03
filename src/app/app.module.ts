@@ -21,6 +21,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { RegisterComponent } from './register/register.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ProfileDetailsComponent } from './profile-details/profile-details.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { DeleteUserComponent } from './delete-user/delete-user.component';
@@ -30,7 +31,8 @@ import { AddDisciplineDialogComponent } from './add-discipline-dialog/add-discip
 import { MatTableModule } from '@angular/material/table';
 import { DisciplineDetailsComponent } from './discipline-details/discipline-details.component';
 import { PreferencesComponent } from './preferences/preferences.component';
-import { DisciplinePreferencesComponent } from './discipline-preferences/discipline-preferences.component' 
+import { DisciplinePreferencesComponent } from './discipline-preferences/discipline-preferences.component';
+import { HttpClientModule } from '@angular/common/http'; 
 
 @NgModule({
   declarations: [
@@ -67,8 +69,10 @@ import { DisciplinePreferencesComponent } from './discipline-preferences/discipl
     MatDialogModule,
     MatStepperModule,
     MatTableModule,
+    MatSnackBarModule,
+    HttpClientModule,
     RouterModule.forRoot([
-      { path: '', redirectTo: '/login', pathMatch: 'full' },
+      { path: '', redirectTo: '/profile', pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'forgot-password', component: ForgotPasswordComponent },
