@@ -2,6 +2,7 @@ import { Discipline } from './../models/discipline.interface';
 
 export const mockedDisciplines: Discipline[] = [
         {
+            teacher: 'John Snow',
             disciplineId: '1',
             name: 'CHS',
             timetable: [
@@ -13,6 +14,7 @@ export const mockedDisciplines: Discipline[] = [
             created: '18-02-2002'
         },
         {
+            teacher: 'Bob',
             disciplineId: '2',
             name: 'SMA',
             timetable: [

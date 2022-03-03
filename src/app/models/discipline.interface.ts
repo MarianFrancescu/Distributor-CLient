@@ -1,5 +1,6 @@
 export interface Discipline {
     disciplineId: string,
+    teacher: string,
     name: string,
     // timetable: [{
     //     option: string,
