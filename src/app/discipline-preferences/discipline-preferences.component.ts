@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -7,6 +7,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./discipline-preferences.component.scss']
 })
 export class DisciplinePreferencesComponent implements OnInit {
+
+  @Input() discipline;
 
   disciplinePreferences = [{index: '1', value: 'Mon 18-20'}, {index: '2', value: 'Mon 18-20'}];
 
@@ -20,7 +22,7 @@ export class DisciplinePreferencesComponent implements OnInit {
   }
 
   submit(){
-    console.log('User details updated', this.preferencesForm.value);
+    console.log('Added user preferences', this.preferencesForm.value);
   }
 
 }

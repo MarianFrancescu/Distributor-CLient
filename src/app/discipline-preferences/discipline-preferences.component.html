@@ -5,14 +5,15 @@
             <mat-form-field appearance="outline">
                     <mat-label>Option 1</mat-label>
                     <mat-select formControlName="option1">
-                      <mat-option *ngFor="let preference of disciplinePreferences" [value]="preference">
-                        {{ preference.value }}
+                      <mat-option *ngFor="let preference of discipline.timetable" [value]="preference">
+                        {{ preference.option }}
                       </mat-option>
                     </mat-select>    
                 <mat-error *ngIf="preferencesForm.controls.option1.invalid">Please complete option</mat-error>
             </mat-form-field>
         </div>
     </form>
+    {{discipline | json}}
     <button class="submit-button" mat-raised-button (click)="submit()" [disabled]="preferencesForm.invalid">SAVE</button>
 
 </div>
