@@ -16,7 +16,7 @@
     <div fxShow="true" fxHide.lt-md="true" class="menu-items">
         <a mat-button *ngIf="getUserState()" [routerLink]="['/profile']" class="menu-item" routerLinkActive="active">Profile</a>
         <a mat-button *ngIf="!getUserState()" [routerLink]="['/login']" class="menu-item" routerLinkActive="active">Login</a>
-        <a mat-button *ngIf="getUserState()" [routerLink]="['/login']" class="menu-item" routerLinkActive="active">Logout</a>
+        <a mat-button *ngIf="getUserState()" [routerLink]="['/login']" class="menu-item" routerLinkActive="active" (click)="logout()">Logout</a>
     </div>
   </div>
 
@@ -34,7 +34,7 @@
       <a mat-button *ngIf="getUserState()" [routerLink]="['/disciplines']" (click)="sidenav.close()">Disciplines</a>
       <a mat-button *ngIf="getUserState()" [routerLink]="['/preferences']" (click)="sidenav.close()">Preferences</a>
       <a mat-button *ngIf="getUserState()" [routerLink]="['/profile']" (click)="sidenav.close()">Profile</a>
-      <a mat-button *ngIf="getUserState()" [routerLink]="['/login']" (click)="sidenav.close()">Logout</a>
+      <a mat-button *ngIf="getUserState()" [routerLink]="['/login']" (click)="sidenav.close(); logout()">Logout</a>
       <a mat-button *ngIf="!getUserState()" [routerLink]="['/login']" (click)="sidenav.close()">Login</a>
     </mat-nav-list>
   </mat-sidenav>

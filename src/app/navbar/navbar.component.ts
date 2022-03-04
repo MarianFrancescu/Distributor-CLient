@@ -20,4 +20,8 @@ export class NavbarComponent implements OnInit {
     return true;
   }
 
+  logout() {
+    sessionStorage.clear();
+  }
+
 }
