@@ -11,6 +11,10 @@ export const mockedDisciplines: Discipline[] = [
                     students: ['a']
                 }
             ],
+            studyInstitution: 'UPT',
+            faculty: 'AC',
+            department: 'CTI',
+            studyYear: '3',
             created: '18-02-2002'
         },
         {
@@ -27,6 +31,10 @@ export const mockedDisciplines: Discipline[] = [
                     students: ['a']
                 }
             ],
+            studyInstitution: 'UPT',
+            faculty: 'AC',
+            department: 'CTI',
+            studyYear: '3',
             created: '15-02-2002'
         }
 ]

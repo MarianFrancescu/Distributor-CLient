@@ -7,6 +7,10 @@ export interface Discipline {
     //     students: string[]
     // }],
     timetable: Timetable[],
+    studyInstitution: string;
+    faculty: string;
+    department: string;
+    studyYear: string;
     created: string
 }
 
