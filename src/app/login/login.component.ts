@@ -30,7 +30,8 @@ export class LoginComponent implements OnInit {
     this.apiService.login(this.loginForm.get('email').value, this.loginForm.get('password').value)
       .subscribe(response => {
         const res = response as any;
-        localStorage.setItem('token', res.token);
+        sessionStorage.setItem('token', res.token);
+        sessionStorage.setItem('userID', res.userID);
         this.router.navigate(['/']);
       },
       error => {

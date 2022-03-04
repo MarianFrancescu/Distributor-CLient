@@ -14,6 +14,9 @@ export class NavbarComponent implements OnInit {
 
   //this will return true if user is logged in and false if user is not logged
   getUserState() {
+    let activeToken = sessionStorage.getItem('token');
+    if(!activeToken)
+      return false;
     return true;
   }
 
