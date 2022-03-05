@@ -2,7 +2,7 @@
     <header class="username-container">
         <h1>Profile details</h1>
     </header>
-{{user | json}}
+
     <div class="details-container">
         <mat-list class="tabs">
             <button mat-button class="tab-item" (click)="tabOption = 1">Details</button>
@@ -10,10 +10,10 @@
             <button mat-button class="tab-item" (click)="tabOption = 3">Delete account</button>
         </mat-list>
 
-        <section class="template-container">
+        <section *ngIf="user" class="template-container">
             <ng-container [ngSwitch]="tabOption">
                 <div class="data-container">
-                    <app-profile-details *ngSwitchCase="1"></app-profile-details>
+                    <app-profile-details [userDetails]="user" *ngSwitchCase="1"></app-profile-details>
                     <app-reset-password *ngSwitchCase="2"></app-reset-password>
                     <app-delete-user *ngSwitchCase="3"></app-delete-user>
                 </div>
@@ -24,7 +24,7 @@
     <!-- this will be used for mobile view -->
     <mat-tab-group mat-align-tabs="center" class="details-tabs">
         <mat-tab label="Details">
-            <app-profile-details></app-profile-details>
+            <app-profile-details [userDetails]="user"></app-profile-details>
         </mat-tab>
         <mat-tab label="Reset password">
             <app-reset-password></app-reset-password>

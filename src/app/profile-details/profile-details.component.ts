@@ -1,13 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { User } from '../models/user.interface';
 
 @Component({
   selector: 'app-profile-details',
   templateUrl: './profile-details.component.html',
   styleUrls: ['./profile-details.component.scss']
 })
-export class ProfileDetailsComponent implements OnInit {
+export class ProfileDetailsComponent implements OnInit, OnChanges {
 
+  @Input() userDetails: User;
+  user;
   selectedValue: string;
 
   institutions = ['Universitatea Politehnica Timisoara', 'Universitatea de Vest Timisoara'];
@@ -31,6 +34,16 @@ export class ProfileDetailsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(this.userDetails) {
+      this.detailsForm.patchValue({
+        email: this.userDetails.email,
+        firstName: this.userDetails.firstName,
+        lastName: this.userDetails.lastName
+      })
+    }
   }
 
   submit(){
