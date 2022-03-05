@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from '../models/user.interface';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-profile-details',
@@ -10,7 +11,6 @@ import { User } from '../models/user.interface';
 export class ProfileDetailsComponent implements OnInit, OnChanges {
 
   @Input() userDetails: User;
-  user;
   selectedValue: string;
 
   institutions = ['Universitatea Politehnica Timisoara', 'Universitatea de Vest Timisoara'];
@@ -31,7 +31,7 @@ export class ProfileDetailsComponent implements OnInit, OnChanges {
 
   hideFlag: boolean = true;
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
   }
@@ -41,13 +41,25 @@ export class ProfileDetailsComponent implements OnInit, OnChanges {
       this.detailsForm.patchValue({
         email: this.userDetails.email,
         firstName: this.userDetails.firstName,
-        lastName: this.userDetails.lastName
-      })
+        lastName: this.userDetails.lastName,
+        registrationNumber: this.userDetails.registrationNumber,
+        studyInstitution: this.userDetails.studyInstitution,
+        faculty: this.userDetails.faculty,
+        department: this.userDetails.department,
+        studyYear: this.userDetails.studyYear
+      });
     }
   }
 
   submit(){
-    console.log('User details updated', this.detailsForm.value);
+    this.apiService.updateUser(this.userDetails._id, this.detailsForm.value as User)
+          .subscribe(response => {
+            console.log(response);
+          },
+          error => {
+            console.log(1)
+            this.detailsForm.reset();
+          });
   }
 
   getEmailErrorMessage() {

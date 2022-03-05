@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { User } from '../models/user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -32,8 +33,13 @@ export class ApiService {
     });
   }
 
-  getUser(userID) {
+  getUser(userID: string) {
     const url = `${this.apiURL}user/${userID}`;
     return this.http.get(url, {})
+  }
+
+  updateUser(userID: string, user: User) {
+    const url = `${this.apiURL}updateUser/${userID}`;
+    return this.http.patch(url, user);
   }
 }
