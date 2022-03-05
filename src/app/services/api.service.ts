@@ -22,6 +22,16 @@ export class ApiService {
     return loginObservable;
   }
 
+  register(email: string, firstName: string, lastName: string, password: string){
+    const url = `${this.apiURL}registerUser`;
+    return this.http.post(url, {
+      email,
+      firstName,
+      lastName,
+      password
+    });
+  }
+
   getUser(userID) {
     const url = `${this.apiURL}user/${userID}`;
     return this.http.get(url, {})

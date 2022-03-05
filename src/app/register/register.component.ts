@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-register',
@@ -18,13 +20,24 @@ export class RegisterComponent implements OnInit {
 
   hideFlag: boolean = true;
 
-  constructor() { }
+  constructor(private apiService: ApiService,
+              private router: Router) { }
 
   ngOnInit(): void {
   }
 
   submit(){
     console.log('User registered');
+    this.apiService.register(this.registerForm.get('email').value, 
+                            this.registerForm.get('firstName').value, 
+                            this.registerForm.get('lastName').value, 
+                            this.registerForm.get('password').value)
+      .subscribe(response => {
+        this.router.navigate(['/login']);
+      },
+      error => {
+        this.registerForm.reset();
+      })
   }
 
   getEmailErrorMessage() {
