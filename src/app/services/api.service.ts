@@ -21,4 +21,9 @@ export class ApiService {
     });
     return loginObservable;
   }
+
+  getUser(userID) {
+    const url = `${this.apiURL}user/${userID}`;
+    return this.http.get(url, {})
+  }
 }
