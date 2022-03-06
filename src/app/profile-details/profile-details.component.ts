@@ -16,7 +16,7 @@ export class ProfileDetailsComponent implements OnInit, OnChanges {
   institutions = ['Universitatea Politehnica Timisoara', 'Universitatea de Vest Timisoara'];
   faculties = ['Automatica si Calculatoare', 'Telecomunicatii'];
   departments = ['Calculatoare si tehnologia informatiei', 'Ingineria Sistemelor'];
-  years = [1, 2, 3, 4, 5, 6];
+  years = ['1', '2', '3', '4', '5', '6'];
 
   detailsForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -52,13 +52,14 @@ export class ProfileDetailsComponent implements OnInit, OnChanges {
   }
 
   submit(){
-    this.apiService.updateUser(this.userDetails._id, this.detailsForm.value as User)
+    console.log(this.detailsForm.controls)
+    this.apiService.updateUser(this.userDetails._id, this.detailsForm.value)
           .subscribe(response => {
             console.log(response);
           },
           error => {
-            console.log(1)
-            this.detailsForm.reset();
+            console.log(error)
+            // this.detailsForm.reset();
           });
   }
 

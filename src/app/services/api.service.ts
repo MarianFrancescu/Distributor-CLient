@@ -38,7 +38,7 @@ export class ApiService {
     return this.http.get(url, {})
   }
 
-  updateUser(userID: string, user: User) {
+  updateUser(userID: string, user: any) {
     const url = `${this.apiURL}updateUser/${userID}`;
     return this.http.patch(url, user);
   }
