@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { AlertDialogComponent } from '../alert-dialog/alert-dialog.component';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-delete-user',
@@ -9,7 +12,10 @@ import { AlertDialogComponent } from '../alert-dialog/alert-dialog.component';
 })
 export class DeleteUserComponent implements OnInit {
 
-  constructor(public deleteDialog: MatDialog) { }
+  constructor(public deleteDialog: MatDialog,
+              private router: Router,
+              private snackBar: MatSnackBar,
+              private apiService: ApiService) { }
 
   ngOnInit(): void {
   }
@@ -20,6 +26,16 @@ export class DeleteUserComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      if(result == true){
+        this.apiService.deleteAccount().subscribe(
+          () => {
+            this.router.navigate(['/login']);
+            this.snackBar.open("Your account was deleted", "Close", {
+              duration: 2000
+            });
+          }
+        )
+      }
       console.log(`Dialog result: ${result}`);
     });
   }

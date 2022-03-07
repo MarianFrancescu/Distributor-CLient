@@ -30,7 +30,7 @@ export class ApiService {
       firstName,
       lastName,
       password
-    });
+    }, {responseType: 'text'});
   }
 
   getUserID(){
@@ -51,5 +51,11 @@ export class ApiService {
     let userID = this.getUserID();
     const url = `${this.apiURL}updateUserPassword/${userID}`;
     return this.http.put(url, {newPassword: password});
+  }
+
+  deleteAccount() {
+    let userID = this.getUserID();
+    const url = `${this.apiURL}deleteUser/${userID}`;
+    return this.http.delete(url, { responseType: 'text' });
   }
 }
