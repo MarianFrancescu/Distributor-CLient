@@ -29,6 +29,7 @@ export class DeleteUserComponent implements OnInit {
       if(result == true){
         this.apiService.deleteAccount().subscribe(
           () => {
+            sessionStorage.clear();
             this.router.navigate(['/login']);
             this.snackBar.open("Your account was deleted", "Close", {
               duration: 2000
