@@ -33,6 +33,10 @@ export class ApiService {
     });
   }
 
+  getUserID(){
+    return sessionStorage.getItem('userID');
+  }
+
   getUser(userID: string) {
     const url = `${this.apiURL}user/${userID}`;
     return this.http.get(url, {})
@@ -41,5 +45,11 @@ export class ApiService {
   updateUser(userID: string, user: any) {
     const url = `${this.apiURL}updateUser/${userID}`;
     return this.http.patch(url, user, { responseType: 'text' });
+  }
+
+  updateUserPassword(password: string) {
+    let userID = this.getUserID();
+    const url = `${this.apiURL}updateUserPassword/${userID}`;
+    return this.http.put(url, {newPassword: password});
   }
 }
