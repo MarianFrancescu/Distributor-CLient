@@ -40,6 +40,6 @@ export class ApiService {
 
   updateUser(userID: string, user: any) {
     const url = `${this.apiURL}updateUser/${userID}`;
-    return this.http.patch(url, user);
+    return this.http.patch(url, user, { responseType: 'text' });
   }
 }

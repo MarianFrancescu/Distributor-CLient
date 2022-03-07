@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from '../models/user.interface';
 import { ApiService } from '../services/api.service';
 
@@ -19,7 +20,6 @@ export class ProfileDetailsComponent implements OnInit, OnChanges {
   years = ['1', '2', '3', '4', '5', '6'];
 
   detailsForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
     registrationNumber: new FormControl('', [Validators.required]),
@@ -31,7 +31,8 @@ export class ProfileDetailsComponent implements OnInit, OnChanges {
 
   hideFlag: boolean = true;
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService,
+              private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
@@ -39,7 +40,6 @@ export class ProfileDetailsComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if(this.userDetails) {
       this.detailsForm.patchValue({
-        email: this.userDetails.email,
         firstName: this.userDetails.firstName,
         lastName: this.userDetails.lastName,
         registrationNumber: this.userDetails.registrationNumber,
@@ -52,30 +52,37 @@ export class ProfileDetailsComponent implements OnInit, OnChanges {
   }
 
   submit(){
-    console.log(this.detailsForm.controls)
-    this.apiService.updateUser(this.userDetails._id, this.detailsForm.value)
+    let updatedDetails = {} as User;
+
+    if(this.detailsForm.controls.lastName.touched){
+      updatedDetails.lastName = this.detailsForm.controls.lastName.value;
+    }
+    if(this.detailsForm.controls.registrationNumber.touched){
+      updatedDetails.registrationNumber = this.detailsForm.controls.registrationNumber.value;
+    }
+    if(this.detailsForm.controls.studyInstitution.touched){
+      updatedDetails.studyInstitution = this.detailsForm.controls.studyInstitution.value;
+    }
+    if(this.detailsForm.controls.faculty.touched){
+      updatedDetails.faculty = this.detailsForm.controls.faculty.value;
+    }
+    if(this.detailsForm.controls.department.touched){
+      updatedDetails.department = this.detailsForm.controls.department.value;
+    }
+    if(this.detailsForm.controls.studyYear.touched){
+      updatedDetails.studyYear = this.detailsForm.controls.studyYear.value;
+    }
+    
+    this.apiService.updateUser(this.userDetails._id, updatedDetails)
           .subscribe(response => {
             console.log(response);
+            this.snackBar.open(`${response}`, 'Close', {
+              duration: 2000
+            });
           },
           error => {
-            console.log(error)
-            // this.detailsForm.reset();
+            this.detailsForm.reset();
           });
-  }
-
-  getEmailErrorMessage() {
-    if (this.detailsForm.controls.email.hasError('required')) {
-      return 'Please enter your email';
-    }
-
-    return this.detailsForm.controls.email.hasError('email') ? 'Not a valid email' : '';
-  }
-
-  getPasswordErrorMessage() {
-    if (this.detailsForm.controls.password.hasError('required')) {
-      return 'Please enter your password';
-    }
-    return this.detailsForm.controls.password.hasError('minLength') ? '' : 'Password must have more than 6 characters';
   }
 
 }

@@ -2,15 +2,6 @@
     <form [formGroup]="detailsForm">
         <div class="form-group">
             <mat-form-field appearance="outline">
-                <mat-label>Enter your email</mat-label>
-                <input matInput placeholder="Your email" formControlName="email">
-                <button mat-icon-button matSuffix [disabled]="true">
-                    <mat-icon>mail</mat-icon>
-                </button>
-                <mat-error *ngIf="detailsForm.controls.email.invalid">{{ getEmailErrorMessage() }}</mat-error>
-            </mat-form-field>
-
-            <mat-form-field appearance="outline">
                 <mat-label>Enter your first name</mat-label>
                 <input matInput placeholder="Your first name" formControlName="firstName">
                 <mat-error *ngIf="detailsForm.controls.firstName.invalid">Please complete the first name</mat-error>
@@ -76,7 +67,7 @@
             </mat-form-field>
         </div>
     </form>
-    <button class="submit-button" mat-raised-button (click)="submit()" [disabled]="detailsForm.invalid">SAVE</button>
+    <button class="submit-button" mat-raised-button (click)="submit()" [disabled]="!detailsForm.touched">SAVE</button>
 </div>
 
 
