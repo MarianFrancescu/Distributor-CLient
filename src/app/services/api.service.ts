@@ -58,4 +58,9 @@ export class ApiService {
     const url = `${this.apiURL}deleteUser/${userID}`;
     return this.http.delete(url, { responseType: 'text' });
   }
+
+  getDisciplines() {
+    const url = `${this.apiURL}disciplines`;
+    return this.http.get(url, {});
+  }
 }

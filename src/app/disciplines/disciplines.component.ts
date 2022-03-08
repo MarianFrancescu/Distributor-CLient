@@ -5,6 +5,7 @@ import { mockedDisciplines } from '../mock-data/disciplines.mock';
 import { Discipline } from '../models/discipline.interface';
 import {MatTableDataSource} from '@angular/material/table';
 import { Router } from '@angular/router';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-disciplines',
@@ -17,12 +18,13 @@ export class DisciplinesComponent implements OnInit {
   mockDisciplines = mockedDisciplines;
   disciplines = [];
   myDataSource: MatTableDataSource<Discipline>;
-  constructor(public dialog: MatDialog, private router: Router) {}
+  dbDisciplines: Discipline[];
+  constructor(public dialog: MatDialog, private router: Router, private apiService: ApiService) {}
 
   openDialog(): void {
     const dialogRef = this.dialog.open(AddDisciplineDialogComponent, {
       width: '450px',
-      data: { disciplines: this.mockDisciplines, selected: this.selected },
+      data: { disciplines: this.dbDisciplines, selected: this.selected },
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -38,6 +40,10 @@ export class DisciplinesComponent implements OnInit {
 
   ngOnInit(): void {
     this.myDataSource = new MatTableDataSource<Discipline>(this.disciplines);
+    this.apiService.getDisciplines().subscribe(response => {
+      this.dbDisciplines = response as Discipline[];
+      console.log(this.dbDisciplines)
+    })
   }
 
   makeTable() {
@@ -45,7 +51,7 @@ export class DisciplinesComponent implements OnInit {
   }
 
   getSelectedRow(discipline: Discipline) {
-    this.router.navigate(['/discipline', discipline.disciplineId]);
+    this.router.navigate(['/discipline', discipline._id]);
   }
 
 }

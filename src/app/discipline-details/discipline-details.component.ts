@@ -22,7 +22,7 @@ export class DisciplineDetailsComponent implements OnInit {
 
   getDiscipline(){
     let disciplineId = this.route.snapshot.paramMap.get('id');
-    return this.mockDisciplines.find(discipline => discipline.disciplineId === disciplineId)
+    return this.mockDisciplines.find(discipline => discipline._id === disciplineId)
   }
 
   getAvailablePlaces(option: string) {
