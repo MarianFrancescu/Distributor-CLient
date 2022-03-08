@@ -63,4 +63,9 @@ export class ApiService {
     const url = `${this.apiURL}disciplines`;
     return this.http.get(url, {});
   }
+
+  getDiscipline(disciplineID: string) {
+    const url = `${this.apiURL}discipline/${disciplineID}`;
+    return this.http.get(url, {});
+  }
 }
