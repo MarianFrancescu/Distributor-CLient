@@ -64,6 +64,12 @@ export class ApiService {
     return this.http.get(url, {});
   }
 
+  getSpecificDisciplines() {
+    let userID = this.getUserID();
+    const url = `${this.apiURL}specificDisciplines/${userID}`;
+    return this.http.get(url, {});
+  }
+
   getDiscipline(disciplineID: string) {
     const url = `${this.apiURL}discipline/${disciplineID}`;
     return this.http.get(url, {});

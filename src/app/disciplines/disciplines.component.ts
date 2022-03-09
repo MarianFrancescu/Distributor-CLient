@@ -40,7 +40,7 @@ export class DisciplinesComponent implements OnInit {
 
   ngOnInit(): void {
     this.myDataSource = new MatTableDataSource<Discipline>(this.disciplines);
-    this.apiService.getDisciplines().subscribe(response => {
+    this.apiService.getSpecificDisciplines().subscribe(response => {
       this.dbDisciplines = response as Discipline[];
       console.log(this.dbDisciplines)
     })
