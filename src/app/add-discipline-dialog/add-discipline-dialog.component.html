@@ -2,7 +2,7 @@
 <div mat-dialog-content>
   <mat-form-field appearance="fill" class="content">
     <mat-label>Faculty discipline</mat-label>
-    <mat-select  [(ngModel)]="data.selected">
+    <mat-select [(ngModel)]="data.selected">
         <mat-option *ngFor="let discipline of data.disciplines" [value]="discipline">
           {{ discipline.name }}
         </mat-option>
@@ -11,5 +11,5 @@
 </div>
 <div mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="data.selected" cdkFocusInitial>Save</button>
+  <button mat-button [mat-dialog-close]="data.selected" [disabled]="isDisabled()">Save</button>
 </div>

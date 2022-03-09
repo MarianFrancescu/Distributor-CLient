@@ -15,4 +15,7 @@ export class AddDisciplineDialogComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  isDisabled() {
+    return this.data.selected ? false : true;
+  }
 }
