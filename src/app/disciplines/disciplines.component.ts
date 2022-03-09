@@ -3,8 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddDisciplineDialogComponent } from '../add-discipline-dialog/add-discipline-dialog.component';
 import { mockedDisciplines } from '../mock-data/disciplines.mock';
 import { Discipline } from '../models/discipline.interface';
-import {MatTableDataSource} from '@angular/material/table';
-import { Router } from '@angular/router';
+import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
 
 @Component({
@@ -19,7 +19,11 @@ export class DisciplinesComponent implements OnInit {
   disciplines = [];
   myDataSource: MatTableDataSource<Discipline>;
   dbDisciplines: Discipline[];
-  constructor(public dialog: MatDialog, private router: Router, private apiService: ApiService) {}
+  userDisciplines: Discipline[];
+  constructor(public dialog: MatDialog, 
+              private router: Router, 
+              private apiService: ApiService,
+              private route: ActivatedRoute) {}
 
   openDialog(): void {
     const dialogRef = this.dialog.open(AddDisciplineDialogComponent, {
@@ -30,24 +34,50 @@ export class DisciplinesComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if(result)
       { 
-        this.disciplines.push(result);
-        this.disciplines = [...this.disciplines];
-        this.makeTable();
+        // this.disciplines.push(result);
+        // this.disciplines = [...this.disciplines];
+        // this.enrollUser()
+        this.enrollUser(result._id);
+        this.fetchDisciplines();
       }
-      console.log('The dialog was closed', this.disciplines);
+      console.log('The dialog was closed', this.userDisciplines);
     });
   }
 
   ngOnInit(): void {
-    this.myDataSource = new MatTableDataSource<Discipline>(this.disciplines);
+    
     this.apiService.getSpecificDisciplines().subscribe(response => {
       this.dbDisciplines = response as Discipline[];
       console.log(this.dbDisciplines)
-    })
+    });
+    this.fetchDisciplines();
+  }
+
+  enrollUser(disciplineId: string){
+    this.apiService.enrollToDiscipline(disciplineId).subscribe(
+      response => {
+        console.log(response);
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  fetchDisciplines() {
+    this.apiService.getUserDisciplines().subscribe(
+      response => {
+        let res = response as Discipline[];
+        this.userDisciplines = [...res];
+        this.makeTable();
+      },
+      error => {
+        console.log(error)
+      });
   }
 
   makeTable() {
-    this.myDataSource = new MatTableDataSource<Discipline>(this.disciplines);
+    this.myDataSource = new MatTableDataSource<Discipline>(this.userDisciplines);
   }
 
   getSelectedRow(discipline: Discipline) {

@@ -64,6 +64,12 @@ export class ApiService {
     return this.http.get(url, {});
   }
 
+  getUserDisciplines() {
+    let userID = this.getUserID();
+    const url = `${this.apiURL}user/${userID}/disciplines`;
+    return this.http.get(url, {});
+  }
+
   getSpecificDisciplines() {
     let userID = this.getUserID();
     const url = `${this.apiURL}specificDisciplines/${userID}`;
@@ -73,5 +79,11 @@ export class ApiService {
   getDiscipline(disciplineID: string) {
     const url = `${this.apiURL}discipline/${disciplineID}`;
     return this.http.get(url, {});
+  }
+
+  enrollToDiscipline(disciplineID: string){
+    let userID = this.getUserID();
+    const url = `${this.apiURL}discipline/${disciplineID}/enroll`;
+    return this.http.put(url, {userID: userID}, { responseType: 'text' });
   }
 }
