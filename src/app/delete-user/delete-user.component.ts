@@ -22,20 +22,20 @@ export class DeleteUserComponent implements OnInit {
   
   openDialog() {
     const dialogRef = this.deleteDialog.open(AlertDialogComponent, {
-      data: {title: "Delete account", question: "Are you sure you want to delete account?", message: "Yesyeseyes"}
+      data: {title: 'Delete account', question: 'Are you sure you want to delete account?', message: 'Yesyeseyes'}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result == true){
+      if(result == true) {
         this.apiService.deleteAccount().subscribe(
           () => {
             sessionStorage.clear();
             this.router.navigate(['/login']);
-            this.snackBar.open("Your account was deleted", "Close", {
+            this.snackBar.open('Your account was deleted', 'Close', {
               duration: 2000
             });
           }
-        )
+        );
       }
       console.log(`Dialog result: ${result}`);
     });

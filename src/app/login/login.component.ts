@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', [Validators.required, Validators.minLength(6)])
   });
 
-  hideFlag: boolean = true;
+  hideFlag = true;
 
   constructor(private apiService: ApiService,
               private router: Router,
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
       error => {
         this.loginForm.reset();
         this.snackBar.open(`Oops! Something went wrong! ${error.error}`, 'Close');
-      })
+      });
   }
 
   getErrorMessage() {

@@ -22,8 +22,8 @@ export class DisciplinesComponent implements OnInit {
   userDisciplines: Discipline[];
   update = new BehaviorSubject<boolean>(false);
 
-  constructor(public dialog: MatDialog, 
-              private router: Router, 
+  constructor(public dialog: MatDialog,
+              private router: Router,
               private apiService: ApiService) {}
 
   openDialog(): void {
@@ -44,7 +44,6 @@ export class DisciplinesComponent implements OnInit {
     
     this.apiService.getSpecificDisciplines().subscribe(response => {
       this.dbDisciplines = response as Discipline[];
-      console.log(this.dbDisciplines)
     });
     
     this.fetchDisciplines();
@@ -63,12 +62,12 @@ export class DisciplinesComponent implements OnInit {
   fetchDisciplines() {
     this.apiService.getUserDisciplines().subscribe(
       response => {
-        let res = response as Discipline[];
+        const res = response as Discipline[];
         this.userDisciplines = [...res];
         this.makeTable();
       },
       error => {
-        console.log(error)
+        console.log(error);
       });
   }
 

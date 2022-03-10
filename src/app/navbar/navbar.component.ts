@@ -12,11 +12,12 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  //this will return true if user is logged in and false if user is not logged
+  // this will return true if user is logged in and false if user is not logged
   getUserState() {
-    let activeToken = sessionStorage.getItem('token');
-    if(!activeToken)
+    const activeToken = sessionStorage.getItem('token');
+    if(!activeToken) {
       return false;
+    }
     return true;
   }
 

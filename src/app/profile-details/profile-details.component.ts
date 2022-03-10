@@ -29,7 +29,7 @@ export class ProfileDetailsComponent implements OnInit, OnChanges {
     studyYear: new FormControl('', [Validators.required])
   });
 
-  hideFlag: boolean = true;
+  hideFlag = true;
 
   constructor(private apiService: ApiService,
               private snackBar: MatSnackBar) { }
@@ -52,24 +52,24 @@ export class ProfileDetailsComponent implements OnInit, OnChanges {
   }
 
   submit(){
-    let updatedDetails = {} as User;
+    const updatedDetails = {} as User;
 
-    if(this.detailsForm.controls.lastName.touched){
+    if(this.detailsForm.controls.lastName.touched) {
       updatedDetails.lastName = this.detailsForm.controls.lastName.value;
     }
-    if(this.detailsForm.controls.registrationNumber.touched){
+    if(this.detailsForm.controls.registrationNumber.touched) {
       updatedDetails.registrationNumber = this.detailsForm.controls.registrationNumber.value;
     }
-    if(this.detailsForm.controls.studyInstitution.touched){
+    if(this.detailsForm.controls.studyInstitution.touched) {
       updatedDetails.studyInstitution = this.detailsForm.controls.studyInstitution.value;
     }
-    if(this.detailsForm.controls.faculty.touched){
+    if(this.detailsForm.controls.faculty.touched) {
       updatedDetails.faculty = this.detailsForm.controls.faculty.value;
     }
-    if(this.detailsForm.controls.department.touched){
+    if(this.detailsForm.controls.department.touched) {
       updatedDetails.department = this.detailsForm.controls.department.value;
     }
-    if(this.detailsForm.controls.studyYear.touched){
+    if(this.detailsForm.controls.studyYear.touched) {
       updatedDetails.studyYear = this.detailsForm.controls.studyYear.value;
     }
     

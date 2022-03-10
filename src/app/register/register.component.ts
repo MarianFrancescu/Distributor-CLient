@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
     confirmPassword: new FormControl('', [Validators.required, Validators.minLength(6)])
   });
 
-  hideFlag: boolean = true;
+  hideFlag = true;
 
   constructor(private apiService: ApiService,
               private router: Router) { }
@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
       },
       error => {
         this.registerForm.reset();
-      })
+      });
   }
 
   getEmailErrorMessage() {
@@ -56,11 +56,11 @@ export class RegisterComponent implements OnInit {
   }
 
   getConfirmPasswordError() {
-    if(this.registerForm.controls.confirmPassword.hasError('required')){
+    if(this.registerForm.controls.confirmPassword.hasError('required')) {
       return 'Please re-enter your password';
     }
     return this.registerForm.controls.password === this.registerForm.controls.confirmPassword ? 
-            '' : 'The passwords do not match'
+            '' : 'The passwords do not match';
   }
 
 }

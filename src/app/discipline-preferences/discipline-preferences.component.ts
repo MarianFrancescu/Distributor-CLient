@@ -14,7 +14,7 @@ export class DisciplinePreferencesComponent implements OnInit {
 
   preferencesForm = new FormGroup({
     option1: new FormControl('', [Validators.required]),
-  })
+  });
 
   constructor() { }
 

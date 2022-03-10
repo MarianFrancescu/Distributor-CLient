@@ -10,8 +10,8 @@ import { ApiService } from '../services/api.service';
 })
 export class ResetPasswordComponent implements OnInit {
 
-  hideFlag1: boolean = true;
-  hideFlag2: boolean = true;
+  hideFlag1 = true;
+  hideFlag2 = true;
 
   resetPasswordForm = new FormGroup({
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
@@ -31,13 +31,13 @@ export class ResetPasswordComponent implements OnInit {
     return this.resetPasswordForm.controls.password.hasError('minLength') ? '' : 'Password must have more than 6 characters';
   }
 
-  //TODO: Fix error with matching password here and also in register component
+  // TODO: Fix error with matching password here and also in register component
   getConfirmPasswordError() {
-    if(this.resetPasswordForm.controls.confirmPassword.hasError('required')){
+    if(this.resetPasswordForm.controls.confirmPassword.hasError('required')) {
       return 'Please re-enter your password';
     }
     return this.resetPasswordForm.controls.password.value as string === this.resetPasswordForm.controls.confirmPassword.value as string ? 
-            '' : 'The passwords do not match'
+            '' : 'The passwords do not match';
   }
 
   submit() {
@@ -50,9 +50,9 @@ export class ResetPasswordComponent implements OnInit {
         });
       },
       error => {
-        console.log(error)
+        console.log(error);
       }
-    )
+    );
     console.log('reset-password component', this.resetPasswordForm.value);
   }
 

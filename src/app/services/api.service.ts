@@ -9,8 +9,8 @@ export class ApiService {
 
   apiURL = 'http://localhost:8080/';
 
-  private userID: string = '';
-  private token: string = '';
+  private userID = '';
+  private token = '';
 
   constructor(private http: HttpClient) { }
 
@@ -39,7 +39,7 @@ export class ApiService {
 
   getUser(userID: string) {
     const url = `${this.apiURL}user/${userID}`;
-    return this.http.get(url, {})
+    return this.http.get(url, {});
   }
 
   updateUser(userID: string, user: any) {
@@ -48,13 +48,13 @@ export class ApiService {
   }
 
   updateUserPassword(password: string) {
-    let userID = this.getUserID();
+    const userID = this.getUserID();
     const url = `${this.apiURL}updateUserPassword/${userID}`;
     return this.http.put(url, {newPassword: password});
   }
 
   deleteAccount() {
-    let userID = this.getUserID();
+    const userID = this.getUserID();
     const url = `${this.apiURL}deleteUser/${userID}`;
     return this.http.delete(url, { responseType: 'text' });
   }
@@ -65,13 +65,13 @@ export class ApiService {
   }
 
   getUserDisciplines() {
-    let userID = this.getUserID();
+    const userID = this.getUserID();
     const url = `${this.apiURL}user/${userID}/disciplines`;
     return this.http.get(url, {});
   }
 
   getSpecificDisciplines() {
-    let userID = this.getUserID();
+    const userID = this.getUserID();
     const url = `${this.apiURL}specificDisciplines/${userID}`;
     return this.http.get(url, {});
   }
@@ -82,7 +82,7 @@ export class ApiService {
   }
 
   enrollToDiscipline(disciplineID: string){
-    let userID = this.getUserID();
+    const userID = this.getUserID();
     const url = `${this.apiURL}discipline/${disciplineID}/enroll`;
     return this.http.put(url, {userID: userID}, { responseType: 'text' });
   }

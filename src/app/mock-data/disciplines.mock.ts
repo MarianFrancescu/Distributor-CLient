@@ -37,4 +37,4 @@ export const mockedDisciplines: Discipline[] = [
             studyYear: '3',
             created: '15-02-2002'
         }
-]
+];

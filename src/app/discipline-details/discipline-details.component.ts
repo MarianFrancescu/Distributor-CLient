@@ -22,7 +22,7 @@ export class DisciplineDetailsComponent implements OnInit {
   }
 
   getDiscipline(){
-    let disciplineId = this.route.snapshot.paramMap.get('id');
+    const disciplineId = this.route.snapshot.paramMap.get('id');
     this.apiService.getDiscipline(disciplineId).subscribe(
       response => {
         this.discipline = response as Discipline;
@@ -30,7 +30,7 @@ export class DisciplineDetailsComponent implements OnInit {
       error => {
         console.log(error);
       }
-    )
+    );
   }
 
   getAvailablePlaces(option: string) {

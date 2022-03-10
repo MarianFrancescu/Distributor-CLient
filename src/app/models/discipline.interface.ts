@@ -1,12 +1,12 @@
 export interface Discipline {
-    _id: string,
-    teacher: string,
-    name: string,
+    _id: string;
+    teacher: string;
+    name: string;
     // timetable: [{
     //     option: string,
     //     students: string[]
     // }],
-    timetable: Timetable[],
+    timetable: Timetable[];
     studyInstitution: string;
     faculty: string;
     department: string;
@@ -15,6 +15,6 @@ export interface Discipline {
 }
 
 interface Timetable {
-    option: string,
+    option: string;
     students: string[]
 }
