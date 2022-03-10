@@ -39,8 +39,9 @@
                     </th>
                     <td mat-cell *matCellDef="let element" class="no-field-padding">
                         <div class="icons">
-                        <mat-icon class="edit-icon" (click)="addOrEditActivity(element)">edit</mat-icon>
-                        <mat-icon class="delete-icon" (click)="deleteActivity(element)">delete</mat-icon>
+                        <button mat-button>
+                            <mat-icon class="delete-icon" (click)="unenrollUser(element._id, $event)">delete</mat-icon>
+                        </button>
                         </div>
                     </td>
                 </ng-container>

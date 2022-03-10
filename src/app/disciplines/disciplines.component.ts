@@ -82,4 +82,12 @@ export class DisciplinesComponent implements OnInit {
   getSelectedRow(discipline: Discipline) {
     this.router.navigate(['/discipline', discipline._id]);
   }
+
+  unenrollUser(disciplineId: string, e: Event) {
+    const subscription = this.apiService.unenrollFromDiscipline(disciplineId);
+    subscription.subscribe(() => {
+      this.update.next(true);
+    });
+    e.stopPropagation();
+  }
 }

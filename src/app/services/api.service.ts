@@ -94,4 +94,10 @@ export class ApiService {
     const url = `${this.apiURL}discipline/${disciplineID}/enroll`;
     return this.http.put(url, { userID: userID }, { responseType: 'text' });
   }
+
+  unenrollFromDiscipline(disciplineID: string) {
+    const userID = this.getUserID();
+    const url = `${this.apiURL}discipline/${disciplineID}/unenroll`;
+    return this.http.put(url, { userID: userID }, { responseType: 'text' });
+  }
 }
