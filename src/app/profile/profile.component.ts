@@ -11,16 +11,13 @@ export class ProfileComponent implements OnInit {
   tabOption = 1;
   user: User;
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
     const userID = sessionStorage.getItem('userID');
-    this.apiService.getUser(userID).subscribe(
-      result => {
-        const res = result as User;
-        this.user = res;
-      }
-    );
+    this.apiService.getUser(userID).subscribe((result) => {
+      const res = result as User;
+      this.user = res;
+    });
   }
-
 }

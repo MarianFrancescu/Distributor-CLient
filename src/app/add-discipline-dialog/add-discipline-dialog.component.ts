@@ -8,12 +8,9 @@ import { MatSelectChange } from '@angular/material/select';
   styleUrls: ['./add-discipline-dialog.component.scss']
 })
 export class AddDisciplineDialogComponent implements OnInit {
+  constructor(@Inject(MAT_DIALOG_DATA) public data) {}
 
-  constructor(
-    @Inject(MAT_DIALOG_DATA) public data,
-  ) {}
-
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   isDisabled() {
     return this.data.selected ? false : true;

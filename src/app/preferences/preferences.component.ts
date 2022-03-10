@@ -8,17 +8,14 @@ import { Discipline } from '../models/discipline.interface';
   styleUrls: ['./preferences.component.scss']
 })
 export class PreferencesComponent implements OnInit {
-
   tabOption: Discipline;
   disciplines = mockedDisciplines;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  selectDiscipline(discipline: Discipline){
+  selectDiscipline(discipline: Discipline) {
     this.tabOption = discipline;
   }
-
 }

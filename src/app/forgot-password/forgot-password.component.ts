@@ -7,17 +7,15 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./forgot-password.component.scss']
 })
 export class ForgotPasswordComponent implements OnInit {
-
   passwordForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
+    email: new FormControl('', [Validators.required, Validators.email])
   });
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  submit(){
+  submit() {
     console.log('User registered');
   }
 
@@ -26,7 +24,8 @@ export class ForgotPasswordComponent implements OnInit {
       return 'Please enter your email';
     }
 
-    return this.passwordForm.controls.email.hasError('email') ? 'Not a valid email' : '';
+    return this.passwordForm.controls.email.hasError('email')
+      ? 'Not a valid email'
+      : '';
   }
-  
 }

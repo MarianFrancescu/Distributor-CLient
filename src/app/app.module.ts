@@ -32,7 +32,7 @@ import { MatTableModule } from '@angular/material/table';
 import { DisciplineDetailsComponent } from './discipline-details/discipline-details.component';
 import { PreferencesComponent } from './preferences/preferences.component';
 import { DisciplinePreferencesComponent } from './discipline-preferences/discipline-preferences.component';
-import { HttpClientModule } from '@angular/common/http'; 
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -50,7 +50,7 @@ import { HttpClientModule } from '@angular/common/http';
     AddDisciplineDialogComponent,
     DisciplineDetailsComponent,
     PreferencesComponent,
-    DisciplinePreferencesComponent,
+    DisciplinePreferencesComponent
   ],
   imports: [
     BrowserModule,
@@ -79,10 +79,10 @@ import { HttpClientModule } from '@angular/common/http';
       { path: 'profile', component: ProfileComponent },
       { path: 'disciplines', component: DisciplinesComponent },
       { path: 'discipline/:id', component: DisciplineDetailsComponent },
-      { path: 'preferences', component: PreferencesComponent },
-    ]),
+      { path: 'preferences', component: PreferencesComponent }
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

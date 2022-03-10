@@ -22,18 +22,20 @@ export class DisciplinesComponent implements OnInit {
   userDisciplines: Discipline[];
   update = new BehaviorSubject<boolean>(false);
 
-  constructor(public dialog: MatDialog,
-              private router: Router,
-              private apiService: ApiService) {}
+  constructor(
+    public dialog: MatDialog,
+    private router: Router,
+    private apiService: ApiService
+  ) {}
 
   openDialog(): void {
     const dialogRef = this.dialog.open(AddDisciplineDialogComponent, {
       width: '450px',
-      data: { disciplines: this.dbDisciplines, selected: this.selected },
+      data: { disciplines: this.dbDisciplines, selected: this.selected }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if(result) { 
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
         this.enrollUser(result._id);
       }
       console.log('The dialog was closed', this.userDisciplines);
@@ -41,42 +43,43 @@ export class DisciplinesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
-    this.apiService.getSpecificDisciplines().subscribe(response => {
+    this.apiService.getSpecificDisciplines().subscribe((response) => {
       this.dbDisciplines = response as Discipline[];
     });
-    
+
     this.fetchDisciplines();
-    this.update.subscribe(update => update === true ? this.fetchDisciplines() : '');
+    this.update.subscribe((update) =>
+      update === true ? this.fetchDisciplines() : ''
+    );
   }
 
-  enrollUser(disciplineId: string){
+  enrollUser(disciplineId: string) {
     const subscription = this.apiService.enrollToDiscipline(disciplineId);
-    subscription.subscribe(
-      () => { 
-        this.update.next(true);
-      }
-    );
+    subscription.subscribe(() => {
+      this.update.next(true);
+    });
   }
 
   fetchDisciplines() {
     this.apiService.getUserDisciplines().subscribe(
-      response => {
+      (response) => {
         const res = response as Discipline[];
         this.userDisciplines = [...res];
         this.makeTable();
       },
-      error => {
+      (error) => {
         console.log(error);
-      });
+      }
+    );
   }
 
   makeTable() {
-    this.myDataSource = new MatTableDataSource<Discipline>(this.userDisciplines);
+    this.myDataSource = new MatTableDataSource<Discipline>(
+      this.userDisciplines
+    );
   }
 
   getSelectedRow(discipline: Discipline) {
     this.router.navigate(['/discipline', discipline._id]);
   }
-
 }

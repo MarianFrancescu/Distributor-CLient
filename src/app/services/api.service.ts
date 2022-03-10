@@ -6,13 +6,12 @@ import { User } from '../models/user.interface';
   providedIn: 'root'
 })
 export class ApiService {
-
   apiURL = 'http://localhost:8080/';
 
   private userID = '';
   private token = '';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   login(email: string, password: string) {
     const url = `${this.apiURL}login`;
@@ -23,17 +22,26 @@ export class ApiService {
     return loginObservable;
   }
 
-  register(email: string, firstName: string, lastName: string, password: string){
+  register(
+    email: string,
+    firstName: string,
+    lastName: string,
+    password: string
+  ) {
     const url = `${this.apiURL}registerUser`;
-    return this.http.post(url, {
-      email,
-      firstName,
-      lastName,
-      password
-    }, {responseType: 'text'});
+    return this.http.post(
+      url,
+      {
+        email,
+        firstName,
+        lastName,
+        password
+      },
+      { responseType: 'text' }
+    );
   }
 
-  getUserID(){
+  getUserID() {
     return sessionStorage.getItem('userID');
   }
 
@@ -50,7 +58,7 @@ export class ApiService {
   updateUserPassword(password: string) {
     const userID = this.getUserID();
     const url = `${this.apiURL}updateUserPassword/${userID}`;
-    return this.http.put(url, {newPassword: password});
+    return this.http.put(url, { newPassword: password });
   }
 
   deleteAccount() {
@@ -81,9 +89,9 @@ export class ApiService {
     return this.http.get(url, {});
   }
 
-  enrollToDiscipline(disciplineID: string){
+  enrollToDiscipline(disciplineID: string) {
     const userID = this.getUserID();
     const url = `${this.apiURL}discipline/${disciplineID}/enroll`;
-    return this.http.put(url, {userID: userID}, { responseType: 'text' });
+    return this.http.put(url, { userID: userID }, { responseType: 'text' });
   }
 }

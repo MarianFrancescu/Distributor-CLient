@@ -10,31 +10,31 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./discipline-details.component.scss']
 })
 export class DisciplineDetailsComponent implements OnInit {
-
   mockDisciplines = mockedDisciplines;
   discipline: Discipline;
   selectedOption = '14-16';
 
-  constructor(private route: ActivatedRoute, private apiService: ApiService) { }
+  constructor(private route: ActivatedRoute, private apiService: ApiService) {}
 
   ngOnInit(): void {
-     this.getDiscipline();
+    this.getDiscipline();
   }
 
-  getDiscipline(){
+  getDiscipline() {
     const disciplineId = this.route.snapshot.paramMap.get('id');
     this.apiService.getDiscipline(disciplineId).subscribe(
-      response => {
+      (response) => {
         this.discipline = response as Discipline;
       },
-      error => {
+      (error) => {
         console.log(error);
       }
     );
   }
 
   getAvailablePlaces(option: string) {
-    return this.discipline.timetable.find(timetable => timetable.option === option).students.length;
+    return this.discipline.timetable.find(
+      (timetable) => timetable.option === option
+    ).students.length;
   }
-
 }

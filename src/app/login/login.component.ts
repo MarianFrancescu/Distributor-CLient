@@ -11,34 +11,46 @@ import { ApiService } from '../services/api.service';
   providers: [ApiService]
 })
 export class LoginComponent implements OnInit {
-
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(6)])
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(6)
+    ])
   });
 
   hideFlag = true;
 
-  constructor(private apiService: ApiService,
-              private router: Router,
-              private snackBar: MatSnackBar) { }
+  constructor(
+    private apiService: ApiService,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  submit(){
-    this.apiService.login(this.loginForm.get('email').value, this.loginForm.get('password').value)
-      .subscribe(response => {
-        const res = response as any;
-        sessionStorage.clear();
-        sessionStorage.setItem('token', res.token);
-        sessionStorage.setItem('userID', res.userID);
-        this.router.navigate(['/']);
-      },
-      error => {
-        this.loginForm.reset();
-        this.snackBar.open(`Oops! Something went wrong! ${error.error}`, 'Close');
-      });
+  submit() {
+    this.apiService
+      .login(
+        this.loginForm.get('email').value,
+        this.loginForm.get('password').value
+      )
+      .subscribe(
+        (response) => {
+          const res = response as any;
+          sessionStorage.clear();
+          sessionStorage.setItem('token', res.token);
+          sessionStorage.setItem('userID', res.userID);
+          this.router.navigate(['/']);
+        },
+        (error) => {
+          this.loginForm.reset();
+          this.snackBar.open(
+            `Oops! Something went wrong! ${error.error}`,
+            'Close'
+          );
+        }
+      );
   }
 
   getErrorMessage() {
@@ -46,7 +58,8 @@ export class LoginComponent implements OnInit {
       return 'You must enter a value';
     }
 
-    return this.loginForm.controls.email.hasError('email') ? 'Not a valid email' : '';
+    return this.loginForm.controls.email.hasError('email')
+      ? 'Not a valid email'
+      : '';
   }
-
 }

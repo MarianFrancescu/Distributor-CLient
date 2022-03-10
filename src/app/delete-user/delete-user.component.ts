@@ -11,31 +11,33 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./delete-user.component.scss']
 })
 export class DeleteUserComponent implements OnInit {
+  constructor(
+    public deleteDialog: MatDialog,
+    private router: Router,
+    private snackBar: MatSnackBar,
+    private apiService: ApiService
+  ) {}
 
-  constructor(public deleteDialog: MatDialog,
-              private router: Router,
-              private snackBar: MatSnackBar,
-              private apiService: ApiService) { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
-  
   openDialog() {
     const dialogRef = this.deleteDialog.open(AlertDialogComponent, {
-      data: {title: 'Delete account', question: 'Are you sure you want to delete account?', message: 'Yesyeseyes'}
+      data: {
+        title: 'Delete account',
+        question: 'Are you sure you want to delete account?',
+        message: 'Yesyeseyes'
+      }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if(result == true) {
-        this.apiService.deleteAccount().subscribe(
-          () => {
-            sessionStorage.clear();
-            this.router.navigate(['/login']);
-            this.snackBar.open('Your account was deleted', 'Close', {
-              duration: 2000
-            });
-          }
-        );
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result == true) {
+        this.apiService.deleteAccount().subscribe(() => {
+          sessionStorage.clear();
+          this.router.navigate(['/login']);
+          this.snackBar.open('Your account was deleted', 'Close', {
+            duration: 2000
+          });
+        });
       }
       console.log(`Dialog result: ${result}`);
     });

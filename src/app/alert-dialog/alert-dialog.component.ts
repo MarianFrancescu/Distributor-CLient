@@ -7,10 +7,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./alert-dialog.component.scss']
 })
 export class AlertDialogComponent implements OnInit {
+  constructor(@Inject(MAT_DIALOG_DATA) public data) {}
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data) { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

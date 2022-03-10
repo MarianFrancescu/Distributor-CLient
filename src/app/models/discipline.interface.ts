@@ -1,20 +1,20 @@
 export interface Discipline {
-    _id: string;
-    teacher: string;
-    name: string;
-    // timetable: [{
-    //     option: string,
-    //     students: string[]
-    // }],
-    timetable: Timetable[];
-    studyInstitution: string;
-    faculty: string;
-    department: string;
-    studyYear: string;
-    created: string
+  _id: string;
+  teacher: string;
+  name: string;
+  // timetable: [{
+  //     option: string,
+  //     students: string[]
+  // }],
+  timetable: Timetable[];
+  studyInstitution: string;
+  faculty: string;
+  department: string;
+  studyYear: string;
+  created: string;
 }
 
 interface Timetable {
-    option: string;
-    students: string[]
+  option: string;
+  students: string[];
 }
