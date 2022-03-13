@@ -33,6 +33,7 @@ import { DisciplineDetailsComponent } from './discipline-details/discipline-deta
 import { PreferencesComponent } from './preferences/preferences.component';
 import { DisciplinePreferencesComponent } from './discipline-preferences/discipline-preferences.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { HttpClientModule } from '@angular/common/http';
     AddDisciplineDialogComponent,
     DisciplineDetailsComponent,
     PreferencesComponent,
-    DisciplinePreferencesComponent
+    DisciplinePreferencesComponent,
+    AdminDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +81,8 @@ import { HttpClientModule } from '@angular/common/http';
       { path: 'profile', component: ProfileComponent },
       { path: 'disciplines', component: DisciplinesComponent },
       { path: 'discipline/:id', component: DisciplineDetailsComponent },
-      { path: 'preferences', component: PreferencesComponent }
+      { path: 'preferences', component: PreferencesComponent },
+      { path: 'dashboard', component: AdminDashboardComponent }
     ])
   ],
   providers: [],

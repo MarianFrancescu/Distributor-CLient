@@ -6,6 +6,7 @@
 
   <div class="bank">
     <div fxShow="true" fxHide.lt-md="true" class="menu-items">
+      <a mat-button *ngIf="getUserState()" [routerLink]="['/dashboard']" class="menu-item" routerLinkActive="active">Dashboard</a>
       <a mat-button *ngIf="getUserState()" [routerLink]="['/disciplines']" class="menu-item" routerLinkActive="active">Disciplines</a>
       <a mat-button *ngIf="getUserState()" [routerLink]="['/preferences']" class="menu-item" routerLinkActive="active">Preferences</a>
     </div>
@@ -31,6 +32,7 @@
 
   <mat-sidenav color="primary" #sidenav fxLayout="column" mode="over"  opened="false" fxHide.gt-sm="true">
     <mat-nav-list>
+      <a mat-button *ngIf="getUserState()" [routerLink]="['/dashboard']" (click)="sidenav.close()">Dashboard</a>
       <a mat-button *ngIf="getUserState()" [routerLink]="['/disciplines']" (click)="sidenav.close()">Disciplines</a>
       <a mat-button *ngIf="getUserState()" [routerLink]="['/preferences']" (click)="sidenav.close()">Preferences</a>
       <a mat-button *ngIf="getUserState()" [routerLink]="['/profile']" (click)="sidenav.close()">Profile</a>
