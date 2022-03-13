@@ -41,7 +41,8 @@ export class LoginComponent implements OnInit {
           sessionStorage.clear();
           sessionStorage.setItem('token', res.token);
           sessionStorage.setItem('userID', res.userID);
-          this.router.navigate(['/']);
+          sessionStorage.setItem('role', res.role);
+          this.router.navigate(['/profile']);
         },
         (error) => {
           this.loginForm.reset();

@@ -34,6 +34,8 @@ import { PreferencesComponent } from './preferences/preferences.component';
 import { DisciplinePreferencesComponent } from './discipline-preferences/discipline-preferences.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { AuthGuard } from './guard/auth.guard';
+import { Roles } from './models/roles';
 
 @NgModule({
   declarations: [
@@ -78,11 +80,25 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'forgot-password', component: ForgotPasswordComponent },
-      { path: 'profile', component: ProfileComponent },
-      { path: 'disciplines', component: DisciplinesComponent },
-      { path: 'discipline/:id', component: DisciplineDetailsComponent },
-      { path: 'preferences', component: PreferencesComponent },
-      { path: 'dashboard', component: AdminDashboardComponent }
+      { path: 'profile', component: ProfileComponent, 
+        canActivate: [AuthGuard], 
+        data: { roles: [Roles.Basic, Roles.Admin] } },
+      { path: 'disciplines', component: DisciplinesComponent, 
+        canActivate: [AuthGuard], 
+        data: { roles: [Roles.Basic, Roles.Admin] } },
+      { path: 'discipline/:id', component: DisciplineDetailsComponent, 
+        canActivate: [AuthGuard], 
+        data: { roles: [Roles.Basic, Roles.Admin] } },
+      { path: 'preferences', component: PreferencesComponent, 
+        canActivate: [AuthGuard], 
+        data: { roles: [Roles.Basic, Roles.Admin] }  },
+      { 
+        path: 'dashboard', 
+        component: AdminDashboardComponent, 
+        canActivate: [AuthGuard], 
+        data: { roles: [Roles.Admin] } 
+      },
+      { path: '**', redirectTo: '/login' }
     ])
   ],
   providers: [],

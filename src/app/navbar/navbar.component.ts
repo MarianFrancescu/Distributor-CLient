@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Roles } from '../models/roles';
 
 @Component({
   selector: 'app-navbar',
@@ -10,10 +11,17 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  // this will return true if user is logged in and false if user is not logged
   getUserState() {
     const activeToken = sessionStorage.getItem('token');
     if (!activeToken) {
+      return false;
+    }
+    return true;
+  }
+
+  isAdmin() {
+    const userRole = sessionStorage.getItem('role');
+    if(userRole != Roles.Admin){
       return false;
     }
     return true;
