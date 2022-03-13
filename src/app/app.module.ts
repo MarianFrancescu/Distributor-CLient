@@ -9,7 +9,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { DisciplinesComponent } from './disciplines/disciplines.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -34,8 +33,7 @@ import { PreferencesComponent } from './preferences/preferences.component';
 import { DisciplinePreferencesComponent } from './discipline-preferences/discipline-preferences.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
-import { AuthGuard } from './guard/auth.guard';
-import { Roles } from './models/roles';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -75,31 +73,8 @@ import { Roles } from './models/roles';
     MatTableModule,
     MatSnackBarModule,
     HttpClientModule,
-    RouterModule.forRoot([
-      { path: '', redirectTo: '/profile', pathMatch: 'full' },
-      { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent },
-      { path: 'forgot-password', component: ForgotPasswordComponent },
-      { path: 'profile', component: ProfileComponent, 
-        canActivate: [AuthGuard], 
-        data: { roles: [Roles.Basic, Roles.Admin] } },
-      { path: 'disciplines', component: DisciplinesComponent, 
-        canActivate: [AuthGuard], 
-        data: { roles: [Roles.Basic, Roles.Admin] } },
-      { path: 'discipline/:id', component: DisciplineDetailsComponent, 
-        canActivate: [AuthGuard], 
-        data: { roles: [Roles.Basic, Roles.Admin] } },
-      { path: 'preferences', component: PreferencesComponent, 
-        canActivate: [AuthGuard], 
-        data: { roles: [Roles.Basic, Roles.Admin] }  },
-      { 
-        path: 'dashboard', 
-        component: AdminDashboardComponent, 
-        canActivate: [AuthGuard], 
-        data: { roles: [Roles.Admin] } 
-      },
-      { path: '**', redirectTo: '/login' }
-    ])
+    AppRoutingModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
