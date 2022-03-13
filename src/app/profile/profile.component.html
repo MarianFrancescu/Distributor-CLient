@@ -13,7 +13,10 @@
         <section *ngIf="user" class="template-container">
             <ng-container [ngSwitch]="tabOption">
                 <div class="data-container">
-                    <app-profile-details [userDetails]="user" *ngSwitchCase="1"></app-profile-details>
+                    <app-profile-details 
+                        (updateDetails)="updateUser()" 
+                        [userDetails]="user" 
+                        *ngSwitchCase="1"></app-profile-details>
                     <app-reset-password *ngSwitchCase="2"></app-reset-password>
                     <app-delete-user *ngSwitchCase="3"></app-delete-user>
                 </div>

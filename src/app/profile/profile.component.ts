@@ -14,10 +14,18 @@ export class ProfileComponent implements OnInit {
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
+    this.fetchUser();
+  }
+
+  fetchUser() {
     const userID = sessionStorage.getItem('userID');
     this.apiService.getUser(userID).subscribe((result) => {
       const res = result as User;
       this.user = res;
     });
+  }
+
+  updateUser() { 
+    this.fetchUser();
   }
 }

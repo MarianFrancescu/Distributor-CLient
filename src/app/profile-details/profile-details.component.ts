@@ -1,8 +1,9 @@
 import {
   Component,
+  EventEmitter,
   Input,
   OnChanges,
-  OnInit,
+  Output,
   SimpleChanges
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -15,8 +16,9 @@ import { ApiService } from '../services/api.service';
   templateUrl: './profile-details.component.html',
   styleUrls: ['./profile-details.component.scss']
 })
-export class ProfileDetailsComponent implements OnInit, OnChanges {
+export class ProfileDetailsComponent implements OnChanges {
   @Input() userDetails: User;
+  @Output() updateDetails = new EventEmitter<boolean>();
   selectedValue: string;
 
   institutions = [
@@ -44,9 +46,15 @@ export class ProfileDetailsComponent implements OnInit, OnChanges {
 
   constructor(private apiService: ApiService, private snackBar: MatSnackBar) {}
 
-  ngOnInit(): void {}
+  emitUpdateValue(value: boolean) {
+    this.updateDetails.emit(value);
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
+    this.fetchUserData();  
+  }
+
+  fetchUserData() {
     if (this.userDetails) {
       this.detailsForm.patchValue({
         firstName: this.userDetails.firstName,
@@ -63,6 +71,9 @@ export class ProfileDetailsComponent implements OnInit, OnChanges {
   submit() {
     const updatedDetails = {} as User;
 
+    if (this.detailsForm.controls.firstName.touched) {
+      updatedDetails.firstName = this.detailsForm.controls.firstName.value;
+    }
     if (this.detailsForm.controls.lastName.touched) {
       updatedDetails.lastName = this.detailsForm.controls.lastName.value;
     }
@@ -86,10 +97,11 @@ export class ProfileDetailsComponent implements OnInit, OnChanges {
 
     this.apiService.updateUser(this.userDetails._id, updatedDetails).subscribe(
       (response) => {
-        console.log(response);
+        this.emitUpdateValue(true);
         this.snackBar.open(`${response}`, 'Close', {
           duration: 2000
         });
+        
       },
       (error) => {
         this.detailsForm.reset();
