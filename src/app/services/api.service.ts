@@ -100,4 +100,23 @@ export class ApiService {
     const url = `${this.apiURL}discipline/${disciplineID}/unenroll`;
     return this.http.put(url, { userID: userID }, { responseType: 'text' });
   }
+
+  //discipline endpoints admin
+  addDiscipline(
+    name: string,
+    teacher: string,
+    studyInstitution: string,
+    faculty: string,
+    department: string,
+    studyYear: string) {
+      const url = `${this.apiURL}addDiscipline`;
+      return this.http.post(url, {
+          name: name,
+          teacher: teacher,
+          studyInstitution: studyInstitution,
+          faculty: faculty,
+          department: department,
+          studyYear: studyYear
+      }, { responseType: 'text' });
+    }
 }

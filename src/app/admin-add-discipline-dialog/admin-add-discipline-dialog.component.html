@@ -1,23 +1,23 @@
 <h3 mat-dialog-title>Please select a discipline from the list below</h3>
 <div mat-dialog-content>
-    <mat-horizontal-stepper>
-        <mat-step [stepControl]="firstFormGroup">
-          <form [formGroup]="firstFormGroup">
+    <!-- <mat-horizontal-stepper>
+        <mat-step [stepControl]="basicFormGroup">
+          <form [formGroup]="basicFormGroup">
             <ng-template matStepLabel>Fill out your name</ng-template>
             <mat-form-field appearance="fill">
               <mat-label>Name</mat-label>
-              <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+              <input matInput placeholder="Discipline name" formControlName="disciplineBasic" required>
             </mat-form-field>
             <div>
               <button mat-button matStepperNext>Next</button>
             </div>
           </form>
         </mat-step>
-        <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
-          <form [formGroup]="secondFormGroup">
+        <mat-step [stepControl]="detailsFormGroup" label="Fill out your address">
+          <form [formGroup]="detailsFormGroup">
             <mat-form-field appearance="fill">
-              <mat-label>Address</mat-label>
-              <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+              <mat-label>Teacher</mat-label>
+              <input matInput formControlName="disciplineDetails" placeholder="Markus"
                      required>
             </mat-form-field>
             <div>
@@ -29,14 +29,61 @@
         <mat-step>
           <ng-template matStepLabel>Done</ng-template>
           <p>You are now done.</p>
-          <!-- <div>
+          <div>
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button (click)="stepper.reset()">Reset</button>
-          </div> -->
+          </div>
         </mat-step>
-      </mat-horizontal-stepper>
+      </mat-horizontal-stepper> -->
+
+      <mat-form-field>
+        <mat-label>Discipline name</mat-label>
+        <input matInput [(ngModel)]="data.name" required>
+      </mat-form-field>
+        <mat-form-field>
+          <mat-label>Discipline teacher</mat-label>
+          <input matInput [(ngModel)]="data.teacher" required>
+        </mat-form-field>
+        
+        <mat-form-field>
+          <mat-label>Institution</mat-label>
+          <mat-select [(ngModel)]="data.institution">
+            <mat-option *ngFor="let institution of institutions" [value]="institution">
+              {{ institution.institution }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+        <mat-form-field>
+          <mat-label>Faculty</mat-label>
+          <mat-select [(ngModel)]="data.faculty">
+            <mat-option *ngFor="let faculty of data.institution?.faculties" [value]="faculty">
+              {{ faculty.faculty }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+        <mat-form-field>
+          <mat-label>Department</mat-label>
+          <mat-select [(ngModel)]="data.department">
+            <mat-option *ngFor="let department of data.faculty?.departments" [value]="department">
+              {{ department }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+        <mat-form-field>
+          <mat-label>Study year</mat-label>
+          <mat-select [(ngModel)]="data.year">
+            <mat-option *ngFor="let year of years" [value]="year">
+              {{ year }}
+            </mat-option>
+          </mat-select> 
+        </mat-form-field>
+        
+      
 </div>
 <div mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="data.selected">Save</button>
+  <button mat-button [mat-dialog-close]="data">Save</button>
 </div>
