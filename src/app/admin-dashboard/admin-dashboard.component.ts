@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { AdminAddDisciplineDialogComponent } from '../admin-add-discipline-dialog/admin-add-discipline-dialog.component';
 import { mockedDisciplines } from '../mock-data/disciplines.mock';
@@ -21,7 +22,8 @@ export class AdminDashboardComponent implements OnInit {
   update = new BehaviorSubject<boolean>(false);
   
   constructor(private dialog: MatDialog,
-              private apiService: ApiService) { }
+              private apiService: ApiService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.fetchDisciplines();
@@ -89,5 +91,13 @@ export class AdminDashboardComponent implements OnInit {
       }
     );
   }
+
+  getSelectedRow(discipline: Discipline) {
+    this.router.navigate(['/discipline', discipline._id, 'edit']);
+  }
+
+  // editDiscipline() {
+  //   this.router.navigate(['/discipline', discipline._id]);
+  // }
 
 }

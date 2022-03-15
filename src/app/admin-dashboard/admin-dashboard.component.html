@@ -20,9 +20,12 @@
                     </th>
                     <td mat-cell *matCellDef="let element" class="no-field-padding">
                         <div class="icons">
-                        <button mat-button>
-                            <mat-icon class="delete-icon" (click)="unenrollUser(element._id, $event)">delete</mat-icon>
-                        </button>
+                            <button mat-button>
+                                <mat-icon class="delete-icon" (click)="deleteDiscipline(element._id, $event)">delete</mat-icon>
+                            </button>
+                            <button mat-button>
+                                <mat-icon class="delete-icon" (click)="editDiscipline(element._id, $event)">edit</mat-icon>
+                            </button>
                         </div>
                     </td>
                 </ng-container>

@@ -1,0 +1,79 @@
+<div class="discipline-details">
+    <header class="name">
+        <h2>{{discipline?.name}}</h2>
+    </header>
+
+    <div class="details">
+        <div *ngFor="let timetable of discipline?.timetable">
+            {{ timetable.option }}
+            {{ getAvailablePlaces(timetable.option) }}
+        </div>
+    </div>
+
+    <div class="details-container">
+        <form [formGroup]="disciplineDetailsForm">
+            <div class="form-group">
+                <mat-form-field appearance="outline">
+                    <mat-label>Enter discipline name</mat-label>
+                    <input matInput placeholder="Discipline name" formControlName="name">
+                    <mat-error *ngIf="disciplineDetailsForm.controls.name.invalid">Please complete the first name</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Enter teacher name</mat-label>
+                    <input matInput placeholder="Your teacher" formControlName="teacher">
+                    <mat-error *ngIf="disciplineDetailsForm.controls.teacher.invalid">Please complete the last name</mat-error>
+                </mat-form-field>
+    
+                <mat-form-field appearance="outline">
+                        <mat-label>Study institution</mat-label>
+                        <button mat-icon-button matSuffix [disabled]="true">
+                            <mat-icon>location_city</mat-icon>
+                        </button>
+                        <mat-select formControlName="studyInstitution" [(ngModel)]="institution">
+                          <mat-option *ngFor="let institution of institutions" [value]="institution">
+                            {{ institution.institution }}
+                          </mat-option>
+                        </mat-select>    
+                    <mat-error *ngIf="disciplineDetailsForm.controls.studyInstitution.invalid">Please complete study institution</mat-error>
+                </mat-form-field>
+    
+                <mat-form-field appearance="outline">
+                    <mat-label>Faculty</mat-label>
+                    <button mat-icon-button matSuffix [disabled]="true">
+                        <mat-icon>domain</mat-icon>
+                    </button>
+                    <mat-select formControlName="faculty" [(ngModel)]="faculty">
+                        <mat-option *ngFor="let faculty of institution?.faculties" [value]="faculty">
+                          {{ faculty.faculty }}
+                        </mat-option>
+                      </mat-select>  
+                    <mat-error *ngIf="disciplineDetailsForm.controls.faculty.invalid">Please complete faculty</mat-error>
+                </mat-form-field>
+    
+                <mat-form-field appearance="outline">
+                    <mat-label>Department</mat-label>
+                    <button mat-icon-button matSuffix [disabled]="true">
+                        <mat-icon>school</mat-icon>
+                    </button>
+                    <mat-select formControlName="department">
+                        <mat-option *ngFor="let department of faculty?.departments" [value]="department">
+                          {{ department }}
+                        </mat-option>
+                    </mat-select> 
+                    <mat-error *ngIf="disciplineDetailsForm.controls.department.invalid">Please complete faculty department</mat-error>
+                </mat-form-field>
+    
+                <mat-form-field appearance="outline">
+                    <mat-label>Study year</mat-label>
+                    <mat-select formControlName="studyYear">
+                        <mat-option *ngFor="let year of years" [value]="year">
+                          {{ year }}
+                        </mat-option>
+                    </mat-select> 
+                    <mat-error *ngIf="disciplineDetailsForm.controls.studyYear.invalid">Please complete study year</mat-error>
+                </mat-form-field>
+            </div>
+        </form>
+        <button class="submit-button" mat-raised-button (click)="submit()" [disabled]="!disciplineDetailsForm.touched">SAVE</button>
+    </div>    
+</div>

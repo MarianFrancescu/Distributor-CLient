@@ -35,6 +35,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AdminAddDisciplineDialogComponent } from './admin-add-discipline-dialog/admin-add-discipline-dialog.component';
+import { AdminEditDisciplineComponent } from './admin-edit-discipline/admin-edit-discipline.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { AdminAddDisciplineDialogComponent } from './admin-add-discipline-dialog
     PreferencesComponent,
     DisciplinePreferencesComponent,
     AdminDashboardComponent,
-    AdminAddDisciplineDialogComponent
+    AdminAddDisciplineDialogComponent,
+    AdminEditDisciplineComponent
   ],
   imports: [
     BrowserModule,
