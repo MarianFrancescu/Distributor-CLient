@@ -50,7 +50,7 @@ export class AdminDashboardComponent implements OnInit {
           name: result.name,
           teacher: result.teacher,
         };
-
+        console.log(result)
         this.addDiscipline(discipline);
       }
     });
@@ -125,7 +125,7 @@ export class AdminDashboardComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result == true) {
+      if (result) {
         this.apiService.deleteDiscipline(disciplineId).subscribe(
           (response) => {
             this.update.next(true);

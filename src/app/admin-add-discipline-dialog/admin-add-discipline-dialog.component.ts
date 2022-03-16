@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { mockedInstitutions } from '../mock-data/institutions.mock';
 
@@ -12,15 +12,24 @@ export class AdminAddDisciplineDialogComponent implements OnInit {
 
   years = ['1', '2', '3', '4', '5', '6'];
   institutions = mockedInstitutions;
-  
+
   disciplineDetailsForm = new FormGroup({
     name: new FormControl('', Validators.required),
     teacher: new FormControl('', Validators.required),
     studyInstitution: new FormControl('', Validators.required),
     faculty: new FormControl('', Validators.required),
     department: new FormControl('', Validators.required),
-    studyYear:  new FormControl('', Validators.required)
+    studyYear:  new FormControl('', Validators.required),
+    timetable: new FormArray([])
   });
+
+  get dynamicTimetable() {
+    return this.disciplineDetailsForm.controls['timetable'] as FormArray;
+  }
+
+  addTimetable() {
+    this.dynamicTimetable.push(new FormControl(''));
+  }
 
   constructor(@Inject(MAT_DIALOG_DATA) public data, 
               private dialogRef: MatDialogRef<AdminAddDisciplineDialogComponent>) { }
