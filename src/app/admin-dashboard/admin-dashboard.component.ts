@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { AdminAddDisciplineDialogComponent } from '../admin-add-discipline-dialog/admin-add-discipline-dialog.component';
+import { AlertDialogComponent } from '../alert-dialog/alert-dialog.component';
 import { mockedDisciplines } from '../mock-data/disciplines.mock';
 import { Discipline } from '../models/discipline.interface';
 import { ApiService } from '../services/api.service';
@@ -54,6 +55,27 @@ export class AdminDashboardComponent implements OnInit {
       }
     });
   }
+
+  openAlertDialog() {
+    const dialogRef = this.dialog.open(AlertDialogComponent, {
+      data: {
+        title: 'Delete discipline',
+        question: 'Are you sure you want to delete this discipline?',
+        message: 'This action will delete all details from that discipline'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result == true) {
+        this.apiService.deleteAccount().subscribe(() => {
+          this.snackBar.open('Discipline deleted', 'Close', {
+            duration: 2000
+          });
+        });
+      }
+      console.log(`Dialog result: ${result}`);
+    });
+  }
   
   makeTable() {
     this.myDataSource = new MatTableDataSource<Discipline>(
@@ -94,17 +116,30 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   deleteDiscipline(disciplineId: string, e: Event) {
-    this.apiService.deleteDiscipline(disciplineId).subscribe(
-      (response) => {
-        this.update.next(true);
-        this.snackBar.open(`${response}`, 'Close', {
-          duration: 2000
-        });
-      },
-      (error) => {
-        console.log(error);
+    const dialogRef = this.dialog.open(AlertDialogComponent, {
+      data: {
+        title: 'Delete discipline',
+        question: 'Are you sure you want to delete this discipline?',
+        message: 'This action will delete all details from that discipline'
       }
-    )
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result == true) {
+        this.apiService.deleteDiscipline(disciplineId).subscribe(
+          (response) => {
+            this.update.next(true);
+            this.snackBar.open(`${response}`, 'Close', {
+              duration: 2000
+            });
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      }
+      console.log(`Dialog result: ${result}`);
+    }); 
     e.stopPropagation();
   }
 
