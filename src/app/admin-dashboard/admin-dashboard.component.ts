@@ -16,7 +16,6 @@ import { ApiService } from '../services/api.service';
 })
 export class AdminDashboardComponent implements OnInit {
 
-  selected: Discipline;
   mockDisciplines = mockedDisciplines;
   disciplines: Discipline[];
   myDataSource: MatTableDataSource<Discipline>;
@@ -43,10 +42,10 @@ export class AdminDashboardComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         let discipline: Discipline= {
-          studyInstitution: result.institution.institution,
-          faculty: result.faculty.faculty,
+          studyInstitution: result.studyInstitution,
+          faculty: result.faculty,
           department: result.department,
-          studyYear: result.year,
+          studyYear: result.studyYear,
           name: result.name,
           teacher: result.teacher,
         };

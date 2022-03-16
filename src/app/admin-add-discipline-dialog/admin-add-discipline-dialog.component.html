@@ -1,5 +1,5 @@
 <h3 mat-dialog-title>Please select a discipline from the list below</h3>
-<div mat-dialog-content>
+<div mat-dialog-content [formGroup]="disciplineDetailsForm">
     <!-- <mat-horizontal-stepper>
         <mat-step [stepControl]="basicFormGroup">
           <form [formGroup]="basicFormGroup">
@@ -36,54 +36,59 @@
         </mat-step>
       </mat-horizontal-stepper> -->
 
-      <mat-form-field>
-        <mat-label>Discipline name</mat-label>
-        <input matInput [(ngModel)]="data.name" required>
-      </mat-form-field>
-        <mat-form-field>
-          <mat-label>Discipline teacher</mat-label>
-          <input matInput [(ngModel)]="data.teacher" required>
-        </mat-form-field>
-        
-        <mat-form-field>
-          <mat-label>Institution</mat-label>
-          <mat-select [(ngModel)]="data.institution">
-            <mat-option *ngFor="let institution of institutions" [value]="institution">
-              {{ institution.institution }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        
-        <mat-form-field>
-          <mat-label>Faculty</mat-label>
-          <mat-select [(ngModel)]="data.faculty">
-            <mat-option *ngFor="let faculty of data.institution?.faculties" [value]="faculty">
-              {{ faculty.faculty }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        
-        <mat-form-field>
-          <mat-label>Department</mat-label>
-          <mat-select [(ngModel)]="data.department">
-            <mat-option *ngFor="let department of data.faculty?.departments" [value]="department">
-              {{ department }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        
-        <mat-form-field>
-          <mat-label>Study year</mat-label>
-          <mat-select [(ngModel)]="data.year">
-            <mat-option *ngFor="let year of years" [value]="year">
-              {{ year }}
-            </mat-option>
-          </mat-select> 
-        </mat-form-field>
-        
-      
+  <mat-form-field>
+    <mat-label>Discipline name</mat-label>
+    <input matInput formControlName="name" required>
+  </mat-form-field>
+    <mat-form-field>
+      <mat-label>Discipline teacher</mat-label>
+      <input matInput formControlName="teacher" required>
+    </mat-form-field>
+    
+    <mat-form-field>
+      <mat-label>Institution</mat-label>
+      <mat-select formControlName="studyInstitution">
+        <mat-option *ngFor="let institution of institutions" [value]="institution.institution">
+          {{ institution.institution }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    <mat-form-field>
+      <mat-label>Faculty</mat-label>
+      <mat-select formControlName="faculty">
+        <mat-option 
+          *ngFor="let faculty of 
+          getStudyInstitution(disciplineDetailsForm.controls['studyInstitution'].value)?.faculties" 
+          [value]="faculty.faculty">
+          {{ faculty.faculty }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    <mat-form-field>
+      <mat-label>Department</mat-label>
+      <mat-select formControlName="department">
+        <mat-option 
+          *ngFor="let department of 
+          getFaculty(disciplineDetailsForm.controls['studyInstitution'].value, disciplineDetailsForm.controls['faculty'].value)?.departments" 
+          [value]="department">
+          {{ department }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    <mat-form-field>
+      <mat-label>Study year</mat-label>
+      <mat-select formControlName="studyYear">
+        <mat-option *ngFor="let year of years" [value]="year">
+          {{ year }}
+        </mat-option>
+      </mat-select> 
+    </mat-form-field> 
 </div>
+
 <div mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="data">Save</button>
+  <button mat-button (click)="sendData()" [disabled]="disciplineDetailsForm.invalid">Save</button>
 </div>

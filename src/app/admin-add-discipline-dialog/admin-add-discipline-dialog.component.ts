@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { mockedInstitutions } from '../mock-data/institutions.mock';
 
 @Component({
@@ -12,20 +12,35 @@ export class AdminAddDisciplineDialogComponent implements OnInit {
 
   years = ['1', '2', '3', '4', '5', '6'];
   institutions = mockedInstitutions;
-  detailsFormGroup: FormGroup;
-  constructor(@Inject(MAT_DIALOG_DATA) public data, private _formBuilder: FormBuilder) { }
+  
+  disciplineDetailsForm = new FormGroup({
+    name: new FormControl('', Validators.required),
+    teacher: new FormControl('', Validators.required),
+    studyInstitution: new FormControl('', Validators.required),
+    faculty: new FormControl('', Validators.required),
+    department: new FormControl('', Validators.required),
+    studyYear:  new FormControl('', Validators.required)
+  });
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data, 
+              private dialogRef: MatDialogRef<AdminAddDisciplineDialogComponent>) { }
 
   ngOnInit(): void {
-    this.detailsFormGroup = this._formBuilder.group({
-      disciplineDetails: ['', Validators.required],
-    });
+  }
+
+  getStudyInstitution(institutionName) { 
+    const selected = this.institutions.find(institution => institution.institution === institutionName);
+    return selected;
+  }
+
+  getFaculty(institutionName, facultyName) {
+    const selectedInstitution = this.institutions.find(institution => institution.institution === institutionName);
+    const selectedFaculty = selectedInstitution?.faculties.find(faculty => faculty.faculty === facultyName);
+    return selectedFaculty;
   }
 
   sendData() {
-    this.data.selected.teacher = this.detailsFormGroup.controls.disciplineDetails.value;
-    return this.data.selected;
-    // console.log('firstForm: ', this.basicFormGroup.controls.disciplineBasic.value);
-    // console.log('secondForm: ', this.detailsFormGroup.controls.disciplineDetails.value);
+    this.dialogRef.close(this.disciplineDetailsForm.value);
   }
 
 }
