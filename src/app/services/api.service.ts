@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Discipline } from '../models/discipline.interface';
 import { User } from '../models/user.interface';
 
 @Injectable({
@@ -118,5 +119,10 @@ export class ApiService {
           department: department,
           studyYear: studyYear
       }, { responseType: 'text' });
-    }
+  }
+
+  updateDiscipline(disciplineID: string, discipline: Discipline) {
+    const url = `${this.apiURL}updateDiscipline/${disciplineID}`;
+    return this.http.patch(url, discipline, { responseType: 'text' });
+  }
 }

@@ -29,34 +29,39 @@
                         <button mat-icon-button matSuffix [disabled]="true">
                             <mat-icon>location_city</mat-icon>
                         </button>
-                        <mat-select formControlName="studyInstitution" [(ngModel)]="institution">
-                          <mat-option *ngFor="let institution of institutions" [value]="institution">
+                        <mat-select formControlName="studyInstitution">
+                          <mat-option *ngFor="let institution of institutions" [value]="institution.institution">
                             {{ institution.institution }}
                           </mat-option>
                         </mat-select>    
                     <mat-error *ngIf="disciplineDetailsForm.controls.studyInstitution.invalid">Please complete study institution</mat-error>
                 </mat-form-field>
     
-                <mat-form-field appearance="outline">
+               <mat-form-field appearance="outline">
                     <mat-label>Faculty</mat-label>
                     <button mat-icon-button matSuffix [disabled]="true">
                         <mat-icon>domain</mat-icon>
                     </button>
-                    <mat-select formControlName="faculty" [(ngModel)]="faculty">
-                        <mat-option *ngFor="let faculty of institution?.faculties" [value]="faculty">
+                    <mat-select formControlName="faculty">
+                        <mat-option 
+                            *ngFor="let faculty of getStudyInstitution(disciplineDetailsForm.controls['studyInstitution'].value)?.faculties" 
+                            [value]="faculty.faculty">
                           {{ faculty.faculty }}
                         </mat-option>
                       </mat-select>  
                     <mat-error *ngIf="disciplineDetailsForm.controls.faculty.invalid">Please complete faculty</mat-error>
                 </mat-form-field>
     
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="outline"> 
                     <mat-label>Department</mat-label>
                     <button mat-icon-button matSuffix [disabled]="true">
                         <mat-icon>school</mat-icon>
                     </button>
                     <mat-select formControlName="department">
-                        <mat-option *ngFor="let department of faculty?.departments" [value]="department">
+                        <mat-option 
+                            *ngFor="let department of 
+                            getFaculty(disciplineDetailsForm.controls['studyInstitution'].value, disciplineDetailsForm.controls['faculty'].value)?.departments" 
+                            [value]="department">
                           {{ department }}
                         </mat-option>
                     </mat-select> 
