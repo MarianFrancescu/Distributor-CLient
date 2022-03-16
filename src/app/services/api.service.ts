@@ -103,22 +103,9 @@ export class ApiService {
   }
 
   //discipline endpoints admin
-  addDiscipline(
-    name: string,
-    teacher: string,
-    studyInstitution: string,
-    faculty: string,
-    department: string,
-    studyYear: string) {
+  addDiscipline(discipline: Discipline) {
       const url = `${this.apiURL}addDiscipline`;
-      return this.http.post(url, {
-          name: name,
-          teacher: teacher,
-          studyInstitution: studyInstitution,
-          faculty: faculty,
-          department: department,
-          studyYear: studyYear
-      }, { responseType: 'text' });
+      return this.http.post(url, discipline, { responseType: 'text' });
   }
 
   updateDiscipline(disciplineID: string, discipline: Discipline) {

@@ -50,9 +50,8 @@ export class AdminDashboardComponent implements OnInit {
           name: result.name,
           teacher: result.teacher,
         };
-        console.log(discipline);
 
-        this.addDiscipline(result.name, result.teacher, result.institution.institution, result.faculty.faculty, result.department, result.year);
+        this.addDiscipline(discipline);
       }
     });
   }
@@ -63,15 +62,8 @@ export class AdminDashboardComponent implements OnInit {
     );
   }
 
-  addDiscipline(
-    name: string,
-    teacher: string,
-    studyInstitution: string,
-    faculty: string,
-    department: string,
-    studyYear: string
-  ) {
-    const subscription = this.apiService.addDiscipline(name, teacher, studyInstitution, faculty, department, studyYear);
+  addDiscipline(discipline: Discipline) {
+    const subscription = this.apiService.addDiscipline(discipline);
     subscription.subscribe((response) => {
       this.update.next(true);
       this.snackBar.open(`${response}`, 'Close', {
