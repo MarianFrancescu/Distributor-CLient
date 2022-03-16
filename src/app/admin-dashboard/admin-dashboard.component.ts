@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
@@ -23,7 +24,8 @@ export class AdminDashboardComponent implements OnInit {
   
   constructor(private dialog: MatDialog,
               private apiService: ApiService,
-              private router: Router) { }
+              private router: Router,
+              private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.fetchDisciplines();
@@ -47,15 +49,11 @@ export class AdminDashboardComponent implements OnInit {
           studyYear: result.year,
           name: result.name,
           teacher: result.teacher,
-          _id: '',
-          created: '',
-          timetable: []
         };
-        console.log(discipline)
+        console.log(discipline);
 
         this.addDiscipline(result.name, result.teacher, result.institution.institution, result.faculty.faculty, result.department, result.year);
       }
-      console.log('The dialog was closed', result);
     });
   }
   
@@ -74,8 +72,11 @@ export class AdminDashboardComponent implements OnInit {
     studyYear: string
   ) {
     const subscription = this.apiService.addDiscipline(name, teacher, studyInstitution, faculty, department, studyYear);
-    subscription.subscribe(() => {
+    subscription.subscribe((response) => {
       this.update.next(true);
+      this.snackBar.open(`${response}`, 'Close', {
+        duration: 2000
+      });
     });
   }
 
@@ -96,8 +97,24 @@ export class AdminDashboardComponent implements OnInit {
     this.router.navigate(['/discipline', discipline._id, 'edit']);
   }
 
-  // editDiscipline() {
-  //   this.router.navigate(['/discipline', discipline._id]);
-  // }
+  editDiscipline(disciplineId: string, e: Event) {
+    this.router.navigate(['/discipline', disciplineId, 'edit']);
+    e.stopPropagation();
+  }
+
+  deleteDiscipline(disciplineId: string, e: Event) {
+    this.apiService.deleteDiscipline(disciplineId).subscribe(
+      (response) => {
+        this.update.next(true);
+        this.snackBar.open(`${response}`, 'Close', {
+          duration: 2000
+        });
+      },
+      (error) => {
+        console.log(error);
+      }
+    )
+    e.stopPropagation();
+  }
 
 }

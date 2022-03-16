@@ -125,4 +125,9 @@ export class ApiService {
     const url = `${this.apiURL}updateDiscipline/${disciplineID}`;
     return this.http.patch(url, discipline, { responseType: 'text' });
   }
+
+  deleteDiscipline(disciplineID: string) {
+    const url = `${this.apiURL}deleteDiscipline/${disciplineID}`;
+    return this.http.delete(url, {responseType: 'text' });
+  }
 }

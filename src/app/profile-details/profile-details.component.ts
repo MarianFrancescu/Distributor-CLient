@@ -21,14 +21,16 @@ export class ProfileDetailsComponent implements OnChanges {
   @Output() updateDetails = new EventEmitter<boolean>();
   selectedValue: string;
 
+  //these shoud be removed and for institutions to be used mockedInstitutions
   institutions = [
     'Universitatea Politehnica Timisoara',
     'Universitatea de Vest Timisoara'
   ];
   faculties = ['Automatica si Calculatoare', 'Telecomunicatii'];
   departments = [
-    'Calculatoare si tehnologia informatiei',
-    'Ingineria Sistemelor'
+    'Calculatoare si Tehnologia Informatiei',
+    'Ingineria Sistemelor',
+    'Informatica'
   ];
   years = ['1', '2', '3', '4', '5', '6'];
 
