@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { mockedDisciplines } from '../mock-data/disciplines.mock';
 import { Discipline } from '../models/discipline.interface';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-preferences',
@@ -9,13 +10,28 @@ import { Discipline } from '../models/discipline.interface';
 })
 export class PreferencesComponent implements OnInit {
   tabOption: Discipline;
-  disciplines = mockedDisciplines;
+  userDisciplines: Discipline[];
 
-  constructor() {}
+  constructor(private apiService: ApiService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.fetchDisciplines();
+  }
 
   selectDiscipline(discipline: Discipline) {
     this.tabOption = discipline;
+  }
+
+  fetchDisciplines() {
+    this.apiService.getUserDisciplines().subscribe(
+      (response) => {
+        const res = response as Discipline[];
+        this.userDisciplines = [...res];
+        console.log(this.userDisciplines)
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }

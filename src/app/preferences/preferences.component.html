@@ -6,8 +6,8 @@
     <div class="actions-container">
         <mat-list class="tabs">
             <h3>List of your disciplines</h3>
-            <div *ngIf="disciplines.length > 0; else noDisciplines">
-                <div *ngFor="let discipline of disciplines">
+            <div *ngIf="userDisciplines?.length > 0; else noDisciplines">
+                <div *ngFor="let discipline of userDisciplines">
                     <button mat-button class="tab-item" (click)="selectDiscipline(discipline)">{{ discipline.name }}</button>
                 </div>
             </div>
