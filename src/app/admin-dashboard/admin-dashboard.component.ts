@@ -49,8 +49,8 @@ export class AdminDashboardComponent implements OnInit {
           studyYear: result.studyYear,
           name: result.name,
           teacher: result.teacher,
+          timetable:  result.timetable
         };
-        console.log(result)
         this.addDiscipline(discipline);
       }
     });

@@ -86,9 +86,16 @@
         </mat-option>
       </mat-select> 
     </mat-form-field> 
+
     <button mat-button (click)="addTimetable()">Add Timetable Option</button>
-    <div formArrayName="timetable" *ngFor="let option of dynamicTimetable.controls; let i=index">
-      <input type="text" [formControlName]="i">
+
+    <div formArrayName="timetable" *ngFor="let timetableOption of dynamicTimetable.controls; let i=index">
+      <div class="lesson-form-row" [formGroup]="timetableOption">
+        <mat-form-field>
+          <mat-label>Option #{{i}}</mat-label>
+          <input matInput type="text" formControlName="option">
+        </mat-form-field>
+      </div>
     </div>
 </div>
 

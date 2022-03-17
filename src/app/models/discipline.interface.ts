@@ -12,5 +12,5 @@ export interface Discipline {
 
 interface Timetable {
   option: string;
-  students: string[];
+  students?: string[];
 }

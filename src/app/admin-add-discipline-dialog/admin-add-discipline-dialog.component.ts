@@ -28,7 +28,11 @@ export class AdminAddDisciplineDialogComponent implements OnInit {
   }
 
   addTimetable() {
-    this.dynamicTimetable.push(new FormControl(''));
+    const timetableForm = new FormGroup({
+      option: new FormControl(''),
+      //assistent teacher name could be another control
+    })
+    this.dynamicTimetable.push(timetableForm);
   }
 
   constructor(@Inject(MAT_DIALOG_DATA) public data, 
