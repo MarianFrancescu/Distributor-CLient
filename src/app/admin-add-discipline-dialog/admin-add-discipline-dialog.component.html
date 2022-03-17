@@ -1,38 +1,83 @@
-<h3 mat-dialog-title>Please select a discipline from the list below</h3>
+<h3 mat-dialog-title>Please complete all the disciplines details</h3>
 <div mat-dialog-content [formGroup]="disciplineDetailsForm">
-    <!-- <mat-horizontal-stepper>
-        <mat-step [stepControl]="basicFormGroup">
-          <form [formGroup]="basicFormGroup">
-            <ng-template matStepLabel>Fill out your name</ng-template>
-            <mat-form-field appearance="fill">
-              <mat-label>Name</mat-label>
-              <input matInput placeholder="Discipline name" formControlName="disciplineBasic" required>
+    <!-- <mat-horizontal-stepper linear>
+        <mat-step [stepControl]="disciplineDetailsForm">
+          <ng-template matStepLabel>Discipline details</ng-template>
+          <h5 mat-dialog-title>Complete these fields in order</h5>
+          <mat-form-field>
+            <mat-label>Discipline name</mat-label>
+            <input matInput formControlName="name" required>
+          </mat-form-field>
+            <mat-form-field>
+              <mat-label>Discipline teacher</mat-label>
+              <input matInput formControlName="teacher" required>
             </mat-form-field>
-            <div>
+            
+            <mat-form-field>
+              <mat-label>Institution</mat-label>
+              <mat-select formControlName="studyInstitution">
+                <mat-option *ngFor="let institution of institutions" [value]="institution.institution">
+                  {{ institution.institution }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            
+            <mat-form-field>
+              <mat-label>Faculty</mat-label>
+              <mat-select formControlName="faculty">
+                <mat-option 
+                  *ngFor="let faculty of 
+                  getStudyInstitution(disciplineDetailsForm.controls['studyInstitution'].value)?.faculties" 
+                  [value]="faculty.faculty">
+                  {{ faculty.faculty }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            
+            <mat-form-field>
+              <mat-label>Department</mat-label>
+              <mat-select formControlName="department">
+                <mat-option 
+                  *ngFor="let department of 
+                  getFaculty(disciplineDetailsForm.controls['studyInstitution'].value, disciplineDetailsForm.controls['faculty'].value)?.departments" 
+                  [value]="department">
+                  {{ department }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            
+            <mat-form-field>
+              <mat-label>Study year</mat-label>
+              <mat-select formControlName="studyYear">
+                <mat-option *ngFor="let year of years" [value]="year">
+                  {{ year }}
+                </mat-option>
+              </mat-select> 
+            </mat-form-field>
+            <div align="end">
               <button mat-button matStepperNext>Next</button>
             </div>
-          </form>
         </mat-step>
-        <mat-step [stepControl]="detailsFormGroup" label="Fill out your address">
-          <form [formGroup]="detailsFormGroup">
-            <mat-form-field appearance="fill">
-              <mat-label>Teacher</mat-label>
-              <input matInput formControlName="disciplineDetails" placeholder="Markus"
-                     required>
-            </mat-form-field>
-            <div>
+        <mat-step [stepControl]="disciplineDetailsForm" [optional]="false">
+          <ng-template matStepLabel>Discipline timetable</ng-template>
+          <button mat-button (click)="addTimetable()">Add Timetable Option</button>
+
+            <div formArrayName="timetable" *ngFor="let timetableOption of dynamicTimetable.controls; let i=index">
+              <div class="lesson-form-row" [formGroup]="timetableOption">
+                <mat-form-field>
+                  <mat-label>Option #{{i}}</mat-label>
+                  <input matInput type="text" formControlName="option">
+                </mat-form-field>
+              </div>
+            </div>
+            <div align="end">
               <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
+              <button mat-button matStepperNext (click)="sendData()" [disabled]="!dynamicTimetable.touched">Next</button>
             </div>
-          </form>
         </mat-step>
-        <mat-step>
+        <mat-step [completed]="false" [editable]="false">
           <ng-template matStepLabel>Done</ng-template>
-          <p>You are now done.</p>
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="stepper.reset()">Reset</button>
-          </div>
+          <p>Discipline will be added.</p>
         </mat-step>
       </mat-horizontal-stepper> -->
 
@@ -85,7 +130,7 @@
           {{ year }}
         </mat-option>
       </mat-select> 
-    </mat-form-field> 
+    </mat-form-field>  
 
     <button mat-button (click)="addTimetable()">Add Timetable Option</button>
 

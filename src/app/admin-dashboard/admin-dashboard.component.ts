@@ -36,7 +36,7 @@ export class AdminDashboardComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(AdminAddDisciplineDialogComponent, {
-      width: '450px',
+      width: '600px',
       data: {  }
     });
 
