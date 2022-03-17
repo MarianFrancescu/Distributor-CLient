@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
@@ -31,14 +31,38 @@ export class AdminEditDisciplineComponent implements OnInit {
     studyInstitution: new FormControl('', Validators.required),
     faculty: new FormControl('', Validators.required),
     department: new FormControl('', Validators.required),
-    studyYear:  new FormControl('', Validators.required)
+    studyYear:  new FormControl('', Validators.required),
+    timetable: new FormArray([])
   });
+
+  get dynamicTimetable() {
+    return this.disciplineDetailsForm.controls['timetable'] as FormArray;
+  }
+
+  addTimetable() {
+    const timetableForm = new FormGroup({
+      option: new FormControl(''),
+      //assistent teacher name could be another control
+    })
+    this.dynamicTimetable.push(timetableForm);
+  }
+
+  updateTimetableForm(value: string) {
+    const timetableForm = new FormGroup({
+      option: new FormControl(value),
+      //assistent teacher name could be another control
+    })
+    this.dynamicTimetable.push(timetableForm);
+  }
+
+  deleteTimetable(optionIndex: number) {
+    this.dynamicTimetable.removeAt(optionIndex);
+  }
 
   constructor(private route: ActivatedRoute, private apiService: ApiService, private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.getDiscipline();
-    // this.fetchDisciplineForm();
     this.update.subscribe((update) =>
       update === true ? this.getDiscipline() : ''
     );
@@ -52,10 +76,20 @@ export class AdminEditDisciplineComponent implements OnInit {
         studyInstitution: this.discipline.studyInstitution,
         faculty: this.discipline.faculty,
         department: this.discipline.department,
-        studyYear: this.discipline.studyYear
+        studyYear: this.discipline.studyYear,
       });
+
+      this.update.subscribe((update) =>
+        update === false ? this.updateTimetable() : ''
+      );
     }
   }
+  
+  updateTimetable() {
+    this.discipline.timetable.forEach(timetable => {
+      this.updateTimetableForm(timetable.option);
+    })
+  }  
 
   getDiscipline() {
     const disciplineId = this.route.snapshot.paramMap.get('id');
@@ -109,6 +143,9 @@ export class AdminEditDisciplineComponent implements OnInit {
     }
     if (this.disciplineDetailsForm.controls.studyYear.touched) {
       updatedDisciplineDetails.studyYear = this.disciplineDetailsForm.controls.studyYear.value;
+    }
+    if(this.dynamicTimetable.touched) {
+      updatedDisciplineDetails.timetable = this.dynamicTimetable.value;
     }
     this.apiService.updateDiscipline(disciplineId, updatedDisciplineDetails).subscribe(
       (response) => {
