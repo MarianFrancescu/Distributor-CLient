@@ -53,10 +53,10 @@ export class AdminAddDisciplineDialogComponent implements OnInit {
   }
 
   sendData() {
-    setTimeout(() => {
-        this.dialogRef.close(this.disciplineDetailsForm.value);
-      }, 1000);
-    // this.dialogRef.close(this.disciplineDetailsForm.value);
+    // setTimeout(() => {
+    //     this.dialogRef.close(this.disciplineDetailsForm.value);
+    //   }, 1000);
+    this.dialogRef.close(this.disciplineDetailsForm.value);
   }
 
 }

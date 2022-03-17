@@ -27,7 +27,6 @@ export class PreferencesComponent implements OnInit {
       (response) => {
         const res = response as Discipline[];
         this.userDisciplines = [...res];
-        console.log(this.userDisciplines)
       },
       (error) => {
         console.log(error);

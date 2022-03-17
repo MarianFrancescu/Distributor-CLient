@@ -16,22 +16,34 @@ export class DisciplinePreferencesComponent implements OnInit, OnChanges {
   ];
 
   preferencesForm = new FormGroup({
-    option1: new FormControl('', Validators.required)
+    options: new FormArray([])
   });
+
+  get dynamicOptions() {
+    return this.preferencesForm.controls['options'] as FormArray;
+  }
+
+  addOption() {
+    const optionForm = new FormGroup({
+      option: new FormControl('', Validators.required),
+    })
+    this.dynamicOptions.push(optionForm);
+  }
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.discipline.timetable.forEach(element => {
+      this.addOption()
+    })
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.viableTimetables = [this.discipline.timetable]
-    console.log(this.viableTimetables);
-    // this.preferencesForm = new FormGroup({
-      
-    // })
   }
 
   submit() {
-    console.log('Added user preferences', this.preferencesForm.value);
+    // console.log('Added user preferences', this.preferencesForm.value);
+    console.log("User preferences ", this.dynamicOptions)
   }
 }

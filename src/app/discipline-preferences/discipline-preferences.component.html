@@ -1,39 +1,19 @@
 <div class="discipline-preferences">
-
-    <!-- <form [formGroup]="preferencesForm">
-        <div class="form-group">
-            <mat-form-field appearance="outline">
-                    <mat-label>Option 1</mat-label>
-                    <mat-select formControlName="option1">
-                      <mat-option *ngFor="let preference of discipline.timetable" [value]="preference">
-                        {{ preference.option }}
-                      </mat-option>
-                    </mat-select>    
-                <mat-error *ngIf="preferencesForm.controls.option1.invalid">Please complete option</mat-error>
-            </mat-form-field>
-        </div>
-    </form> -->
-    <form [formGroup]="preferencesForm">
-      <div class="form-group">
-          <mat-form-field appearance="outline" *ngFor="let preference of discipline.timetable; let i=index">
-                  <mat-label>Option {{i}}</mat-label>
-                  <mat-select formControlName="option1">
-                    <mat-option *ngFor="let selectedPreference of discipline.timetable;"  [value]="selectedPreference">
-                      {{ selectedPreference.option }}
-                    </mat-option>
-                  </mat-select>    
-              <!-- <mat-error *ngIf="preferencesForm.controls.option1.invalid">Please complete option</mat-error> -->
-          </mat-form-field>
-      </div>
-  </form>
-  <!-- <div formArrayName="timetable" *ngFor="let timetableOption of dynamicTimetable.controls; let i=index">
-    <div class="lesson-form-row" [formGroup]="timetableOption">
-        <mat-form-field>
-        <mat-label>Option #{{i}}</mat-label>
-        <input matInput type="text" formControlName="option">
+  <form [formGroup]="preferencesForm">
+    <div class="form-group" formArrayName="options" *ngFor="let preference of dynamicOptions.controls; let i=index">
+      <div [formGroup]="preference">
+        <mat-form-field appearance="outline">
+          <mat-label>Option {{i + 1}}</mat-label>
+          <mat-select formControlName="option">
+            <mat-option *ngFor="let selectedPreference of discipline.timetable" [value]="selectedPreference">
+              {{ selectedPreference.option }}
+            </mat-option>
+          </mat-select>    
+            <mat-error *ngIf="preference.controls.option.invalid">Please complete option</mat-error>
         </mat-form-field>
+      </div>
     </div>
-    </div> -->
-    <button class="submit-button" mat-raised-button (click)="submit()" [disabled]="preferencesForm.invalid">SAVE</button>
-
+  </form>
+  <button class="submit-button" mat-raised-button (click)="submit()" [disabled]="preferencesForm.invalid">SAVE</button>
+  <!-- TODO: add a button to send discipline preferences -->
 </div>
