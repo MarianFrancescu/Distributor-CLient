@@ -9,6 +9,18 @@
 
     .tabs{
         background: rgb(97, 26, 26);
-        color: white
+        color: white;
+
+        .disciplines-menu {
+            display: flex;
+            flex-direction: column;
+
+            .discipline-item :focus {
+                background: rgba(187, 166, 166, 0.623);
+            }
+            .tab-item {
+                width: 100%;
+            }
+        }
     }
 }
