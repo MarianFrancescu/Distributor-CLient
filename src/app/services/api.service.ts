@@ -117,4 +117,13 @@ export class ApiService {
     const url = `${this.apiURL}deleteDiscipline/${disciplineID}`;
     return this.http.delete(url, {responseType: 'text' });
   }
+
+  addUserPreference(disciplineID: string, options: string[]) {
+    const userID = this.getUserID();
+    const url = `${this.apiURL}addPreference/${disciplineID}`;
+    return this.http.post(url, {
+      userID,
+      options
+    }, { responseType: 'text' });
+  }
 }
