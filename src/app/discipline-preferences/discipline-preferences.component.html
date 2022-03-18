@@ -5,7 +5,7 @@
         <mat-form-field appearance="outline">
           <mat-label>Option {{i + 1}}</mat-label>
           <mat-select formControlName="option">
-            <mat-option *ngFor="let selectedPreference of discipline.timetable" [value]="selectedPreference">
+            <mat-option *ngFor="let selectedPreference of discipline.timetable" [value]="selectedPreference.option">
               {{ selectedPreference.option }}
             </mat-option>
           </mat-select>    

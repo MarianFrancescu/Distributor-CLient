@@ -54,9 +54,9 @@ export class DisciplinePreferencesComponent implements OnInit, OnChanges {
             this.hasSelectedPreferences = true;
             this.dynamicOptions.clear();
             res.options.forEach(option => this.updateOptionForm(option));
+            return;
           }
           this.initializeDisciplineOptions();
-          
         },
         (error) => {
           console.log(error)
@@ -86,7 +86,6 @@ export class DisciplinePreferencesComponent implements OnInit, OnChanges {
   }
 
   editUserPreference(disciplineID: string, options: string[]) {
-    console.log("editing preferences");
     this.apiService.updateUserDisciplinePreference(disciplineID, options)
       .subscribe(
         (response) => {
@@ -101,12 +100,11 @@ export class DisciplinePreferencesComponent implements OnInit, OnChanges {
   }
 
   submit() {
-    // console.log('Added user preferences', this.preferencesForm.value);
-    let userPreference: Preference;
     let userOptions: string[] = [];
-    this.dynamicOptions.value.forEach(element => userOptions.push(element.option.option));
+    this.dynamicOptions.value.forEach(element => userOptions.push(element.option));
     if(!this.hasSelectedPreferences) {
       this.addUserPreference(this.discipline._id, userOptions);
+      return;
     }
     this.editUserPreference(this.discipline._id, userOptions);
   }
