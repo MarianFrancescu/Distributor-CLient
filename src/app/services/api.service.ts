@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Discipline } from '../models/discipline.interface';
+import { Preference } from '../models/preference.interface';
 import { User } from '../models/user.interface';
 
 @Injectable({
@@ -125,5 +126,17 @@ export class ApiService {
       userID,
       options
     }, { responseType: 'text' });
+  }
+
+  getUserPreferenceByDiscipline(disciplineID: string) {
+    const userID = this.getUserID();
+    const url = `${this.apiURL}preference/user/${userID}/discipline/${disciplineID}`;
+    return this.http.get(url, {});
+  }
+
+  updateUserDisciplinePreference(disciplineID: string, options: string[]) {
+    const userID = this.getUserID();
+    const url = `${this.apiURL}preference/user/${userID}/discipline/${disciplineID}/update`;
+    return this.http.put(url, {options: options}, { responseType: 'text' });
   }
 }
