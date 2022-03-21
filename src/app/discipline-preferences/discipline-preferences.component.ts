@@ -1,7 +1,6 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { BehaviorSubject } from 'rxjs';
 import { Preference } from '../models/preference.interface';
 import { ApiService } from '../services/api.service';
 
@@ -12,10 +11,12 @@ import { ApiService } from '../services/api.service';
 })
 export class DisciplinePreferencesComponent implements OnInit, OnChanges {
   @Input() discipline;
+  @Output() updateDetails = new EventEmitter<boolean>();
   viableTimetables = [];
 
   hasSelectedPreferences = false;
-
+  wasPressed = false;
+  
   preferencesForm = new FormGroup({
     options: new FormArray([])
   });
@@ -45,7 +46,6 @@ export class DisciplinePreferencesComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.viableTimetables = [this.discipline.timetable];
-
     this.apiService.getUserPreferenceByDiscipline(this.discipline._id)
       .subscribe(
         (response) => {
@@ -61,7 +61,7 @@ export class DisciplinePreferencesComponent implements OnInit, OnChanges {
         (error) => {
           console.log(error)
         }
-      )
+      );
   }
 
   initializeDisciplineOptions() {
@@ -99,13 +99,63 @@ export class DisciplinePreferencesComponent implements OnInit, OnChanges {
       )
   }
 
+  getAvailablePlaces(option: string) {
+    return this.discipline.timetable.find(
+      (timetable) => timetable.option === option
+    ).students.length;
+  }
+
+  getStudentOption() {
+    const userID = sessionStorage.getItem('userID');
+    return this.discipline.timetable.find(
+      (timetable) => timetable.students.find(student => student === userID)
+    );
+  }
+
   submit() {
     let userOptions: string[] = [];
     this.dynamicOptions.value.forEach(element => userOptions.push(element.option));
+    this.wasPressed = true;
     if(!this.hasSelectedPreferences) {
       this.addUserPreference(this.discipline._id, userOptions);
       return;
     }
     this.editUserPreference(this.discipline._id, userOptions);
+  }
+
+  sendPreference() {
+    this.apiService.insertUserOptionOnDiscipline(this.discipline._id).subscribe(
+      (response) => {
+        this.updateDetails.emit(true);
+        this.snackBar.open(`${response}`, 'Close', {
+          duration: 2000
+        });
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  resetPreferences() {
+    this.apiService.resetDisciplinePreferences(this.discipline._id).subscribe(
+      (response) => {
+        this.updateDetails.emit(true);
+        this.snackBar.open(`${response}`, 'Close', {
+          duration: 2000
+        });
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  isSentOptionDisabled() {
+    return this.wasPressed ? false : true;
+  }
+
+  isResetDisabled() {
+    return this.getStudentOption() ? false : true;
   }
 }

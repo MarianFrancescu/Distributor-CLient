@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { mockedDisciplines } from '../mock-data/disciplines.mock';
 import { Discipline } from '../models/discipline.interface';
 import { ApiService } from '../services/api.service';
 
@@ -10,7 +9,6 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./discipline-details.component.scss']
 })
 export class DisciplineDetailsComponent implements OnInit {
-  mockDisciplines = mockedDisciplines;
   discipline: Discipline;
   selectedOption = '14-16';
 

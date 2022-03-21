@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { mockedDisciplines } from '../mock-data/disciplines.mock';
 import { Discipline } from '../models/discipline.interface';
 import { ApiService } from '../services/api.service';
 
@@ -11,7 +10,6 @@ import { ApiService } from '../services/api.service';
 export class PreferencesComponent implements OnInit {
   tabOption: Discipline;
   userDisciplines: Discipline[];
-
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
@@ -32,5 +30,9 @@ export class PreferencesComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  updateDiscipline() {
+    this.fetchDisciplines();
   }
 }

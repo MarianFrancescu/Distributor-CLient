@@ -1,4 +1,11 @@
 <div class="discipline-preferences">
+  <div *ngFor="let timetable of discipline.timetable">
+    {{ timetable.option }}
+    {{ getAvailablePlaces(timetable.option) }}
+    <span *ngIf="getStudentOption()?.option === timetable.option">
+      Your current option
+    </span>
+  </div>
   <form [formGroup]="preferencesForm">
     <div class="form-group" formArrayName="options" *ngFor="let preference of dynamicOptions.controls; let i=index">
       <div [formGroup]="preference">
@@ -14,6 +21,9 @@
       </div>
     </div>
   </form>
+
   <button class="submit-button" mat-raised-button (click)="submit()" [disabled]="preferencesForm.invalid">SAVE</button>
   <!-- TODO: add a button to send discipline preferences -->
+  <button class="submit-button" mat-raised-button (click)="sendPreference()" [disabled]="isSentOptionDisabled()">Send preference</button>
+  <button class="submit-button" mat-raised-button (click)="resetPreferences()" [disabled]="isResetDisabled()">Reset</button>
 </div>

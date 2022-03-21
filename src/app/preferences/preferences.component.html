@@ -16,7 +16,7 @@
             </ng-template>
         </mat-list>
         <div *ngIf="tabOption">
-            <app-discipline-preferences [discipline]="tabOption"></app-discipline-preferences>
+            <app-discipline-preferences [discipline]="tabOption" (updateDetails)="updateDiscipline($event)"></app-discipline-preferences>
         </div>
     </div>
 

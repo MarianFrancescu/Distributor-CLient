@@ -139,4 +139,16 @@ export class ApiService {
     const url = `${this.apiURL}preference/user/${userID}/discipline/${disciplineID}/update`;
     return this.http.put(url, {options: options}, { responseType: 'text' });
   }
+
+  insertUserOptionOnDiscipline(disciplineID: string) {
+    const userID = this.getUserID();
+    const url = `${this.apiURL}user/${userID}/discipline/${disciplineID}`;
+    return this.http.patch(url, {}, { responseType: 'text' });
+  }
+
+  resetDisciplinePreferences(disciplineID: string) {
+    const userID = this.getUserID();
+    const url = `${this.apiURL}user/${userID}/discipline/${disciplineID}/reset`;
+    return this.http.put(url, {}, { responseType: 'text' });
+  }
 }
