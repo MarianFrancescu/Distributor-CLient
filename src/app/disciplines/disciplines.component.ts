@@ -7,6 +7,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
 import { BehaviorSubject } from 'rxjs';
+import { AlertDialogComponent } from '../alert-dialog/alert-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-disciplines',
   templateUrl: './disciplines.component.html',
@@ -23,6 +25,7 @@ export class DisciplinesComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private router: Router,
+    private snackBar: MatSnackBar,
     private apiService: ApiService
   ) {}
 
@@ -75,10 +78,29 @@ export class DisciplinesComponent implements OnInit {
   }
 
   unenrollUser(disciplineId: string, e: Event) {
-    const subscription = this.apiService.unenrollFromDiscipline(disciplineId);
-    subscription.subscribe(() => {
-      this.update.next(true);
+    const dialogRef = this.dialog.open(AlertDialogComponent, {
+      data: {
+        title: 'Unenroll from discipline',
+        question: 'Are you sure you want to unenroll from this discipline?',
+        message: 'This action will delete your enrollment from that discipline'
+      }
     });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.apiService.unenrollFromDiscipline(disciplineId).subscribe(
+          (response) => {
+            this.update.next(true);
+            this.snackBar.open(`${response}`, 'Close', {
+              duration: 2000
+            });
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      }
+    }); 
     e.stopPropagation();
   }
 }
