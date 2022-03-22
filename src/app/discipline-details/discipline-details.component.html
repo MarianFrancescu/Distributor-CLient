@@ -1,12 +1,38 @@
 <div class="discipline-details">
     <header class="name">
         <h2>{{discipline?.name}}</h2>
+        <h4>Teacher: {{discipline?.teacher}}</h4>
     </header>
 
     <div class="details">
+
         <div *ngFor="let timetable of discipline?.timetable">
-            {{ timetable.option }}
-            {{ getAvailablePlaces(timetable.option) }}
+            <mat-card class="discipline-card">
+                <div class="header-container">
+                    <div class="content">
+                        <mat-card-title>{{ timetable.option }}</mat-card-title>
+                        <mat-card-subtitle>Students: {{ getAvailablePlaces(timetable.option) }} / 18</mat-card-subtitle>
+                    </div>
+                </div>
+                
+                <mat-card-content class="content" >
+                    <ng-container *ngIf="!getAvailablePlaces(timetable.option)">
+                        No students distributed on this option
+                    </ng-container>
+                    <ng-container *ngFor="let student of timetable.students; let i=index">
+                        <table>
+                            <th>No.</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <tr>
+                                <td>{{ i+1 }}</td>
+                                <td>{{ getStudent(student)?.firstName }}</td>
+                                <td>{{ getStudent(student)?.lastName }}</td>
+                            </tr>
+                        </table>
+                    </ng-container>
+                </mat-card-content>
+            </mat-card>
         </div>
     </div>
 </div>

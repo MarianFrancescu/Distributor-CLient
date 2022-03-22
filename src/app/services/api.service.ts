@@ -47,6 +47,11 @@ export class ApiService {
     return sessionStorage.getItem('userID');
   }
 
+  getUsers() {
+    const url = `${this.apiURL}users`;
+    return this.http.get(url, {});
+  }
+
   getUser(userID: string) {
     const url = `${this.apiURL}user/${userID}`;
     return this.http.get(url, {});
