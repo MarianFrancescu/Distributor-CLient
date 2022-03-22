@@ -28,6 +28,7 @@ import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { AddDisciplineDialogComponent } from './add-discipline-dialog/add-discipline-dialog.component';
 import { MatTableModule } from '@angular/material/table';
+import { MatCardModule } from '@angular/material/card';
 import { DisciplineDetailsComponent } from './discipline-details/discipline-details.component';
 import { PreferencesComponent } from './preferences/preferences.component';
 import { DisciplinePreferencesComponent } from './discipline-preferences/discipline-preferences.component';
@@ -76,6 +77,7 @@ import { AdminEditDisciplineComponent } from './admin-edit-discipline/admin-edit
     MatStepperModule,
     MatTableModule,
     MatSnackBarModule,
+    MatCardModule,
     HttpClientModule,
     AppRoutingModule,
     AppRoutingModule

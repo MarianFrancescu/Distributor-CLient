@@ -24,30 +24,27 @@
                 <button mat-button (click)="openDialog()"><mat-icon>add_circle</mat-icon>Add discipline</button>
             </div>
 
-            <table mat-table [dataSource]="myDataSource" matSort class="mat-elevation-z8" width="100%">
-                <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef>Name</th>
-                <td mat-cell *matCellDef="let element">{{element.name}}</td>
-                </ng-container>
-                <ng-container matColumnDef="teacher">
-                    <th mat-header-cell *matHeaderCellDef>Teacher</th>
-                    <td mat-cell *matCellDef="let element">{{element.teacher}}</td>
-                    </ng-container>
-                <ng-container matColumnDef="actions">
-                    <th mat-header-cell *matHeaderCellDef>
-                        actions
-                    </th>
-                    <td mat-cell *matCellDef="let element" class="no-field-padding">
-                        <div class="icons">
-                        <button mat-button>
-                            <mat-icon class="delete-icon" (click)="unenrollUser(element._id, $event)">delete</mat-icon>
-                        </button>
+            <div class="cards-container">
+                <div *ngFor="let discipline of userDisciplines">
+                    <mat-card class="discipline-card">
+                        <div class="header-container">
+                            <a (click)="navigateToDiscipline(discipline)">
+                                <div class="content">
+                                    <mat-card-title>{{ discipline.name }}</mat-card-title>
+                                    <mat-card-subtitle>Teacher: {{ discipline.teacher }}</mat-card-subtitle>
+                                </div>
+                            </a>
                         </div>
-                    </td>
-                </ng-container>
-                <tr mat-header-row *matHeaderRowDef="['name', 'teacher', 'actions']"></tr>
-                <tr mat-row *matRowDef="let row; columns: ['name', 'teacher', 'actions']" (click)="getSelectedRow(row)"></tr>
-            </table>
+                        <mat-card-content class="content">
+                            <p>{{ discipline.faculty }}</p>
+                            <p>{{ discipline.department }}</p>
+                        </mat-card-content>
+                        <mat-card-actions class="footer-actions">
+                            <button (click)="unenrollUser(discipline._id, $event)" mat-button>Delete</button>
+                        </mat-card-actions>
+                    </mat-card>
+                </div>
+            </div>
         </div>
     <div>
 
@@ -62,4 +59,5 @@
             You've not selected any discipline
         </div>
     </ng-template>
+
 </div>

@@ -15,9 +15,7 @@ import { BehaviorSubject } from 'rxjs';
 export class DisciplinesComponent implements OnInit {
   selected: string;
 
-  mockDisciplines = mockedDisciplines;
   disciplines = [];
-  myDataSource: MatTableDataSource<Discipline>;
   dbDisciplines: Discipline[];
   userDisciplines: Discipline[];
   update = new BehaviorSubject<boolean>(false);
@@ -65,7 +63,6 @@ export class DisciplinesComponent implements OnInit {
       (response) => {
         const res = response as Discipline[];
         this.userDisciplines = [...res];
-        this.makeTable();
       },
       (error) => {
         console.log(error);
@@ -73,13 +70,7 @@ export class DisciplinesComponent implements OnInit {
     );
   }
 
-  makeTable() {
-    this.myDataSource = new MatTableDataSource<Discipline>(
-      this.userDisciplines
-    );
-  }
-
-  getSelectedRow(discipline: Discipline) {
+  navigateToDiscipline(discipline: Discipline) {
     this.router.navigate(['/discipline', discipline._id]);
   }
 

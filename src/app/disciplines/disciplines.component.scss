@@ -31,8 +31,6 @@
     margin: auto;
 }
 
-
-
 .add-button {
     display: flex;
     flex-direction: column;
@@ -45,7 +43,55 @@
     }
 }
 
-.mat-row:hover {
-    cursor: pointer;
-    background-color: #e8eaf6;
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 3em;
+    justify-items: center;
+
+    .discipline-card {
+        width: 350px;
+        padding: 0;
+    
+        .header-container {
+            background: rgb(161, 70, 70);
+        }
+        
+        .header-container:hover {
+            cursor: pointer;
+            background: rgb(209, 171, 171);
+        }
+        
+        .content {
+            padding: 10px 12px;
+            margin: 0;
+        }
+        
+        .footer-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-right: 10px;
+        }
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .cards-container {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 3em;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .disciplines-tab .table-add-button {
+        justify-content: center;
+    }
+    .cards-container {
+        grid-template-columns: repeat(1, 1fr);
+        row-gap: 3em;
+
+        .discipline-card {
+            width: 400px;
+        }
+    }
 }
