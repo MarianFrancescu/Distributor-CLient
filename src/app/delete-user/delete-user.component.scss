@@ -1,5 +1,15 @@
 .delete-account-container {
+
+    .mat-icon {
+        font-size: 100px;
+        height: 100px ;
+        width: 100px;
+    }
+
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
         
     .delete-button {
         width: 100%;

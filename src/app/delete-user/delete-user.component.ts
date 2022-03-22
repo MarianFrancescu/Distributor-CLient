@@ -25,7 +25,7 @@ export class DeleteUserComponent implements OnInit {
       data: {
         title: 'Delete account',
         question: 'Are you sure you want to delete account?',
-        message: 'Yesyeseyes'
+        message: 'This action is irrevocable'
       }
     });
 
