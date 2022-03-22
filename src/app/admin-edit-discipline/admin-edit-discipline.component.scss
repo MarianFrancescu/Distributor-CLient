@@ -18,3 +18,40 @@
 .details {
     background-color: white;
 }
+
+.details-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+
+    .submit-button {
+        width: 50%;
+    }
+}
+
+.form-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2em;
+
+    .basic-details {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .dynamic-details {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+}
