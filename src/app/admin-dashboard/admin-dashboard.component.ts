@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
@@ -16,6 +17,8 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./admin-dashboard.component.scss']
 })
 export class AdminDashboardComponent implements OnInit {
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   mockDisciplines = mockedDisciplines;
   disciplines: Discipline[];
@@ -81,6 +84,7 @@ export class AdminDashboardComponent implements OnInit {
     this.myDataSource = new MatTableDataSource<Discipline>(
       this.disciplines
     );
+    this.myDataSource.paginator = this.paginator;
   }
 
   addDiscipline(discipline: Discipline) {

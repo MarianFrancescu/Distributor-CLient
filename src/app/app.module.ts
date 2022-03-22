@@ -29,6 +29,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { AddDisciplineDialogComponent } from './add-discipline-dialog/add-discipline-dialog.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { DisciplineDetailsComponent } from './discipline-details/discipline-details.component';
 import { PreferencesComponent } from './preferences/preferences.component';
 import { DisciplinePreferencesComponent } from './discipline-preferences/discipline-preferences.component';
@@ -78,6 +79,7 @@ import { AdminEditDisciplineComponent } from './admin-edit-discipline/admin-edit
     MatTableModule,
     MatSnackBarModule,
     MatCardModule,
+    MatPaginatorModule,
     HttpClientModule,
     AppRoutingModule,
     AppRoutingModule
