@@ -7,7 +7,7 @@
     height: calc(100vh - 64px);
     
     .menu {
-        background: rgb(97, 26, 26);
+        background: rgb(155, 77, 77);
         color: white;
         // width: 10em;
 
@@ -23,6 +23,17 @@
             }
         }
     }
+
+    mat-drawer-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.menu-button {
+    width: 100%;
 }
 
 .mobile-menu {
