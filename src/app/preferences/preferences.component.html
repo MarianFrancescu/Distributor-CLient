@@ -1,9 +1,28 @@
+
 <div class="preferences-container">
     <header class="title-container">
         <h1>My preferences</h1>
     </header>
-
-    <div class="actions-container">
+    <mat-drawer-container class="sidenav-container">
+        <mat-drawer mode="side" opened class="menu">
+            <h3>List of your disciplines</h3>
+            <div *ngIf="userDisciplines?.length > 0; else noDisciplines" class="disciplines-menu">
+                <div *ngFor="let discipline of userDisciplines" class="discipline-item">
+                    <a mat-button class="tab-item" [routerLink]="['view/discipline', discipline._id]" routerLinkActive="active">
+                        {{ discipline.name }}
+                    </a>
+                </div>
+            </div>
+            <ng-template #noDisciplines>
+                <p>No disciplines yet</p>
+            </ng-template>
+        </mat-drawer>
+        <mat-drawer-content>
+            <router-outlet></router-outlet>
+        </mat-drawer-content>
+    </mat-drawer-container>
+    
+    <!-- <div class="actions-container">
         <mat-list class="tabs">
             <h3>List of your disciplines</h3>
             <div *ngIf="userDisciplines?.length > 0; else noDisciplines" class="disciplines-menu">
@@ -16,8 +35,8 @@
             </ng-template>
         </mat-list>
         <div *ngIf="tabOption">
-            <app-discipline-preferences [discipline]="tabOption" (updateDetails)="updateDiscipline($event)"></app-discipline-preferences>
+            <app-discipline-preferences [discipline]="tabOption" (updateDetails)="updateDiscipline()"></app-discipline-preferences>
         </div>
-    </div>
+    </div> -->
 
 </div>

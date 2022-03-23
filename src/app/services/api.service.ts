@@ -156,4 +156,9 @@ export class ApiService {
     const url = `${this.apiURL}user/${userID}/discipline/${disciplineID}/reset`;
     return this.http.put(url, {}, { responseType: 'text' });
   }
+
+  deletePreferencesByDiscipline(disciplineID: string) {
+    const url = `${this.apiURL}preferences/discipline/${disciplineID}/delete`;
+    return this.http.delete(url, {responseType: 'text' });
+  }
 }

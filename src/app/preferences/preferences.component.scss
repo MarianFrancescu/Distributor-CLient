@@ -1,7 +1,33 @@
 .preferences-container {
-    width: 80%;
+    width: 100%;
     margin: auto;
 }
+
+.sidenav-container {
+    height: calc(100vh - 146px);
+    
+    .menu {
+        background: rgb(97, 26, 26);
+        color: white;
+        width: 15em;
+
+        .disciplines-menu {
+            display: flex;
+            flex-direction: column;
+
+            .discipline-item :focus {
+                background: rgba(187, 166, 166, 0.623);
+            }
+            .tab-item {
+                width: 100%;
+            }
+        }
+    }
+}
+
+.active {
+    background: rgba(97, 63, 63, 0.856);
+  }
 
 .actions-container {
     display: grid;

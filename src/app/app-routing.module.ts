@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AdminEditDisciplineComponent } from './admin-edit-discipline/admin-edit-discipline.component';
 import { DisciplineDetailsComponent } from './discipline-details/discipline-details.component';
+import { DisciplinePreferencesComponent } from './discipline-preferences/discipline-preferences.component';
 import { DisciplinesComponent } from './disciplines/disciplines.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { AuthGuard } from './guard/auth.guard';
@@ -27,6 +28,9 @@ const routes: Routes = [
     canActivate: [AuthGuard], 
     data: { roles: [Roles.Basic, Roles.Admin] } },
   { path: 'preferences', component: PreferencesComponent, 
+    children: [
+      { path: 'view/discipline/:disciplineID', component: DisciplinePreferencesComponent },
+    ],
     canActivate: [AuthGuard], 
     data: { roles: [Roles.Basic, Roles.Admin] }  },
   { 

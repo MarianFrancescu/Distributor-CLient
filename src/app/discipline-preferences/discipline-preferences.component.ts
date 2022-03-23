@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
+import { Discipline } from '../models/discipline.interface';
 import { Preference } from '../models/preference.interface';
 import { ApiService } from '../services/api.service';
 
@@ -9,10 +11,10 @@ import { ApiService } from '../services/api.service';
   templateUrl: './discipline-preferences.component.html',
   styleUrls: ['./discipline-preferences.component.scss']
 })
-export class DisciplinePreferencesComponent implements OnInit, OnChanges {
-  @Input() discipline;
+export class DisciplinePreferencesComponent implements OnInit {
   @Output() updateDetails = new EventEmitter<boolean>();
   viableTimetables = [];
+  discipline: Discipline;
 
   hasSelectedPreferences = false;
   wasPressed = false;
@@ -39,29 +41,46 @@ export class DisciplinePreferencesComponent implements OnInit, OnChanges {
     this.dynamicOptions.push(optionForm);
   }
 
-  constructor(private apiService: ApiService, private snackBar: MatSnackBar) {}
+  constructor(private apiService: ApiService, private snackBar: MatSnackBar, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.viableTimetables = [this.discipline.timetable];
-    this.apiService.getUserPreferenceByDiscipline(this.discipline._id)
+    this.route.paramMap.subscribe(params => {
+      const disciplineID = params.get('disciplineID');
+      this.apiService.getDiscipline(disciplineID)
       .subscribe(
         (response) => {
-          const res = response as Preference;
-          if(!!res) {
-            this.hasSelectedPreferences = true;
-            this.dynamicOptions.clear();
-            res.options.forEach(option => this.updateOptionForm(option));
-            return;
-          }
-          this.initializeDisciplineOptions();
+          const res = response as Discipline;
+          this.discipline = res;
+          this.getUserPreferences();
         },
         (error) => {
-          console.log(error)
+          console.log(error);
         }
       );
+    });
+  }
+
+  getUserPreferences() {
+    this.hasSelectedPreferences = false;
+    this.apiService.getUserPreferenceByDiscipline(this.discipline._id)
+    .subscribe(
+      (response) => {
+        const res = response as Preference;
+        if(!!res) {
+          this.hasSelectedPreferences = true;
+          this.dynamicOptions.clear();
+          res.options.forEach(option => this.updateOptionForm(option));
+          // if(this.discipline.timetable.length === this.dynamicOptions.value.length) {
+          //   this.hasSelectedPreferences = true;
+          // } 
+          return;
+        }
+        this.initializeDisciplineOptions();
+      },
+      (error) => {
+        console.log(error)
+      }
+    );
   }
 
   initializeDisciplineOptions() {
@@ -107,7 +126,7 @@ export class DisciplinePreferencesComponent implements OnInit, OnChanges {
 
   getStudentOption() {
     const userID = sessionStorage.getItem('userID');
-    return this.discipline.timetable.find(
+    return this.discipline?.timetable.find(
       (timetable) => timetable.students.find(student => student === userID)
     );
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Discipline } from '../models/discipline.interface';
 import { ApiService } from '../services/api.service';
 
@@ -8,17 +9,20 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./preferences.component.scss']
 })
 export class PreferencesComponent implements OnInit {
-  tabOption: Discipline;
+  tabOption: string;
   userDisciplines: Discipline[];
-  constructor(private apiService: ApiService) {}
+  mySubscription: any;
+  constructor(private apiService: ApiService, private router: Router) {
+  }
 
   ngOnInit(): void {
     this.fetchDisciplines();
   }
 
   selectDiscipline(discipline: Discipline) {
-    this.tabOption = discipline;
+    this.router.navigate(['view/discipline', discipline._id])
   }
+  
 
   fetchDisciplines() {
     this.apiService.getUserDisciplines().subscribe(

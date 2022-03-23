@@ -1,5 +1,5 @@
 <div class="discipline-preferences">
-  <div *ngFor="let timetable of discipline.timetable">
+  <div *ngFor="let timetable of discipline?.timetable">
     {{ timetable.option }}
     {{ getAvailablePlaces(timetable.option) }}
     <span *ngIf="getStudentOption()?.option === timetable.option">
@@ -23,7 +23,6 @@
   </form>
 
   <button class="submit-button" mat-raised-button (click)="submit()" [disabled]="preferencesForm.invalid">SAVE</button>
-  <!-- TODO: add a button to send discipline preferences -->
   <button class="submit-button" mat-raised-button (click)="sendPreference()" [disabled]="isSentOptionDisabled()">Send preference</button>
   <button class="submit-button" mat-raised-button (click)="resetPreferences()" [disabled]="isResetDisabled()">Delete option</button>
 </div>

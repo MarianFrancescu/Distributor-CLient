@@ -159,5 +159,8 @@ export class AdminEditDisciplineComponent implements OnInit {
         this.disciplineDetailsForm.reset();
       }
     );
+    this.apiService.deletePreferencesByDiscipline(disciplineId).subscribe(
+      (response) => console.log(response)
+    )
   }
 }
