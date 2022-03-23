@@ -38,6 +38,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { AppRoutingModule } from './app-routing.module';
 import { AdminAddDisciplineDialogComponent } from './admin-add-discipline-dialog/admin-add-discipline-dialog.component';
 import { AdminEditDisciplineComponent } from './admin-edit-discipline/admin-edit-discipline.component';
+import { PreferencesDefaultComponent } from './preferences-default/preferences-default.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { AdminEditDisciplineComponent } from './admin-edit-discipline/admin-edit
     DisciplinePreferencesComponent,
     AdminDashboardComponent,
     AdminAddDisciplineDialogComponent,
-    AdminEditDisciplineComponent
+    AdminEditDisciplineComponent,
+    PreferencesDefaultComponent
   ],
   imports: [
     BrowserModule,

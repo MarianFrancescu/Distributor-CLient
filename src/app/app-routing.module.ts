@@ -9,6 +9,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { AuthGuard } from './guard/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { Roles } from './models/roles';
+import { PreferencesDefaultComponent } from './preferences-default/preferences-default.component';
 import { PreferencesComponent } from './preferences/preferences.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
@@ -18,21 +19,34 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'profile', component: ProfileComponent, 
+  { 
+    path: 'profile', component: ProfileComponent, 
     canActivate: [AuthGuard], 
-    data: { roles: [Roles.Basic, Roles.Admin] } },
-  { path: 'disciplines', component: DisciplinesComponent, 
+    data: { roles: [Roles.Basic, Roles.Admin] } 
+  },
+  { 
+    path: 'disciplines', component: DisciplinesComponent, 
     canActivate: [AuthGuard], 
-    data: { roles: [Roles.Basic, Roles.Admin] } },
+    data: { roles: [Roles.Basic, Roles.Admin] } 
+  },
   { path: 'discipline/:id', component: DisciplineDetailsComponent, 
     canActivate: [AuthGuard], 
-    data: { roles: [Roles.Basic, Roles.Admin] } },
+    data: { roles: [Roles.Basic, Roles.Admin] } 
+  },
   { path: 'preferences', component: PreferencesComponent, 
     children: [
-      { path: 'view/discipline/:disciplineID', component: DisciplinePreferencesComponent },
+      {
+        path: '',
+        component: PreferencesDefaultComponent
+      },
+      { 
+        path: 'view/discipline/:disciplineID', 
+        component: DisciplinePreferencesComponent 
+      },
     ],
     canActivate: [AuthGuard], 
-    data: { roles: [Roles.Basic, Roles.Admin] }  },
+    data: { roles: [Roles.Basic, Roles.Admin] }  
+  },
   { 
     path: 'dashboard', 
     component: AdminDashboardComponent, 
