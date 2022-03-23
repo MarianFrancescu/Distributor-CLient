@@ -4,12 +4,12 @@
 }
 
 .sidenav-container {
-    height: calc(100vh - 146px);
+    height: calc(100vh - 64px);
     
     .menu {
         background: rgb(97, 26, 26);
         color: white;
-        width: 15em;
+        // width: 10em;
 
         .disciplines-menu {
             display: flex;
@@ -22,6 +22,16 @@
                 width: 100%;
             }
         }
+    }
+}
+
+.mobile-menu {
+    display: none;
+}
+
+@media screen and(max-width: 960px) {
+    .mobile-menu {
+        display: block;
     }
 }
 

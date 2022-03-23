@@ -1,11 +1,14 @@
 
 <div class="preferences-container">
-    <header class="title-container">
-        <h1>My preferences</h1>
-    </header>
     <mat-drawer-container class="sidenav-container">
-        <mat-drawer mode="side" opened class="menu">
-            <h3>List of your disciplines</h3>
+        <mat-drawer #sidenav [mode]="mode" [opened]="openSidenav" class="menu">
+            <h3>List of your disciplines
+                <button *ngIf="!openSidenav" mat-icon-button (click)="sidenav.toggle()">
+                    <mat-icon>
+                        arrow_left
+                    </mat-icon>
+                </button>
+            </h3>
             <div *ngIf="userDisciplines?.length > 0; else noDisciplines" class="disciplines-menu">
                 <div *ngFor="let discipline of userDisciplines" class="discipline-item">
                     <a mat-button class="tab-item" [routerLink]="['view/discipline', discipline._id]" routerLinkActive="active">
@@ -18,6 +21,9 @@
             </ng-template>
         </mat-drawer>
         <mat-drawer-content>
+            <button mat-icon-button (click)="sidenav.toggle()" class="mobile-menu">
+                <mat-icon>arrow_right</mat-icon>
+            </button>
             <router-outlet></router-outlet>
         </mat-drawer-content>
     </mat-drawer-container>
