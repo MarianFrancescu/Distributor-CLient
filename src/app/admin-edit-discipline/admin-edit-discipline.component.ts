@@ -32,6 +32,7 @@ export class AdminEditDisciplineComponent implements OnInit {
     faculty: new FormControl('', Validators.required),
     department: new FormControl('', Validators.required),
     studyYear:  new FormControl('', Validators.required),
+    maxNoOfStudentsPerTimetable: new FormControl('', Validators.required),
     timetable: new FormArray([])
   });
 
@@ -77,6 +78,7 @@ export class AdminEditDisciplineComponent implements OnInit {
         faculty: this.discipline.faculty,
         department: this.discipline.department,
         studyYear: this.discipline.studyYear,
+        maxNoOfStudentsPerTimetable: this.discipline.maxNoOfStudentsPerTimetable
       });
 
       this.update.subscribe((update) =>
@@ -143,6 +145,9 @@ export class AdminEditDisciplineComponent implements OnInit {
     }
     if (this.disciplineDetailsForm.controls.studyYear.touched) {
       updatedDisciplineDetails.studyYear = this.disciplineDetailsForm.controls.studyYear.value;
+    }
+    if (this.disciplineDetailsForm.controls.maxNoOfStudentsPerTimetable.touched) {
+      updatedDisciplineDetails.maxNoOfStudentsPerTimetable = this.disciplineDetailsForm.controls.maxNoOfStudentsPerTimetable.value;
     }
     if(this.dynamicTimetable.touched) {
       updatedDisciplineDetails.timetable = this.dynamicTimetable.value;

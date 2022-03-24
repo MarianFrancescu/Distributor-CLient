@@ -52,7 +52,8 @@ export class AdminDashboardComponent implements OnInit {
           studyYear: result.studyYear,
           name: result.name,
           teacher: result.teacher,
-          timetable:  result.timetable
+          timetable:  result.timetable,
+          maxNoOfStudentsPerTimetable: parseInt(result.maxNoOfStudentsPerTimetable)
         };
         this.addDiscipline(discipline);
       }

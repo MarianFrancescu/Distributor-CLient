@@ -20,6 +20,7 @@ export class AdminAddDisciplineDialogComponent implements OnInit {
     faculty: new FormControl('', Validators.required),
     department: new FormControl('', Validators.required),
     studyYear:  new FormControl('', Validators.required),
+    maxNoOfStudentsPerTimetable: new FormControl('', Validators.required),
     timetable: new FormArray([])
   });
 

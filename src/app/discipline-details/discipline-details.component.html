@@ -11,7 +11,9 @@
                 <div class="header-container">
                     <div class="content">
                         <mat-card-title>{{ timetable.option }}</mat-card-title>
-                        <mat-card-subtitle>Students: {{ getAvailablePlaces(timetable.option) }} / 18</mat-card-subtitle>
+                        <mat-card-subtitle>
+                            Students: {{ getAvailablePlaces(timetable.option) }} / {{ discipline.maxNoOfStudentsPerTimetable }}
+                        </mat-card-subtitle>
                     </div>
                 </div>
                 

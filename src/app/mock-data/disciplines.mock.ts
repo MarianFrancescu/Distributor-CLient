@@ -15,6 +15,7 @@ export const mockedDisciplines: Discipline[] = [
     faculty: 'AC',
     department: 'CTI',
     studyYear: '3',
+    maxNoOfStudentsPerTimetable: 3,
     created: '18-02-2002'
   },
   {
@@ -35,6 +36,7 @@ export const mockedDisciplines: Discipline[] = [
     faculty: 'AC',
     department: 'CTI',
     studyYear: '3',
+    maxNoOfStudentsPerTimetable: 3,
     created: '15-02-2002'
   }
 ];
