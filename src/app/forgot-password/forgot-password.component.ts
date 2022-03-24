@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -11,12 +13,26 @@ export class ForgotPasswordComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email])
   });
 
-  constructor() {}
+  constructor(private apiService: ApiService, private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {}
 
   submit() {
-    console.log('User registered');
+    this.resetUserPassword();
+  }
+
+  resetUserPassword() {
+    const userEmail = this.passwordForm.controls['email'].value;
+    this.apiService.resetUserPassword(userEmail).subscribe(
+      (response) => {
+        this.snackBar.open(`${response}`, 'Close', {
+          duration: 2000
+        });
+      },
+      (error) => {
+        console.log(error)
+      }
+    );
   }
 
   getEmailErrorMessage() {

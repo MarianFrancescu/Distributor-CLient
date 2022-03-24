@@ -65,7 +65,12 @@ export class ApiService {
   updateUserPassword(password: string) {
     const userID = this.getUserID();
     const url = `${this.apiURL}updateUserPassword/${userID}`;
-    return this.http.put(url, { newPassword: password });
+    return this.http.put(url, { newPassword: password }, { responseType: 'text' });
+  }
+
+  resetUserPassword(email: string) {
+    const url = `${this.apiURL}resetUserPassword`;
+    return this.http.put(url, { email: email }, { responseType: 'text' });
   }
 
   deleteAccount() {

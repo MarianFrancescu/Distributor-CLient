@@ -61,9 +61,8 @@ export class ResetPasswordComponent implements OnInit {
       )
       .subscribe(
         (response) => {
-          console.log(response);
           this.resetPasswordForm.reset();
-          this.snackBar.open('Password updated successfully!', 'Close', {
+          this.snackBar.open(`${response}`, 'Close', {
             duration: 2000
           });
         },
@@ -71,6 +70,5 @@ export class ResetPasswordComponent implements OnInit {
           console.log(error);
         }
       );
-    console.log('reset-password component', this.resetPasswordForm.value);
   }
 }
