@@ -28,4 +28,9 @@ export class ProfileComponent implements OnInit {
   updateUser() { 
     this.fetchUser();
   }
+
+  getInitials(firstName: string, lastName: string) {
+    const initials = firstName[0] + lastName[0];
+    return initials;
+  }
 }

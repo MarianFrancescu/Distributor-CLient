@@ -1,15 +1,24 @@
 <div class="profile-container">
-    <header class="username-container">
-        <h1>Profile details</h1>
-    </header>
 
-    <div class="details-container">
-        <mat-list class="tabs">
-            <button mat-button class="tab-item" (click)="tabOption = 1">Details</button>
-            <button mat-button class="tab-item" (click)="tabOption = 2">Reset password</button>
-            <button mat-button class="tab-item" (click)="tabOption = 3">Delete account</button>
-        </mat-list>
-
+    <div class="profile">
+        <div class="tab-left">
+            <div class="tab-header">
+                <div class="initials-circle">
+                    <span class="initials">
+                        {{ user?.firstName[0] }}{{ user?.lastName[0] }}
+                    </span>
+                </div>
+                <h2>{{user?.firstName}} {{user?.lastName}}</h2>
+                <p>Study year: {{ user?.studyYear }}</p>
+            </div>
+            <div class="details-container">
+                <mat-list class="tabs">
+                    <button mat-button class="tab-item" (click)="tabOption = 1">Details</button>
+                    <button mat-button class="tab-item" (click)="tabOption = 2">Reset password</button>
+                    <button mat-button class="tab-item" (click)="tabOption = 3">Delete account</button>
+                </mat-list>
+            </div>
+        </div>
         <section *ngIf="user" class="template-container">
             <ng-container [ngSwitch]="tabOption">
                 <div class="data-container">
@@ -25,16 +34,26 @@
     </div>
 
     <!-- this will be used for mobile view -->
-    <mat-tab-group mat-align-tabs="center" class="details-tabs">
-        <mat-tab label="Details">
-            <app-profile-details [userDetails]="user"></app-profile-details>
-        </mat-tab>
-        <mat-tab label="Reset password">
-            <app-reset-password></app-reset-password>
-        </mat-tab>
-        <mat-tab label="Delete account">
-            <app-delete-user></app-delete-user>
-        </mat-tab>
-    </mat-tab-group>
-
+    <div class="details-tabs">
+        <div class="tab-header">
+            <div class="initials-circle">
+                <span class="initials">
+                    {{ user?.firstName[0] }}{{ user?.lastName[0] }}
+                </span>
+            </div>
+            <h2>{{user?.firstName}} {{user?.lastName}}</h2>
+        </div>
+        <mat-tab-group mat-align-tabs="center">
+            
+            <mat-tab label="Details">
+                <app-profile-details [userDetails]="user"></app-profile-details>
+            </mat-tab>
+            <mat-tab label="Reset password">
+                <app-reset-password></app-reset-password>
+            </mat-tab>
+            <mat-tab label="Delete account">
+                <app-delete-user></app-delete-user>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
 </div>
