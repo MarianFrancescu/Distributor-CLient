@@ -1,3 +1,5 @@
+@import '../../styles/colors';
+
 .form-group {
     display: flex;
     flex-direction: column;
@@ -13,6 +15,6 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-color: rgb(97, 26, 26);
+    background-color: $color-3;
     color: white;
 }

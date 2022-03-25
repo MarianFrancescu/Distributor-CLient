@@ -1,3 +1,5 @@
+@import '../../styles/colors';
+
 .preferences-container {
     width: 100%;
     margin: auto;
@@ -7,7 +9,7 @@
     height: calc(100vh - 64px);
     
     .menu {
-        background: rgb(155, 77, 77);
+        background: $color-2;
         color: white;
         // width: 10em;
 
@@ -16,7 +18,7 @@
             flex-direction: column;
 
             .discipline-item :focus {
-                background: rgba(187, 166, 166, 0.623);
+                background: rgba($color-5, 0.7);
             }
             .tab-item {
                 width: 100%;
@@ -47,27 +49,5 @@
 }
 
 .active {
-    background: rgba(97, 63, 63, 0.856);
-  }
-
-.actions-container {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-
-    .tabs{
-        background: rgb(97, 26, 26);
-        color: white;
-
-        .disciplines-menu {
-            display: flex;
-            flex-direction: column;
-
-            .discipline-item :focus {
-                background: rgba(187, 166, 166, 0.623);
-            }
-            .tab-item {
-                width: 100%;
-            }
-        }
-    }
+    background: rgba($color-5, 0.7);
 }

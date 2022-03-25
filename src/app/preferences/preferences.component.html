@@ -30,22 +30,5 @@
             <router-outlet></router-outlet>
         </mat-drawer-content>
     </mat-drawer-container>
-    
-    <!-- <div class="actions-container">
-        <mat-list class="tabs">
-            <h3>List of your disciplines</h3>
-            <div *ngIf="userDisciplines?.length > 0; else noDisciplines" class="disciplines-menu">
-                <div *ngFor="let discipline of userDisciplines" class="discipline-item">
-                    <button mat-button class="tab-item" (click)="selectDiscipline(discipline)">{{ discipline.name }}</button>
-                </div>
-            </div>
-            <ng-template #noDisciplines>
-                <p>No disciplines yet</p>
-            </ng-template>
-        </mat-list>
-        <div *ngIf="tabOption">
-            <app-discipline-preferences [discipline]="tabOption" (updateDetails)="updateDiscipline()"></app-discipline-preferences>
-        </div>
-    </div> -->
 
 </div>

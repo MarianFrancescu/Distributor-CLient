@@ -1,9 +1,19 @@
+@import '../../styles/colors';
+
 .toolbar {
-  background: rgb(97, 26, 26);
+  background: $color-1;
   box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
 }
 
+.app-title {
+  height: inherit;
+}
+
 .app-name {
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   font-size: 150%;
   color: white;
 }
@@ -16,11 +26,11 @@
 }
 
 .active {
-  background: rgba(97, 63, 63, 0.856);
+  background: rgba($color-2, 0.7);
 }
 
 .active-text {
-  color: rgba(97, 63, 63, 0.856);
+  color: $color-1;
 }
 
 .bank {
@@ -55,7 +65,7 @@
 }
 
 .menu-item:hover {
-  background-color: rgb(97, 63, 63);
+  background-color: rgba($color-5, 0.6);
 }
 
 .sidenav-container {
