@@ -33,11 +33,36 @@
 
   <mat-sidenav color="primary" #sidenav fxLayout="column" mode="over"  opened="false" fxHide.gt-sm="true">
     <mat-nav-list>
-      <a mat-button *ngIf="getUserState() && isAdmin()" [routerLink]="['/dashboard']" routerLinkActive="active-text" (click)="sidenav.close()">Dashboard</a>
-      <a mat-button *ngIf="getUserState()" [routerLink]="['/disciplines']" routerLinkActive="active-text" (click)="sidenav.close()">Disciplines</a>
-      <a mat-button *ngIf="getUserState()" [routerLink]="['/preferences']" routerLinkActive="active-text" (click)="sidenav.close()">Preferences</a>
-      <a mat-button *ngIf="getUserState()" [routerLink]="['/profile']" routerLinkActive="active-text" (click)="sidenav.close()">Profile</a>
-      <a mat-button *ngIf="getUserState()" [routerLink]="['/login']" routerLinkActive="active-text" (click)="sidenav.close(); logout()">Logout</a>
+      <a mat-button *ngIf="getUserState() && isAdmin()" [routerLink]="['/dashboard']" routerLinkActive="active-text" (click)="sidenav.close()">
+        <mat-icon>
+          dashboard
+        </mat-icon>
+        Dashboard
+      </a>
+      <a mat-button *ngIf="getUserState()" [routerLink]="['/disciplines']" routerLinkActive="active-text" (click)="sidenav.close()">
+        <mat-icon>
+          book
+        </mat-icon>
+        Disciplines
+      </a>
+      <a mat-button *ngIf="getUserState()" [routerLink]="['/preferences']" routerLinkActive="active-text" (click)="sidenav.close()">
+        <mat-icon>
+          library_add_check
+        </mat-icon>
+        Preferences
+      </a>
+      <a mat-button *ngIf="getUserState()" [routerLink]="['/profile']" routerLinkActive="active-text" (click)="sidenav.close()">
+        <mat-icon>
+          account_box
+        </mat-icon>
+        Profile
+      </a>
+      <a mat-button *ngIf="getUserState()" [routerLink]="['/login']" routerLinkActive="active-text" (click)="sidenav.close(); logout()">
+        <mat-icon>
+          logout
+        </mat-icon>
+        Logout
+      </a>
       <a mat-button *ngIf="!getUserState()" [routerLink]="['/login']" routerLinkActive="active-text" (click)="sidenav.close()">Login</a>
     </mat-nav-list>
   </mat-sidenav>

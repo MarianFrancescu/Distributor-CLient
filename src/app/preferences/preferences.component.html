@@ -11,7 +11,7 @@
             </h3>
             <div *ngIf="userDisciplines?.length > 0; else noDisciplines" class="disciplines-menu">
                 <div *ngFor="let discipline of userDisciplines" class="discipline-item">
-                    <a mat-button class="tab-item" [routerLink]="['view/discipline', discipline._id]" routerLinkActive="active">
+                    <a mat-button class="tab-item" [routerLink]="['view/discipline', discipline._id]" routerLinkActive="active" (click)="sidenav.toggle()">
                         {{ discipline.name }}
                     </a>
                 </div>
@@ -23,7 +23,9 @@
         <mat-drawer-content>
             <div class="menu-button">
                 <button mat-icon-button (click)="sidenav.toggle()" class="mobile-menu">
-                    <mat-icon>arrow_right</mat-icon>
+                    <mat-icon>
+                        double_arrow
+                    </mat-icon>
                 </button>
             </div>
             
