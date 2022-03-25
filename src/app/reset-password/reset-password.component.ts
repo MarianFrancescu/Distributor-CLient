@@ -19,20 +19,29 @@ export class ResetPasswordComponent implements OnInit {
   hideFlag1 = true;
   hideFlag2 = true;
 
-  resetPasswordForm = new FormGroup({
-    password: new FormControl('', [
-      Validators.required,
-      Validators.minLength(6)
-    ]),
-    confirmPassword: new FormControl('', [
-      Validators.required,
-      Validators.minLength(6)
-    ])
-  });
+  resetPasswordForm: FormGroup;
 
   constructor(private apiService: ApiService, private snackBar: MatSnackBar) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.buildForm();
+  }
+
+  buildForm() {
+    this.resetPasswordForm= new FormGroup({
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(6)
+      ]),
+      confirmPassword: new FormControl('')
+    }, {validators: this.checkPasswords});
+  }
+
+  checkPasswords: ValidatorFn = (group: AbstractControl):  ValidationErrors | null => { 
+    let pass = group.get('password').value;
+    let confirmPass = group.get('confirmPassword').value;
+    return pass === confirmPass ? null : { notSame: true }
+  }
 
   getPasswordErrorMessage() {
     if (this.resetPasswordForm.controls.password.hasError('required')) {
@@ -48,10 +57,8 @@ export class ResetPasswordComponent implements OnInit {
     if (this.resetPasswordForm.controls.confirmPassword.hasError('required')) {
       return 'Please re-enter your password';
     }
-    return (this.resetPasswordForm.controls.password.value as string) ===
-      (this.resetPasswordForm.controls.confirmPassword.value as string)
-      ? ''
-      : 'The passwords do not match';
+    if(this.resetPasswordForm.hasError('notSame'))
+      return 'The passwords do not match';
   }
 
   submit() {
