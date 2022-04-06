@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
 
@@ -25,7 +26,7 @@ export class RegisterComponent implements OnInit {
 
   hideFlag = true;
 
-  constructor(private apiService: ApiService, private router: Router) {}
+  constructor(private apiService: ApiService, private router: Router, private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {}
 
@@ -41,6 +42,9 @@ export class RegisterComponent implements OnInit {
       .subscribe(
         (response) => {
           this.router.navigate(['/login']);
+          this.snackBar.open(`${response}`, 'Close', {
+            duration: 2000
+          });
         },
         (error) => {
           this.registerForm.reset();
