@@ -166,4 +166,9 @@ export class ApiService {
     const url = `${this.apiURL}preferences/discipline/${disciplineID}/delete`;
     return this.http.delete(url, {responseType: 'text' });
   }
+
+  getIntitutions() {
+    const url = `${this.apiURL}institutions`;
+    return this.http.get(url, {});
+  }
 }

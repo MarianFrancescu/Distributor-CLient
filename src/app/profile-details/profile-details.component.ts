@@ -3,6 +3,7 @@ import {
   EventEmitter,
   Input,
   OnChanges,
+  OnInit,
   Output,
   SimpleChanges
 } from '@angular/core';
@@ -16,7 +17,7 @@ import { ApiService } from '../services/api.service';
   templateUrl: './profile-details.component.html',
   styleUrls: ['./profile-details.component.scss']
 })
-export class ProfileDetailsComponent implements OnChanges {
+export class ProfileDetailsComponent implements OnInit, OnChanges {
   @Input() userDetails: User;
   @Output() updateDetails = new EventEmitter<boolean>();
   selectedValue: string;
@@ -54,6 +55,11 @@ export class ProfileDetailsComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.fetchUserData();  
+  }
+
+  ngOnInit() {
+    this.apiService.getIntitutions()
+        .subscribe(institutions => console.log(institutions));
   }
 
   fetchUserData() {
