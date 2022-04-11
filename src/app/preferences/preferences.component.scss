@@ -41,12 +41,20 @@
 }
 
 .mobile-menu {
-    display: none;
+    transition: all .5s linear;
+}
+
+.clicked {
+    transform: rotate(180deg);
 }
 
 @media screen and(max-width: 960px) {
     .mobile-menu {
         display: block;
+    }
+
+    .clicked {
+        transform: none;
     }
 }
 

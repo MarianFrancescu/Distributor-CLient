@@ -22,7 +22,7 @@
         </mat-drawer>
         <mat-drawer-content>
             <div class="menu-button">
-                <button mat-icon-button (click)="sidenav.toggle()" class="mobile-menu">
+                <button mat-icon-button (click)="sidenav.toggle()" class="mobile-menu" [class.clicked]="sidenav.opened">
                     <mat-icon>
                         double_arrow
                     </mat-icon>
