@@ -3,8 +3,6 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { mockedDisciplines } from '../mock-data/disciplines.mock';
-import { mockedInstitutions } from '../mock-data/institutions.mock';
 import { Discipline } from '../models/discipline.interface';
 import { Faculty, Institution } from '../models/institution.interface';
 import { ApiService } from '../services/api.service';
@@ -15,10 +13,9 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./admin-edit-discipline.component.scss']
 })
 export class AdminEditDisciplineComponent implements OnInit {
-  mockDisciplines = mockedDisciplines;
   discipline: Discipline;
   selectedOption = '14-16';
-  institutions = mockedInstitutions;
+  institutions: Institution[];
   selectedInstitution: Institution;
   selectedFaculty: Faculty;
   faculty: any;
@@ -64,9 +61,17 @@ export class AdminEditDisciplineComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDiscipline();
+    this.fetchInstitutions();
     this.update.subscribe((update) =>
       update === true ? this.getDiscipline() : ''
     );
+  }
+
+  fetchInstitutions() {
+    this.apiService.getIntitutions().subscribe(result => {
+      const res = result as Institution[];
+      this.institutions = [...res];
+    })
   }
 
   fetchDisciplineForm() {
@@ -113,12 +118,12 @@ export class AdminEditDisciplineComponent implements OnInit {
   }
 
   getStudyInstitution(institutionName) { 
-    const selected = this.institutions.find(institution => institution.institution === institutionName);
+    const selected = this.institutions?.find(institution => institution.studyInstitution === institutionName);
     return selected;
   }
 
   getFaculty(institutionName, facultyName) {
-    const selectedInstitution = this.institutions.find(institution => institution.institution === institutionName);
+    const selectedInstitution = this.institutions?.find(institution => institution.studyInstitution === institutionName);
     const selectedFaculty = selectedInstitution?.faculties.find(faculty => faculty.faculty === facultyName);
     return selectedFaculty;
   }

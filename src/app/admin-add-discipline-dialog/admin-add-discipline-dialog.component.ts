@@ -1,7 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { mockedInstitutions } from '../mock-data/institutions.mock';
+import { Institution } from '../models/institution.interface';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-admin-add-discipline-dialog',
@@ -11,7 +12,7 @@ import { mockedInstitutions } from '../mock-data/institutions.mock';
 export class AdminAddDisciplineDialogComponent implements OnInit {
 
   years = ['1', '2', '3', '4', '5', '6'];
-  institutions = mockedInstitutions;
+  institutions: Institution[];
 
   disciplineDetailsForm = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -37,18 +38,27 @@ export class AdminAddDisciplineDialogComponent implements OnInit {
   }
 
   constructor(@Inject(MAT_DIALOG_DATA) public data, 
-              private dialogRef: MatDialogRef<AdminAddDisciplineDialogComponent>) { }
+              private dialogRef: MatDialogRef<AdminAddDisciplineDialogComponent>,
+              private apiService: ApiService) { }
 
   ngOnInit(): void {
+    this.fetchInstitutions();
+  }
+
+  fetchInstitutions() {
+    this.apiService.getIntitutions().subscribe(result => {
+      const res = result as Institution[];
+      this.institutions = [...res];
+    })
   }
 
   getStudyInstitution(institutionName) { 
-    const selected = this.institutions.find(institution => institution.institution === institutionName);
+    const selected = this.institutions?.find(institution => institution.studyInstitution === institutionName);
     return selected;
   }
 
   getFaculty(institutionName, facultyName) {
-    const selectedInstitution = this.institutions.find(institution => institution.institution === institutionName);
+    const selectedInstitution = this.institutions?.find(institution => institution.studyInstitution === institutionName);
     const selectedFaculty = selectedInstitution?.faculties.find(faculty => faculty.faculty === facultyName);
     return selectedFaculty;
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Institution } from '../models/institution.interface';
 import { User } from '../models/user.interface';
 import { ApiService } from '../services/api.service';
 
@@ -10,11 +11,13 @@ import { ApiService } from '../services/api.service';
 export class ProfileComponent implements OnInit {
   tabOption = 1;
   user: User;
+  institutions: Institution[];
 
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
     this.fetchUser();
+    this.fetchInstitutions();
   }
 
   fetchUser() {
@@ -23,6 +26,13 @@ export class ProfileComponent implements OnInit {
       const res = result as User;
       this.user = res;
     });
+  }
+
+  fetchInstitutions() {
+    this.apiService.getIntitutions().subscribe(result => {
+      const res = result as Institution[];
+      this.institutions = [...res];
+    })
   }
 
   updateUser() { 

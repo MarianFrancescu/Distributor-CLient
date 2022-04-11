@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddDisciplineDialogComponent } from '../add-discipline-dialog/add-discipline-dialog.component';
-import { mockedDisciplines } from '../mock-data/disciplines.mock';
 import { Discipline } from '../models/discipline.interface';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';

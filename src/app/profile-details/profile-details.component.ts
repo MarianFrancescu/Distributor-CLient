@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Institution } from '../models/institution.interface';
 import { User } from '../models/user.interface';
 import { ApiService } from '../services/api.service';
 
@@ -17,8 +18,9 @@ import { ApiService } from '../services/api.service';
   templateUrl: './profile-details.component.html',
   styleUrls: ['./profile-details.component.scss']
 })
-export class ProfileDetailsComponent implements OnInit, OnChanges {
+export class ProfileDetailsComponent implements OnChanges {
   @Input() userDetails: User;
+  @Input() institutionsData: Institution[];
   @Output() updateDetails = new EventEmitter<boolean>();
   selectedValue: string;
 
@@ -55,11 +57,18 @@ export class ProfileDetailsComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.fetchUserData();  
+    console.log(this.institutionsData)
   }
 
-  ngOnInit() {
-    this.apiService.getIntitutions()
-        .subscribe(institutions => console.log(institutions));
+  getStudyInstitution(institutionName) { 
+    const selected = this.institutionsData?.find(institution => institution.studyInstitution === institutionName);
+    return selected;
+  }
+
+  getFaculty(institutionName, facultyName) {
+    const selectedInstitution = this.institutionsData?.find(institution => institution.studyInstitution === institutionName);
+    const selectedFaculty = selectedInstitution?.faculties.find(faculty => faculty.faculty === facultyName);
+    return selectedFaculty;
   }
 
   fetchUserData() {

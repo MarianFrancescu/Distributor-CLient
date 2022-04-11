@@ -24,8 +24,8 @@
                                 <mat-icon>location_city</mat-icon>
                             </button>
                             <mat-select formControlName="studyInstitution">
-                            <mat-option *ngFor="let institution of institutions" [value]="institution.institution">
-                                {{ institution.institution }}
+                            <mat-option *ngFor="let institution of institutions" [value]="institution.studyInstitution">
+                                {{ institution.studyInstitution }}
                             </mat-option>
                             </mat-select>    
                         <mat-error *ngIf="disciplineDetailsForm.controls.studyInstitution.invalid">Please complete study institution</mat-error>

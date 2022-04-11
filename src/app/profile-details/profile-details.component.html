@@ -17,7 +17,40 @@
                 <mat-error *ngIf="detailsForm.controls.registrationNumber.invalid">Please complete matricol no.</mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="outline">
+            <mat-form-field>
+                <mat-label>Institution</mat-label>
+                <mat-select formControlName="studyInstitution">
+                  <mat-option *ngFor="let institution of institutionsData" [value]="institution.studyInstitution">
+                    {{ institution.studyInstitution }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              
+              <mat-form-field>
+                <mat-label>Faculty</mat-label>
+                <mat-select formControlName="faculty">
+                  <mat-option 
+                    *ngFor="let faculty of 
+                    getStudyInstitution(detailsForm.controls['studyInstitution'].value)?.faculties" 
+                    [value]="faculty.faculty">
+                    {{ faculty.faculty }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              
+              <mat-form-field>
+                <mat-label>Department</mat-label>
+                <mat-select formControlName="department">
+                  <mat-option 
+                    *ngFor="let department of 
+                    getFaculty(detailsForm.controls['studyInstitution'].value, detailsForm.controls['faculty'].value)?.departments" 
+                    [value]="department">
+                    {{ department }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+            <!-- <mat-form-field appearance="outline">
                     <mat-label>Study institution</mat-label>
                     <button mat-icon-button matSuffix [disabled]="true">
                         <mat-icon>location_city</mat-icon>
@@ -54,7 +87,7 @@
                     </mat-option>
                 </mat-select> 
                 <mat-error *ngIf="detailsForm.controls.department.invalid">Please complete faculty department</mat-error>
-            </mat-form-field>
+            </mat-form-field> -->
 
             <mat-form-field appearance="outline">
                 <mat-label>Study year</mat-label>

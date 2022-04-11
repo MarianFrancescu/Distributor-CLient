@@ -1,6 +1,6 @@
 export const mockedInstitutions = [
     {
-        institution: "Universitatea Politehnica Timisoara",
+        studyInstitution: "Universitatea Politehnica Timisoara",
         faculties: [
             {
                 faculty: "Automatica si Calculatoare",
@@ -20,7 +20,7 @@ export const mockedInstitutions = [
         ]
     },
     {
-        institution: "Universitatea de Vest Timisoara",
+        studyInstitution: "Universitatea de Vest Timisoara",
         faculties: [
             {
                 faculty: "Matematica si Informatica",

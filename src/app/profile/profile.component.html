@@ -25,6 +25,7 @@
                     <app-profile-details 
                         (updateDetails)="updateUser()" 
                         [userDetails]="user" 
+                        [institutionsData]="institutions"
                         *ngSwitchCase="1"></app-profile-details>
                     <app-reset-password *ngSwitchCase="2"></app-reset-password>
                     <app-delete-user *ngSwitchCase="3"></app-delete-user>
