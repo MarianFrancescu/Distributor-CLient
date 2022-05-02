@@ -8,7 +8,8 @@ import { User } from '../models/user.interface';
   providedIn: 'root'
 })
 export class ApiService {
-  apiURL = 'http://localhost:8080/';
+  // apiURL = 'http://localhost:8080/';
+  apiURL = 'http://54.174.30.45:8080/';
 
   private userID = '';
   private token = '';
