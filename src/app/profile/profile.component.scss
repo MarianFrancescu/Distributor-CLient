@@ -21,7 +21,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        background-color: $color-5;
+        background-color: #3c6f7e;
         padding: 0;
         border-radius: 5px;
 
@@ -51,8 +51,20 @@
     --avatar-size: 8rem;
     margin-bottom: 20px;
 
+    height: inherit;
+    width: 100%;
+    background-image: url('../../assets/ppperspective.svg');
+    background-position: center;
+    background-size: cover; 
+    background-repeat: no-repeat; 
+
     .initials-circle {
         background-color: #ccc;
+        background-image: url('../../assets/rrrainbow.svg');
+        background-position: center;
+        background-size: cover; 
+        background-repeat: no-repeat; 
+
         border-radius: 50%;
         height: var(--avatar-size);
         text-align: center;
