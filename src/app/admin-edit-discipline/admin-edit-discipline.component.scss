@@ -1,6 +1,7 @@
 @import '../../styles/colors';
 
 .discipline-details {
+    padding-top: 24px;
     width: 80%;
     margin: auto;
 }
@@ -15,6 +16,36 @@
     h2 {
         padding-left: 30px;
     }
+}
+
+.title-container {
+    background-image: linear-gradient(60deg, #012a36 30%, #044e64 100%);
+    height: 100px;
+    color: white;
+}
+
+.title-wrapper {
+    height: inherit;
+    width: 100%;
+    background-image: url('../../assets/ooorganize.svg');
+    background-position: center;
+    background-size: cover; 
+    background-repeat: no-repeat; 
+}
+
+h1 {
+    margin: 0;
+    font-weight: 500;
+    font-size: 50px;
+}
+
+.heading-wrapper {
+    width: 80%;
+    margin: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .details {
@@ -55,5 +86,9 @@
     .form-group {
         display: flex;
         flex-direction: column;
+    }
+
+    h1 {
+        font-size: 2em;
     }
 }

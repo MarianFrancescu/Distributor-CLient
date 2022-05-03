@@ -1,8 +1,12 @@
-<div class="discipline-details">
-    <header class="name">
-        <h2>{{discipline?.name}}</h2>
-    </header>
+<header class="title-container">
+    <div class="title-wrapper">
+        <div class="heading-wrapper">
+            <h1>Discipline configurator: {{discipline?.name}}</h1>
+        </div>
+    </div>
+</header>
 
+<div class="discipline-details">
     <div class="details-container">
         <form [formGroup]="disciplineDetailsForm">
             <div class="form-group">
