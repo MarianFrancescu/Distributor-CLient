@@ -82,6 +82,10 @@ h1 {
     }
 }
 
+.lesson-form-row {
+    display: flex;
+}
+
 @media screen and (max-width: 960px) {
     .form-group {
         display: flex;

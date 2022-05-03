@@ -91,8 +91,8 @@
                         <mat-label>Option #{{i}}</mat-label>
                         <input matInput type="text" formControlName="option">
                         </mat-form-field>
-                        <button mat-button>
-                            <mat-icon class="delete-btn" (click)="deleteTimetable(i)">
+                        <button mat-button (click)="deleteTimetable(i)">
+                            <mat-icon color="error" class="delete-btn">
                                 delete</mat-icon>
                         </button>
                         <button mat-button>
@@ -104,7 +104,7 @@
             </div>
         </form>
         <div class="button-container">
-            <button class="submit-button" color="warn" mat-raised-button (click)="submit()" [disabled]="!disciplineDetailsForm.touched">SAVE</button>
+            <button class="submit-button" color="accent" mat-raised-button (click)="submit()" [disabled]="!disciplineDetailsForm.touched">SAVE</button>
         </div>
     </div>    
 </div>

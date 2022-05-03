@@ -1,5 +1,4 @@
 <div class="profile-container">
-
     <div class="profile">
         <div class="tab-left">
             <div class="tab-header">
@@ -9,7 +8,7 @@
                     </span>
                 </div>
                 <h2>{{user?.firstName}} {{user?.lastName}}</h2>
-                <p>Study year: {{ user?.studyYear }}</p>
+                <h3>Study year: {{ user?.studyYear }}</h3>
             </div>
             <div class="details-container">
                 <mat-list class="tabs">
@@ -45,7 +44,6 @@
             <h2>{{user?.firstName}} {{user?.lastName}}</h2>
         </div>
         <mat-tab-group mat-align-tabs="center">
-            
             <mat-tab label="Details">
                 <app-profile-details [userDetails]="user"></app-profile-details>
             </mat-tab>
