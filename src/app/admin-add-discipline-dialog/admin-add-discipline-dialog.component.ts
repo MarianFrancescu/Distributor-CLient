@@ -37,6 +37,10 @@ export class AdminAddDisciplineDialogComponent implements OnInit {
     this.dynamicTimetable.push(timetableForm);
   }
 
+  deleteTimetable(optionIndex: number) {
+    this.dynamicTimetable.removeAt(optionIndex);
+  }
+
   constructor(@Inject(MAT_DIALOG_DATA) public data, 
               private dialogRef: MatDialogRef<AdminAddDisciplineDialogComponent>,
               private apiService: ApiService) { }

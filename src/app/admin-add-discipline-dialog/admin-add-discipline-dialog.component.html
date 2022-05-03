@@ -1,6 +1,6 @@
 <h3 mat-dialog-title>Please complete all the disciplines details</h3>
 <div mat-dialog-content [formGroup]="disciplineDetailsForm" class="fields-container">
-    <!-- <mat-horizontal-stepper linear>
+  <!-- <mat-horizontal-stepper linear>
         <mat-step [stepControl]="disciplineDetailsForm">
           <ng-template matStepLabel>Discipline details</ng-template>
           <h5 mat-dialog-title>Complete these fields in order</h5>
@@ -85,68 +85,72 @@
     <mat-label>Discipline name</mat-label>
     <input matInput formControlName="name" required>
   </mat-form-field>
-    <mat-form-field>
-      <mat-label>Discipline teacher</mat-label>
-      <input matInput formControlName="teacher" required>
-    </mat-form-field>
-    
-    <mat-form-field>
-      <mat-label>Institution</mat-label>
-      <mat-select formControlName="studyInstitution">
-        <mat-option *ngFor="let institution of institutions" [value]="institution.studyInstitution">
-          {{ institution.studyInstitution }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    
-    <mat-form-field>
-      <mat-label>Faculty</mat-label>
-      <mat-select formControlName="faculty">
-        <mat-option 
-          *ngFor="let faculty of 
-          getStudyInstitution(disciplineDetailsForm.controls['studyInstitution'].value)?.faculties" 
-          [value]="faculty.faculty">
-          {{ faculty.faculty }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    
-    <mat-form-field>
-      <mat-label>Department</mat-label>
-      <mat-select formControlName="department">
-        <mat-option 
-          *ngFor="let department of 
-          getFaculty(disciplineDetailsForm.controls['studyInstitution'].value, disciplineDetailsForm.controls['faculty'].value)?.departments" 
-          [value]="department">
-          {{ department }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    
-    <mat-form-field>
-      <mat-label>Study year</mat-label>
-      <mat-select formControlName="studyYear">
-        <mat-option *ngFor="let year of years" [value]="year">
-          {{ year }}
-        </mat-option>
-      </mat-select> 
-    </mat-form-field>  
+  <mat-form-field>
+    <mat-label>Discipline teacher</mat-label>
+    <input matInput formControlName="teacher" required>
+  </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>Maximum number of students per timetable</mat-label>
-      <input matInput formControlName="maxNoOfStudentsPerTimetable" required>
-    </mat-form-field>
+  <mat-form-field>
+    <mat-label>Institution</mat-label>
+    <mat-select formControlName="studyInstitution">
+      <mat-option *ngFor="let institution of institutions" [value]="institution.studyInstitution">
+        {{ institution.studyInstitution }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-    <button mat-button (click)="addTimetable()">Add Timetable Option</button>
+  <mat-form-field>
+    <mat-label>Faculty</mat-label>
+    <mat-select formControlName="faculty">
+      <mat-option *ngFor="let faculty of 
+          getStudyInstitution(disciplineDetailsForm.controls['studyInstitution'].value)?.faculties"
+        [value]="faculty.faculty">
+        {{ faculty.faculty }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-    <div formArrayName="timetable" *ngFor="let timetableOption of dynamicTimetable.controls; let i=index">
-      <div class="lesson-form-row" [formGroup]="timetableOption">
-        <mat-form-field>
-          <mat-label>Option #{{i}}</mat-label>
-          <input matInput type="text" formControlName="option">
-        </mat-form-field>
-      </div>
+  <mat-form-field>
+    <mat-label>Department</mat-label>
+    <mat-select formControlName="department">
+      <mat-option
+        *ngFor="let department of 
+          getFaculty(disciplineDetailsForm.controls['studyInstitution'].value, disciplineDetailsForm.controls['faculty'].value)?.departments"
+        [value]="department">
+        {{ department }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Study year</mat-label>
+    <mat-select formControlName="studyYear">
+      <mat-option *ngFor="let year of years" [value]="year">
+        {{ year }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Maximum number of students per timetable</mat-label>
+    <input matInput formControlName="maxNoOfStudentsPerTimetable" required>
+  </mat-form-field>
+
+  <div class="timetable-button">
+    <button mat-raised-button (click)="addTimetable()">Add Timetable Option</button>
+  </div>
+  <div formArrayName="timetable" *ngFor="let timetableOption of dynamicTimetable.controls; let i=index">
+    <div class="lesson-form-row" [formGroup]="timetableOption">
+      <mat-form-field>
+        <mat-label>Option #{{i}}</mat-label>
+        <input matInput type="text" formControlName="option">
+      </mat-form-field>
+      <button mat-button>
+        <mat-icon color="error" class="delete-btn" (click)="deleteTimetable(i)">
+          delete</mat-icon>
+      </button>
     </div>
+  </div>
 </div>
 
 <div mat-dialog-actions align="end">
