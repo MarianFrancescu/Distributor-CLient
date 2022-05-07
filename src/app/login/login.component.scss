@@ -1,8 +1,14 @@
+.container {
+    height: calc(100vh - 64px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .login-container {
     width: 380px;
     margin: auto;
-    padding-top: 50px;
-
+    
     @media screen and (max-width: 480px){
         width: 300px;
       }

@@ -21,11 +21,8 @@
         <section *ngIf="user" class="template-container">
             <ng-container [ngSwitch]="tabOption">
                 <div class="data-container">
-                    <app-profile-details 
-                        (updateDetails)="updateUser()" 
-                        [userDetails]="user" 
-                        [institutionsData]="institutions"
-                        *ngSwitchCase="1"></app-profile-details>
+                    <app-profile-details (updateDetails)="updateUser()" [userDetails]="user"
+                        [institutionsData]="institutions" *ngSwitchCase="1"></app-profile-details>
                     <app-reset-password *ngSwitchCase="2"></app-reset-password>
                     <app-delete-user *ngSwitchCase="3"></app-delete-user>
                 </div>
@@ -45,13 +42,19 @@
         </div>
         <mat-tab-group mat-align-tabs="center">
             <mat-tab label="Details">
-                <app-profile-details [userDetails]="user"></app-profile-details>
+                <div class="mobile-tabs">
+                    <app-profile-details [userDetails]="user"></app-profile-details>
+                </div>
             </mat-tab>
             <mat-tab label="Reset password">
-                <app-reset-password></app-reset-password>
+                <div class="mobile-tabs">
+                    <app-reset-password></app-reset-password>
+                </div>
             </mat-tab>
             <mat-tab label="Delete account">
-                <app-delete-user></app-delete-user>
+                <div class="mobile-tabs">
+                    <app-delete-user></app-delete-user>
+                </div>
             </mat-tab>
         </mat-tab-group>
     </div>
