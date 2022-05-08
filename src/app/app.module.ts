@@ -39,6 +39,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AdminAddDisciplineDialogComponent } from './admin-add-discipline-dialog/admin-add-discipline-dialog.component';
 import { AdminEditDisciplineComponent } from './admin-edit-discipline/admin-edit-discipline.component';
 import { PreferencesDefaultComponent } from './preferences-default/preferences-default.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import { PreferencesDefaultComponent } from './preferences-default/preferences-d
     MatSnackBarModule,
     MatCardModule,
     MatPaginatorModule,
+    MatTooltipModule,
     HttpClientModule,
     AppRoutingModule,
     AppRoutingModule

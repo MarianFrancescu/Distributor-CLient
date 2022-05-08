@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Discipline } from '../models/discipline.interface';
 import { User } from '../models/user.interface';
 import { ApiService } from '../services/api.service';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-discipline-details',
@@ -13,8 +14,9 @@ export class DisciplineDetailsComponent implements OnInit {
   discipline: Discipline;
   selectedOption = '14-16';
   users: User[];
+  fileName = 'ExcelSheet.xlsx';
 
-  constructor(private route: ActivatedRoute, private apiService: ApiService) {}
+  constructor(private route: ActivatedRoute, private apiService: ApiService) { }
 
   ngOnInit(): void {
     this.getDiscipline();
@@ -52,5 +54,17 @@ export class DisciplineDetailsComponent implements OnInit {
         this.users = [...res];
       }
     )
+  }
+
+  exportExcel(option: string, disciplineName: string) {
+    let filename = '';
+    let element = document.getElementById(option);
+    filename = disciplineName + '_' + option + '.xlsx';
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+    XLSX.writeFile(wb, filename);
   }
 }

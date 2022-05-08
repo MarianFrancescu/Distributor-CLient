@@ -15,11 +15,22 @@
             <mat-card class="discipline-card">
                 <div class="header-container">
                     <div class="content">
-                        <mat-card-title>{{ timetable.option }}</mat-card-title>
-                        <mat-card-subtitle>
-                            Students: {{ getAvailablePlaces(timetable.option) }} / {{
-                            discipline.maxNoOfStudentsPerTimetable }}
-                        </mat-card-subtitle>
+                        <div>
+                            <mat-card-title>{{ timetable.option }}</mat-card-title>
+                            <mat-card-subtitle>
+                                Students: {{ getAvailablePlaces(timetable.option) }} / {{
+                                discipline.maxNoOfStudentsPerTimetable }}
+                            </mat-card-subtitle>
+                        </div>
+                        <div>
+                            <button 
+                                class="export-button"
+                                mat-icon-button 
+                                matTooltip="Export to excel file"
+                                (click)="exportExcel(timetable.option, discipline.name)">
+                                <mat-icon>save_alt</mat-icon>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -28,10 +39,15 @@
                         No students distributed on this option
                     </ng-container>
                     <ng-container>
-                        <table>
-                            <th>No.</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
+                        <table [attr.id]="timetable.option">
+                            <tr class="timetable-disabled">
+                                <td>{{timetable.option}}</td>
+                            </tr>
+                            <tr>
+                                <th>No.</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                            </tr>
                             <tr *ngFor="let student of timetable.students; let i=index">
                                 <td>{{ i+1 }}</td>
                                 <td>{{ getStudent(student)?.firstName }}</td>

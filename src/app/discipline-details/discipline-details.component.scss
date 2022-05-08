@@ -4,6 +4,7 @@
     width: 80%;
     margin: auto;
     padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .title-container {
@@ -52,6 +53,9 @@
         .content {
             padding: 10px 12px;
             margin: 0;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
         }
         
         .footer-actions {
@@ -60,6 +64,21 @@
             margin-right: 10px;
         }
     }  
+}
+
+.export-button:hover {
+    color: rgba(255, 255, 255, 0.8);;
+}
+
+.timetable-disabled {
+    color: transparent;
+    font-size: 4px;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0.75em;
+    text-align: left;
 }
 
 @media screen and (max-width: 960px) {
