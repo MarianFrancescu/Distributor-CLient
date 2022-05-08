@@ -1,33 +1,72 @@
 <div class="discipline-preferences">
-  <div class="left-pannel">
-  <h2>{{ discipline?.name }}</h2>
-  <div *ngFor="let timetable of discipline?.timetable">
-    {{ timetable.option }}
-    {{ getAvailablePlaces(timetable.option) }}
-    <span *ngIf="getStudentOption()?.option === timetable.option">
-      Your current option
-    </span>
-  </div>
-</div>
-<div class="right-pannel">
-  <form [formGroup]="preferencesForm">
-    <div class="form-group" formArrayName="options" *ngFor="let preference of dynamicOptions.controls; let i=index">
-      <div [formGroup]="preference">
-        <mat-form-field appearance="outline">
-          <mat-label>Option {{i + 1}}</mat-label>
-          <mat-select formControlName="option">
-            <mat-option *ngFor="let selectedPreference of discipline.timetable" [value]="selectedPreference.option">
-              {{ selectedPreference.option }}
-            </mat-option>
-          </mat-select>    
-            <mat-error *ngIf="preference.controls.option.invalid">Please complete option</mat-error>
-        </mat-form-field>
-      </div>
-    </div>
-  </form>
-</div>
+  <div class="panel">
+    <div class="left-pannel">
+      <!-- <h2>{{ discipline?.name }}</h2> -->
 
-  <button class="submit-button" mat-raised-button (click)="submit()" [disabled]="preferencesForm.invalid">SAVE</button>
-  <button class="submit-button" mat-raised-button (click)="sendPreference()" [disabled]="isSentOptionDisabled()">Send preference</button>
-  <button class="submit-button" mat-raised-button (click)="resetPreferences()" [disabled]="isResetDisabled()">Delete option</button>
+      <mat-card class="discipline-card">
+        <div class="header-container">
+          <div class="content">
+            <mat-card-title>{{ discipline?.name }}</mat-card-title>
+            <mat-card-subtitle>
+              {{ discipline?.teacher }}
+            </mat-card-subtitle>
+          </div>
+        </div>
+
+        <mat-card-content class="content">
+          <table>
+            <tr>
+              <th>Option</th>
+              <th>Occupancy</th>
+              <th>Selected option</th>
+            </tr>
+            <tr *ngFor="let timetable of discipline?.timetable; let i=index">
+              <td>{{ timetable.option }}</td>
+              <td class="occupancy-cell">
+                <mat-progress-bar mode="determinate" [value]="getOccupancy(timetable.option)"></mat-progress-bar>
+                {{ getAvailablePlaces(timetable.option) }} / {{ discipline.maxNoOfStudentsPerTimetable }}
+              </td>
+              <td *ngIf="getStudentOption()?.option === timetable.option">
+                X
+              </td>
+            </tr>
+          </table>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- <div *ngFor="let timetable of discipline?.timetable">
+        {{ timetable.option }}
+        {{ getAvailablePlaces(timetable.option) }} / {{ discipline.maxNoOfStudentsPerTimetable }}
+        <span *ngIf="getStudentOption()?.option === timetable.option">
+          Your current option
+        </span>
+      </div> -->
+    </div>
+    <div class="right-pannel">
+      <form [formGroup]="preferencesForm">
+        <div class="form-group" formArrayName="options" *ngFor="let preference of dynamicOptions.controls; let i=index">
+          <div [formGroup]="preference">
+            <mat-form-field appearance="outline">
+              <mat-label>Option {{i + 1}}</mat-label>
+              <mat-select formControlName="option">
+                <mat-option *ngFor="let selectedPreference of discipline.timetable" [value]="selectedPreference.option">
+                  {{ selectedPreference.option }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="preference.controls.option.invalid">Please complete option</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="action-buttons">
+    <button class="submit-button" mat-raised-button (click)="submit()"
+      [disabled]="preferencesForm.invalid">SAVE</button>
+    <button class="submit-button" mat-raised-button (click)="sendPreference()" [disabled]="isSentOptionDisabled()">Send
+      preference</button>
+    <button class="submit-button" mat-raised-button (click)="resetPreferences()" [disabled]="isResetDisabled()">Delete
+      option</button>
+  </div>
 </div>

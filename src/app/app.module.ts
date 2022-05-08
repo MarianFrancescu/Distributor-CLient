@@ -40,6 +40,7 @@ import { AdminAddDisciplineDialogComponent } from './admin-add-discipline-dialog
 import { AdminEditDisciplineComponent } from './admin-edit-discipline/admin-edit-discipline.component';
 import { PreferencesDefaultComponent } from './preferences-default/preferences-default.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import {MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -84,6 +85,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatCardModule,
     MatPaginatorModule,
     MatTooltipModule,
+    MatProgressBarModule,
     HttpClientModule,
     AppRoutingModule,
     AppRoutingModule

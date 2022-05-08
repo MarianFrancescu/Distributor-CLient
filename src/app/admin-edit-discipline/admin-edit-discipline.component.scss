@@ -79,6 +79,12 @@ h1 {
     .dynamic-details {
         display: flex;
         flex-direction: column;
+
+        .action-buttons {
+            display: flex;
+            align-items: center;
+            padding-left: 20px;
+        }
     }
 }
 

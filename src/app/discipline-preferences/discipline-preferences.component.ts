@@ -177,4 +177,8 @@ export class DisciplinePreferencesComponent implements OnInit {
   isResetDisabled() {
     return this.getStudentOption() ? false : true;
   }
+
+  getOccupancy(option: string) {
+    return this.getAvailablePlaces(option) * 100 / this.discipline.maxNoOfStudentsPerTimetable;
+  }
 }

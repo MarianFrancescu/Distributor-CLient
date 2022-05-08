@@ -27,6 +27,7 @@
                                 class="export-button"
                                 mat-icon-button 
                                 matTooltip="Export to excel file"
+                                [disabled]="!getAvailablePlaces(timetable.option)"
                                 (click)="exportExcel(timetable.option, discipline.name)">
                                 <mat-icon>save_alt</mat-icon>
                             </button>
@@ -35,10 +36,10 @@
                 </div>
 
                 <mat-card-content class="content">
-                    <ng-container *ngIf="!getAvailablePlaces(timetable.option)">
+                    <ng-container *ngIf="!getAvailablePlaces(timetable.option); else displayTable">
                         No students distributed on this option
                     </ng-container>
-                    <ng-container>
+                    <ng-template #displayTable>
                         <table [attr.id]="timetable.option">
                             <tr class="timetable-disabled">
                                 <td>{{timetable.option}}</td>
@@ -54,7 +55,7 @@
                                 <td>{{ getStudent(student)?.lastName }}</td>
                             </tr>
                         </table>
-                    </ng-container>
+                    </ng-template>
                 </mat-card-content>
             </mat-card>
         </div>
