@@ -23,7 +23,8 @@
             <tr *ngFor="let timetable of discipline?.timetable; let i=index">
               <td>{{ timetable.option }}</td>
               <td class="occupancy-cell">
-                <mat-progress-bar [ngClass]="determineColor(timetable.option)" [value]="getOccupancy(timetable.option)"></mat-progress-bar>
+                <mat-progress-bar [ngClass]="determineColor(timetable.option)" [value]="getOccupancy(timetable.option)">
+                </mat-progress-bar>
                 {{ getAvailablePlaces(timetable.option) }} / {{ discipline.maxNoOfStudentsPerTimetable }}
               </td>
               <td class="occupancy-cell" *ngIf="getStudentOption()?.option === timetable.option">
@@ -53,7 +54,7 @@
                   {{ selectedPreference.option }}
                 </mat-option>
               </mat-select>
-              <mat-error *ngIf="preference.controls.option.invalid">Please complete option</mat-error>
+              <mat-error *ngIf="preference.controls.option.invalid">Error on this field</mat-error>
             </mat-form-field>
           </div>
         </div>
@@ -61,12 +62,19 @@
     </div>
   </div>
 
-  <div class="action-buttons">
-    <button class="submit-button" mat-raised-button (click)="submit()"
-      [disabled]="preferencesForm.invalid">SAVE</button>
-    <button class="submit-button" mat-raised-button (click)="sendPreference()" [disabled]="isSentOptionDisabled()">Send
-      preference</button>
-    <button class="submit-button" mat-raised-button (click)="resetPreferences()" [disabled]="isResetDisabled()">Delete
-      option</button>
+  <div class="tooltip-actions">
+    <span class="tooltip">
+      *In order to send the preferences to validation you have to save them first
+    </span>
+    <div class="action-buttons">
+
+      <button class="submit-button" mat-raised-button (click)="submit()"
+        [disabled]="preferencesForm.invalid">SAVE</button>
+      <button class="submit-button" mat-raised-button (click)="sendPreference()"
+        [disabled]="isSentOptionDisabled()">Send
+        preference</button>
+      <button class="submit-button" mat-raised-button (click)="resetPreferences()" [disabled]="isResetDisabled()">Delete
+        option</button>
+    </div>
   </div>
 </div>

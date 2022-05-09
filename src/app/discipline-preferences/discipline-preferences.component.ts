@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
+import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { Discipline } from '../models/discipline.interface';
 import { Preference } from '../models/preference.interface';
 import { ApiService } from '../services/api.service';
@@ -30,7 +31,9 @@ export class DisciplinePreferencesComponent implements OnInit {
 
   addOptionForm() {
     const optionForm = new FormGroup({
-      option: new FormControl('', Validators.required),
+      option: new FormControl('', [Validators.required, RxwebValidators.unique(
+        { message: 'You must enter a unique option' }
+      )]),
     })
     this.dynamicOptions.push(optionForm);
   }

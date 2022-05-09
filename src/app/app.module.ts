@@ -41,6 +41,7 @@ import { AdminEditDisciplineComponent } from './admin-edit-discipline/admin-edit
 import { PreferencesDefaultComponent } from './preferences-default/preferences-default.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import {MatProgressBarModule } from '@angular/material/progress-bar';
+import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import {MatProgressBarModule } from '@angular/material/progress-bar';
     MatPaginatorModule,
     MatTooltipModule,
     MatProgressBarModule,
+    RxReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
     AppRoutingModule

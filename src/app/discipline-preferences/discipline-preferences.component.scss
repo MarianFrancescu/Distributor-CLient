@@ -37,8 +37,21 @@
     column-gap: 1.5em;
 }
 
-.action-buttons {
+.tooltip-actions {
     margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.tooltip {
+    width: 80%;
+    margin: auto;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.action-buttons {
+    margin-top: 1em;
     display: flex;
     flex-direction: row;
     justify-content: center;
