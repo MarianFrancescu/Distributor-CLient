@@ -26,8 +26,8 @@
                 <mat-progress-bar [ngClass]="determineColor(timetable.option)" [value]="getOccupancy(timetable.option)"></mat-progress-bar>
                 {{ getAvailablePlaces(timetable.option) }} / {{ discipline.maxNoOfStudentsPerTimetable }}
               </td>
-              <td *ngIf="getStudentOption()?.option === timetable.option">
-                X
+              <td class="occupancy-cell" *ngIf="getStudentOption()?.option === timetable.option">
+                <mat-icon>check</mat-icon>
               </td>
             </tr>
           </table>

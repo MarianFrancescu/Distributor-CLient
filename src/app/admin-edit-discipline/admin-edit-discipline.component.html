@@ -89,8 +89,6 @@
                 </div>
 
                 <div class="dynamic-details">
-                    <button mat-button (click)="addTimetable()">Add Timetable Option</button>
-
                     <div formArrayName="timetable"
                         *ngFor="let timetableOption of dynamicTimetable.controls; let i=index">
                         <div class="lesson-form-row" [formGroup]="timetableOption">
@@ -98,16 +96,16 @@
                                 <mat-label>Option #{{i}}</mat-label>
                                 <input matInput type="text" formControlName="option">
                             </mat-form-field>
-                            <div class="action-buttons">
+                            <div class="action-buttons-area">
                                 <button mat-icon-button (click)="deleteTimetable(i)">
                                     <mat-icon color="error" class="delete-btn">
                                         delete</mat-icon>
                                 </button>
-                                <button mat-icon-button>
-                                    <mat-icon>people</mat-icon>
-                                </button>
                             </div>
                         </div>
+                    </div>
+                    <div class="timetable-button">
+                        <button mat-stroked-button (click)="addTimetable()">Add Timetable Option</button>
                     </div>
                 </div>
             </div>
