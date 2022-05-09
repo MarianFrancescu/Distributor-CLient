@@ -100,9 +100,13 @@ button {
     min-width: min-content;
 }
 
+.mat-tooltip {
+  font-size: 24px !important;
+}
+
 @media screen and (max-width: 960px) {
   .mobile-menu {
-    display: block;
+    display: flex;
   }
 
   .bank {
