@@ -23,7 +23,7 @@
             <tr *ngFor="let timetable of discipline?.timetable; let i=index">
               <td>{{ timetable.option }}</td>
               <td class="occupancy-cell">
-                <mat-progress-bar mode="determinate" [value]="getOccupancy(timetable.option)"></mat-progress-bar>
+                <mat-progress-bar [ngClass]="determineColor(timetable.option)" [value]="getOccupancy(timetable.option)"></mat-progress-bar>
                 {{ getAvailablePlaces(timetable.option) }} / {{ discipline.maxNoOfStudentsPerTimetable }}
               </td>
               <td *ngIf="getStudentOption()?.option === timetable.option">

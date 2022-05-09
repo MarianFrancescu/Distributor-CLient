@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
@@ -9,7 +9,8 @@ import { ApiService } from '../services/api.service';
 @Component({
   selector: 'app-discipline-preferences',
   templateUrl: './discipline-preferences.component.html',
-  styleUrls: ['./discipline-preferences.component.scss']
+  styleUrls: ['./discipline-preferences.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class DisciplinePreferencesComponent implements OnInit {
   @Output() updateDetails = new EventEmitter<boolean>();
@@ -180,5 +181,16 @@ export class DisciplinePreferencesComponent implements OnInit {
 
   getOccupancy(option: string) {
     return this.getAvailablePlaces(option) * 100 / this.discipline.maxNoOfStudentsPerTimetable;
+  }
+
+  determineColor(option: string) {
+    let color = 'green';
+    if(this.getOccupancy(option) >= 33 && this.getOccupancy(option) < 70) {
+      color = 'orange';
+    }
+    if(this.getOccupancy(option) >= 70) {
+      color = 'red';
+    }
+    return color;
   }
 }
