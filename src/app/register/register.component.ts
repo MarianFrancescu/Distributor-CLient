@@ -20,7 +20,6 @@ export class RegisterComponent implements OnInit {
     ]),
     confirmPassword: new FormControl('', [
       Validators.required,
-      Validators.minLength(6)
     ])
   });
 
