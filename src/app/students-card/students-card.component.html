@@ -1,0 +1,46 @@
+<mat-card class="discipline-card">
+    <div class="header-container">
+        <div class="content">
+            <div>
+                <mat-card-title>{{ timetable.option }}</mat-card-title>
+                <mat-card-subtitle>
+                    Students: {{ getAvailablePlaces(timetable.option) }} / {{
+                    discipline.maxNoOfStudentsPerTimetable }}
+                </mat-card-subtitle>
+            </div>
+            <div>
+                <button 
+                    class="export-button"
+                    mat-icon-button 
+                    matTooltip="Export to excel file"
+                    [disabled]="!getAvailablePlaces(timetable.option)"
+                    (click)="exportExcel(timetable.option, discipline.name)">
+                    <mat-icon>save_alt</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <mat-card-content class="content">
+        <ng-container *ngIf="!getAvailablePlaces(timetable.option); else displayTable">
+            No students distributed on this option
+        </ng-container>
+        <ng-template #displayTable>
+            <table [attr.id]="timetable.option">
+                <tr class="timetable-disabled">
+                    <td>{{timetable.option}}</td>
+                </tr>
+                <tr>
+                    <th>No.</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                </tr>
+                <tr *ngFor="let student of timetable.students; let i=index">
+                    <td>{{ i+1 }}</td>
+                    <td>{{ getStudent(student)?.firstName }}</td>
+                    <td>{{ getStudent(student)?.lastName }}</td>
+                </tr>
+            </table>
+        </ng-template>
+    </mat-card-content>
+</mat-card>
