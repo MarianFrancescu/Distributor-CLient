@@ -89,6 +89,9 @@
                 </div>
 
                 <div class="dynamic-details">
+                    <span class="tooltip">
+                        * Once you insert or delete an option, all timetable data will be reset, so there will be no users in any timetable
+                    </span>
                     <div formArrayName="timetable"
                         *ngFor="let timetableOption of dynamicTimetable.controls; let i=index">
                         <div class="lesson-form-row" [formGroup]="timetableOption">
@@ -101,7 +104,7 @@
                                     <mat-icon color="error" class="delete-btn">
                                         delete</mat-icon>
                                 </button>
-                                <button mat-icon-button>
+                                <button mat-icon-button (click)="openDialog(timetableOption.value.option)">
                                     <mat-icon>people</mat-icon>
                                 </button>
                             </div>

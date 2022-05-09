@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { Discipline } from '../models/discipline.interface';
 import { Faculty, Institution } from '../models/institution.interface';
+import { User } from '../models/user.interface';
 import { ApiService } from '../services/api.service';
+import { StudentCardDialogComponent } from '../student-card-dialog/student-card-dialog.component';
+import { StudentsCardComponent } from '../students-card/students-card.component';
 
 @Component({
   selector: 'app-admin-edit-discipline',
@@ -14,6 +18,7 @@ import { ApiService } from '../services/api.service';
 })
 export class AdminEditDisciplineComponent implements OnInit {
   discipline: Discipline;
+  users: User[];
   selectedOption = '14-16';
   institutions: Institution[];
   selectedInstitution: Institution;
@@ -55,13 +60,19 @@ export class AdminEditDisciplineComponent implements OnInit {
 
   deleteTimetable(optionIndex: number) {
     this.dynamicTimetable.removeAt(optionIndex);
+    this.dynamicTimetable.markAsTouched();
   }
 
-  constructor(private route: ActivatedRoute, private apiService: ApiService, private snackBar: MatSnackBar) {}
+  constructor(
+    private route: ActivatedRoute, 
+    private apiService: ApiService,
+    private snackBar: MatSnackBar, 
+    public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.getDiscipline();
     this.fetchInstitutions();
+    this.getStudents();
     this.update.subscribe((update) =>
       update === true ? this.getDiscipline() : ''
     );
@@ -128,6 +139,23 @@ export class AdminEditDisciplineComponent implements OnInit {
     return selectedFaculty;
   }
 
+  getStudents() {
+    this.apiService.getUsers().subscribe(
+      response => {
+        const res = response as User[];
+        this.users = [...res];
+      }
+    )
+  }
+
+  openDialog(optionIndex: string): void {
+    let timetable = this.discipline.timetable.find(element => element.option === optionIndex);
+    const dialogRef = this.dialog.open(StudentCardDialogComponent, {
+      width: '350px',
+      data: {timetable: timetable, discipline: this.discipline, users: this.users},
+    });
+  }
+
   submit() {
     const updatedDisciplineDetails = {} as Discipline;
     const disciplineId = this.route.snapshot.paramMap.get('id');
@@ -157,6 +185,7 @@ export class AdminEditDisciplineComponent implements OnInit {
     if(this.dynamicTimetable.touched) {
       updatedDisciplineDetails.timetable = this.dynamicTimetable.value;
     }
+
     this.apiService.updateDiscipline(disciplineId, updatedDisciplineDetails).subscribe(
       (response) => {
         this.update.next(true);

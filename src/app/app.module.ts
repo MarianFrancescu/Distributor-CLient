@@ -43,6 +43,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import {MatProgressBarModule } from '@angular/material/progress-bar';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { StudentsCardComponent } from './students-card/students-card.component';
+import { StudentCardDialogComponent } from './student-card-dialog/student-card-dialog.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { StudentsCardComponent } from './students-card/students-card.component';
     AdminAddDisciplineDialogComponent,
     AdminEditDisciplineComponent,
     PreferencesDefaultComponent,
-    StudentsCardComponent
+    StudentsCardComponent,
+    StudentCardDialogComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>Details about the timetable slot</h2>
+<mat-dialog-content class="mat-typography">
+    <div class="students-card">
+        <app-students-card [timetable]="data.timetable" [discipline]="data.discipline" [users]="data.users">
+        </app-students-card>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-flat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

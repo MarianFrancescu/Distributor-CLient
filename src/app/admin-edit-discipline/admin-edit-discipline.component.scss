@@ -55,6 +55,7 @@ h1 {
 .details-container {
     display: flex;
     flex-direction: column;
+    margin-bottom: 1em;
 }
 
 .button-container {
@@ -95,6 +96,13 @@ h1 {
             justify-content: center;
         }
     }
+}
+
+.tooltip {
+    width: 66%;
+    margin: 0 auto;
+    color: rgba(0, 0, 0, 0.6);
+    padding-bottom: 1em;
 }
 
 .lesson-form-row {
