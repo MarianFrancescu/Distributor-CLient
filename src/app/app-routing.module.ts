@@ -9,6 +9,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { AuthGuard } from './guard/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { Roles } from './models/roles';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PreferencesDefaultComponent } from './preferences-default/preferences-default.component';
 import { PreferencesComponent } from './preferences/preferences.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -59,8 +60,9 @@ const routes: Routes = [
     canActivate: [AuthGuard], 
     data: { roles: [Roles.Admin] } 
   },
+  { path: 'notFound', component: PageNotFoundComponent },
   //this should redirect to a noFoundPage
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '/notFound' }
 ];
 
 @NgModule({

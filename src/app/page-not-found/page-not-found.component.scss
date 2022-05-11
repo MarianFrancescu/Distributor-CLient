@@ -1,0 +1,24 @@
+.container {
+    color: rgba(0, 0, 0, 0.537);
+    height: calc(100vh - 64px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .container-wrapper {
+        width: 80%;
+        margin: auto;
+
+        .icon-container {
+            display: flex;
+            justify-content: center;
+            font-size: 100px;
+
+            .icon {
+                font-size: inherit;
+                height: 100px;
+                width: 100px;
+            }
+        }
+    }
+}
