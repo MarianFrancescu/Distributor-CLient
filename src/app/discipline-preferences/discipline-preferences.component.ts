@@ -129,7 +129,7 @@ export class DisciplinePreferencesComponent implements OnInit {
   }
 
   getStudentOption() {
-    const userID = sessionStorage.getItem('userID');
+    const userID = localStorage.getItem('userID');
     return this.discipline?.timetable.find(
       (timetable) => timetable.students.find(student => student === userID)
     );

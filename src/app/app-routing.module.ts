@@ -61,7 +61,6 @@ const routes: Routes = [
     data: { roles: [Roles.Admin] } 
   },
   { path: 'notFound', component: PageNotFoundComponent },
-  //this should redirect to a noFoundPage
   { path: '**', redirectTo: '/notFound' }
 ];
 

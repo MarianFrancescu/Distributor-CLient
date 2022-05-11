@@ -45,7 +45,7 @@ export class ApiService {
   }
 
   getUserID() {
-    return sessionStorage.getItem('userID');
+    return localStorage.getItem('userID');
   }
 
   getUsers() {

@@ -38,10 +38,10 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (response) => {
           const res = response as any;
-          sessionStorage.clear();
-          sessionStorage.setItem('token', res.token);
-          sessionStorage.setItem('userID', res.userID);
-          sessionStorage.setItem('role', res.role);
+          localStorage.clear();
+          localStorage.setItem('token', res.token);
+          localStorage.setItem('userID', res.userID);
+          localStorage.setItem('role', res.role);
           this.router.navigate(['/profile']);
         },
         (error) => {

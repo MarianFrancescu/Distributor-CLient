@@ -21,7 +21,7 @@ export class ProfileComponent implements OnInit {
   }
 
   fetchUser() {
-    const userID = sessionStorage.getItem('userID');
+    const userID = localStorage.getItem('userID');
     this.apiService.getUser(userID).subscribe((result) => {
       const res = result as User;
       this.user = res;

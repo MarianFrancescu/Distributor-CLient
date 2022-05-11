@@ -77,7 +77,6 @@ export class AdminDashboardComponent implements OnInit {
           });
         });
       }
-      console.log(`Dialog result: ${result}`);
     });
   }
   
@@ -143,7 +142,6 @@ export class AdminDashboardComponent implements OnInit {
           }
         );
       }
-      console.log(`Dialog result: ${result}`);
     }); 
     e.stopPropagation();
   }

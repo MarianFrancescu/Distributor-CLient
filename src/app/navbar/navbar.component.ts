@@ -12,7 +12,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {}
 
   getUserState() {
-    const activeToken = sessionStorage.getItem('token');
+    const activeToken = localStorage.getItem('token');
     if (!activeToken) {
       return false;
     }
@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit {
   }
 
   isAdmin() {
-    const userRole = sessionStorage.getItem('role');
+    const userRole = localStorage.getItem('role');
     if(userRole != Roles.Admin){
       return false;
     }
@@ -28,6 +28,6 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-    sessionStorage.clear();
+    localStorage.clear();
   }
 }

@@ -24,17 +24,6 @@ export class ProfileDetailsComponent implements OnChanges {
   @Output() updateDetails = new EventEmitter<boolean>();
   selectedValue: string;
 
-  //these shoud be removed and for institutions to be used mockedInstitutions
-  institutions = [
-    'Universitatea Politehnica Timisoara',
-    'Universitatea de Vest Timisoara'
-  ];
-  faculties = ['Automatica si Calculatoare', 'Telecomunicatii'];
-  departments = [
-    'Calculatoare si Tehnologia Informatiei',
-    'Ingineria Sistemelor',
-    'Informatica'
-  ];
   years = ['1', '2', '3', '4', '5', '6'];
 
   detailsForm = new FormGroup({
@@ -57,7 +46,6 @@ export class ProfileDetailsComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.fetchUserData();  
-    console.log(this.institutionsData)
   }
 
   getStudyInstitution(institutionName) { 

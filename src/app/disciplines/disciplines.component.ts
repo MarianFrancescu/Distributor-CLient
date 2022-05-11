@@ -38,7 +38,6 @@ export class DisciplinesComponent implements OnInit {
       if (result) {
         this.enrollUser(result._id);
       }
-      console.log('The dialog was closed', this.userDisciplines);
     });
   }
 

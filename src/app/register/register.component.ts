@@ -30,7 +30,6 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {}
 
   submit() {
-    console.log('User registered');
     this.apiService
       .register(
         this.registerForm.get('email').value,
