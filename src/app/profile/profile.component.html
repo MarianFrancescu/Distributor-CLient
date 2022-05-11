@@ -43,7 +43,11 @@
         <mat-tab-group mat-align-tabs="center">
             <mat-tab label="Details">
                 <div class="mobile-tabs">
-                    <app-profile-details [userDetails]="user"></app-profile-details>
+                    <app-profile-details 
+                        (updateDetails)="updateUser()" 
+                        [userDetails]="user"
+                        [institutionsData]="institutions">
+                    </app-profile-details>
                 </div>
             </mat-tab>
             <mat-tab label="Reset password">
