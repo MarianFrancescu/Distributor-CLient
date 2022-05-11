@@ -7,8 +7,6 @@ import { Roles } from '../models/roles';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-
-
   getUserState() {
     const activeToken = localStorage.getItem('token');
     if (!activeToken) {
