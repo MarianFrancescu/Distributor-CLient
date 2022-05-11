@@ -74,7 +74,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     row-gap: 3em;
-    justify-items: center;
+    justify-content: center;
 
     .discipline-card {
         width: 350px;
