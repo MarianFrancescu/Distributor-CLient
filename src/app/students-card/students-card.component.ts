@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import * as XLSX from 'xlsx';
 
 @Component({
@@ -6,13 +6,10 @@ import * as XLSX from 'xlsx';
   templateUrl: './students-card.component.html',
   styleUrls: ['./students-card.component.scss']
 })
-export class StudentsCardComponent implements OnInit {
+export class StudentsCardComponent {
   @Input() timetable;
   @Input() discipline;
   @Input() users;
-  constructor() {}
-
-  ngOnInit(): void {}
 
   getAvailablePlaces(option: string) {
     return this.discipline.timetable.find(

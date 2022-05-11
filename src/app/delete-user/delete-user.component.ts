@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -10,15 +10,13 @@ import { ApiService } from '../services/api.service';
   templateUrl: './delete-user.component.html',
   styleUrls: ['./delete-user.component.scss']
 })
-export class DeleteUserComponent implements OnInit {
+export class DeleteUserComponent {
   constructor(
     public deleteDialog: MatDialog,
     private router: Router,
     private snackBar: MatSnackBar,
     private apiService: ApiService
   ) {}
-
-  ngOnInit(): void {}
 
   openDialog() {
     const dialogRef = this.deleteDialog.open(AlertDialogComponent, {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Roles } from '../models/roles';
 
 @Component({
@@ -6,10 +6,8 @@ import { Roles } from '../models/roles';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit {
-  constructor() {}
+export class NavbarComponent {
 
-  ngOnInit(): void {}
 
   getUserState() {
     const activeToken = localStorage.getItem('token');

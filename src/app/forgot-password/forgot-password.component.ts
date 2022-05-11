@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ApiService } from '../services/api.service';
@@ -8,14 +8,12 @@ import { ApiService } from '../services/api.service';
   templateUrl: './forgot-password.component.html',
   styleUrls: ['./forgot-password.component.scss']
 })
-export class ForgotPasswordComponent implements OnInit {
+export class ForgotPasswordComponent {
   passwordForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email])
   });
 
   constructor(private apiService: ApiService, private snackBar: MatSnackBar) {}
-
-  ngOnInit(): void {}
 
   submit() {
     this.resetUserPassword();
