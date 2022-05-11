@@ -4,7 +4,7 @@ import { Roles } from '../models/roles';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss'],
+  styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
   constructor() {}
@@ -21,7 +21,7 @@ export class NavbarComponent implements OnInit {
 
   isAdmin() {
     const userRole = localStorage.getItem('role');
-    if(userRole != Roles.Admin){
+    if (userRole != Roles.Admin) {
       return false;
     }
     return true;

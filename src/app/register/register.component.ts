@@ -18,14 +18,16 @@ export class RegisterComponent implements OnInit {
       Validators.required,
       Validators.minLength(6)
     ]),
-    confirmPassword: new FormControl('', [
-      Validators.required,
-    ])
+    confirmPassword: new FormControl('', [Validators.required])
   });
 
   hideFlag = true;
 
-  constructor(private apiService: ApiService, private router: Router, private snackBar: MatSnackBar) {}
+  constructor(
+    private apiService: ApiService,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {}
 

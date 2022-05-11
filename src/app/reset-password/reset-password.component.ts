@@ -28,20 +28,25 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   buildForm() {
-    this.resetPasswordForm= new FormGroup({
-      password: new FormControl('', [
-        Validators.required,
-        Validators.minLength(6)
-      ]),
-      confirmPassword: new FormControl('')
-    }, {validators: this.checkPasswords});
+    this.resetPasswordForm = new FormGroup(
+      {
+        password: new FormControl('', [
+          Validators.required,
+          Validators.minLength(6)
+        ]),
+        confirmPassword: new FormControl('')
+      },
+      { validators: this.checkPasswords }
+    );
   }
 
-  checkPasswords: ValidatorFn = (group: AbstractControl):  ValidationErrors | null => { 
-    let pass = group.get('password').value;
-    let confirmPass = group.get('confirmPassword').value;
-    return pass === confirmPass ? null : { notSame: true }
-  }
+  checkPasswords: ValidatorFn = (
+    group: AbstractControl
+  ): ValidationErrors | null => {
+    const pass = group.get('password').value;
+    const confirmPass = group.get('confirmPassword').value;
+    return pass === confirmPass ? null : { notSame: true };
+  };
 
   getPasswordErrorMessage() {
     if (this.resetPasswordForm.controls.password.hasError('required')) {
@@ -57,7 +62,7 @@ export class ResetPasswordComponent implements OnInit {
     if (this.resetPasswordForm.controls.confirmPassword.hasError('required')) {
       return 'Please re-enter your password';
     }
-    if(this.resetPasswordForm.hasError('notSame'))
+    if (this.resetPasswordForm.hasError('notSame'))
       return 'The passwords do not match';
   }
 

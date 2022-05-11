@@ -29,13 +29,13 @@ export class ProfileComponent implements OnInit {
   }
 
   fetchInstitutions() {
-    this.apiService.getIntitutions().subscribe(result => {
+    this.apiService.getIntitutions().subscribe((result) => {
       const res = result as Institution[];
       this.institutions = [...res];
-    })
+    });
   }
 
-  updateUser() { 
+  updateUser() {
     this.fetchUser();
   }
 

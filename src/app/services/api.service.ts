@@ -66,7 +66,11 @@ export class ApiService {
   updateUserPassword(password: string) {
     const userID = this.getUserID();
     const url = `${this.apiURL}updateUserPassword/${userID}`;
-    return this.http.put(url, { newPassword: password }, { responseType: 'text' });
+    return this.http.put(
+      url,
+      { newPassword: password },
+      { responseType: 'text' }
+    );
   }
 
   resetUserPassword(email: string) {
@@ -116,8 +120,8 @@ export class ApiService {
 
   //discipline endpoints admin
   addDiscipline(discipline: Discipline) {
-      const url = `${this.apiURL}addDiscipline`;
-      return this.http.post(url, discipline, { responseType: 'text' });
+    const url = `${this.apiURL}addDiscipline`;
+    return this.http.post(url, discipline, { responseType: 'text' });
   }
 
   updateDiscipline(disciplineID: string, discipline: Discipline) {
@@ -127,16 +131,20 @@ export class ApiService {
 
   deleteDiscipline(disciplineID: string) {
     const url = `${this.apiURL}deleteDiscipline/${disciplineID}`;
-    return this.http.delete(url, {responseType: 'text' });
+    return this.http.delete(url, { responseType: 'text' });
   }
 
   addUserPreference(disciplineID: string, options: string[]) {
     const userID = this.getUserID();
     const url = `${this.apiURL}addPreference/${disciplineID}`;
-    return this.http.post(url, {
-      userID,
-      options
-    }, { responseType: 'text' });
+    return this.http.post(
+      url,
+      {
+        userID,
+        options
+      },
+      { responseType: 'text' }
+    );
   }
 
   getUserPreferenceByDiscipline(disciplineID: string) {
@@ -148,7 +156,7 @@ export class ApiService {
   updateUserDisciplinePreference(disciplineID: string, options: string[]) {
     const userID = this.getUserID();
     const url = `${this.apiURL}preference/user/${userID}/discipline/${disciplineID}/update`;
-    return this.http.put(url, {options: options}, { responseType: 'text' });
+    return this.http.put(url, { options: options }, { responseType: 'text' });
   }
 
   insertUserOptionOnDiscipline(disciplineID: string) {
@@ -165,7 +173,7 @@ export class ApiService {
 
   deletePreferencesByDiscipline(disciplineID: string) {
     const url = `${this.apiURL}preferences/discipline/${disciplineID}/delete`;
-    return this.http.delete(url, {responseType: 'text' });
+    return this.http.delete(url, { responseType: 'text' });
   }
 
   getIntitutions() {

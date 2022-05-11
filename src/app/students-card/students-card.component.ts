@@ -10,10 +10,9 @@ export class StudentsCardComponent implements OnInit {
   @Input() timetable;
   @Input() discipline;
   @Input() users;
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   getAvailablePlaces(option: string) {
     return this.discipline.timetable.find(
@@ -23,7 +22,7 @@ export class StudentsCardComponent implements OnInit {
 
   exportExcel(option: string, disciplineName: string) {
     let filename = '';
-    let element = document.getElementById(option);
+    const element = document.getElementById(option);
     filename = disciplineName + '_' + option + '.xlsx';
     const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
 
@@ -34,9 +33,6 @@ export class StudentsCardComponent implements OnInit {
   }
 
   getStudent(userID: string) {
-    return this.users?.find(
-      user => user._id === userID
-    );
+    return this.users?.find((user) => user._id === userID);
   }
-
 }

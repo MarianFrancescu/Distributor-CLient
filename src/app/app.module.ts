@@ -40,7 +40,7 @@ import { AdminAddDisciplineDialogComponent } from './admin-add-discipline-dialog
 import { AdminEditDisciplineComponent } from './admin-edit-discipline/admin-edit-discipline.component';
 import { PreferencesDefaultComponent } from './preferences-default/preferences-default.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import {MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { StudentsCardComponent } from './students-card/students-card.component';
 import { StudentCardDialogComponent } from './student-card-dialog/student-card-dialog.component';

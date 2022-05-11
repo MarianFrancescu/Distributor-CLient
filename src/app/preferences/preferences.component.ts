@@ -16,8 +16,7 @@ export class PreferencesComponent implements OnInit {
   mySubscription: any;
   mode: string;
   openSidenav: boolean;
-  private screenWidth$ = new BehaviorSubject<number>
-    (window.innerWidth);
+  private screenWidth$ = new BehaviorSubject<number>(window.innerWidth);
 
   @ViewChild('sidenav') sidenav: MatSidenav;
   @HostListener('window:resize', ['$event'])
@@ -28,15 +27,14 @@ export class PreferencesComponent implements OnInit {
     return this.screenWidth$.asObservable();
   }
 
-  constructor(private apiService: ApiService, private router: Router) {
-  }
+  constructor(private apiService: ApiService, private router: Router) {}
 
   ngOnInit(): void {
-    this.getScreenWidth().subscribe(width => {
-      if(width > 960) {
-          this.mode = 'side';
-          this.openSidenav = true;
-        }
+    this.getScreenWidth().subscribe((width) => {
+      if (width > 960) {
+        this.mode = 'side';
+        this.openSidenav = true;
+      }
       if (width <= 960) {
         this.mode = 'over';
         this.openSidenav = false;
@@ -46,9 +44,8 @@ export class PreferencesComponent implements OnInit {
   }
 
   selectDiscipline(discipline: Discipline) {
-    this.router.navigate(['view/discipline', discipline._id])
+    this.router.navigate(['view/discipline', discipline._id]);
   }
-  
 
   fetchDisciplines() {
     this.apiService.getUserDisciplines().subscribe(

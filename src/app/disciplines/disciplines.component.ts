@@ -98,7 +98,7 @@ export class DisciplinesComponent implements OnInit {
           }
         );
       }
-    }); 
+    });
     e.stopPropagation();
   }
 }

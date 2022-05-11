@@ -8,9 +8,8 @@ describe('StudentCardDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ StudentCardDialogComponent ]
-    })
-    .compileComponents();
+      declarations: [StudentCardDialogComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {

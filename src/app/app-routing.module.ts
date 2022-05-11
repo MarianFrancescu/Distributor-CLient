@@ -20,45 +20,51 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
-  { 
-    path: 'profile', component: ProfileComponent, 
-    canActivate: [AuthGuard], 
-    data: { roles: [Roles.Basic, Roles.Admin] } 
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [AuthGuard],
+    data: { roles: [Roles.Basic, Roles.Admin] }
   },
-  { 
-    path: 'disciplines', component: DisciplinesComponent, 
-    canActivate: [AuthGuard], 
-    data: { roles: [Roles.Basic, Roles.Admin] } 
+  {
+    path: 'disciplines',
+    component: DisciplinesComponent,
+    canActivate: [AuthGuard],
+    data: { roles: [Roles.Basic, Roles.Admin] }
   },
-  { path: 'discipline/:id', component: DisciplineDetailsComponent, 
-    canActivate: [AuthGuard], 
-    data: { roles: [Roles.Basic, Roles.Admin] } 
+  {
+    path: 'discipline/:id',
+    component: DisciplineDetailsComponent,
+    canActivate: [AuthGuard],
+    data: { roles: [Roles.Basic, Roles.Admin] }
   },
-  { path: 'preferences', component: PreferencesComponent, 
+  {
+    path: 'preferences',
+    component: PreferencesComponent,
     children: [
       {
         path: '',
         component: PreferencesDefaultComponent
       },
-      { 
-        path: 'view/discipline/:disciplineID', 
-        component: DisciplinePreferencesComponent 
-      },
+      {
+        path: 'view/discipline/:disciplineID',
+        component: DisciplinePreferencesComponent
+      }
     ],
-    canActivate: [AuthGuard], 
-    data: { roles: [Roles.Basic, Roles.Admin] }  
+    canActivate: [AuthGuard],
+    data: { roles: [Roles.Basic, Roles.Admin] }
   },
-  { 
-    path: 'dashboard', 
-    component: AdminDashboardComponent, 
-    canActivate: [AuthGuard], 
-    data: { roles: [Roles.Admin] } 
+  {
+    path: 'dashboard',
+    component: AdminDashboardComponent,
+    canActivate: [AuthGuard],
+    data: { roles: [Roles.Admin] }
   },
-  { 
-    path: 'discipline/:id/edit', 
-    component: AdminEditDisciplineComponent, 
-    canActivate: [AuthGuard], 
-    data: { roles: [Roles.Admin] } 
+  {
+    path: 'discipline/:id/edit',
+    component: AdminEditDisciplineComponent,
+    canActivate: [AuthGuard],
+    data: { roles: [Roles.Admin] }
   },
   { path: 'notFound', component: PageNotFoundComponent },
   { path: '**', redirectTo: '/notFound' }
@@ -66,9 +72,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [],
-  imports: [
-    RouterModule.forRoot(routes)
-  ],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

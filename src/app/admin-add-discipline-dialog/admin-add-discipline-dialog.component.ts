@@ -10,7 +10,6 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./admin-add-discipline-dialog.component.scss']
 })
 export class AdminAddDisciplineDialogComponent implements OnInit {
-
   years = ['1', '2', '3', '4', '5', '6'];
   institutions: Institution[];
 
@@ -20,7 +19,7 @@ export class AdminAddDisciplineDialogComponent implements OnInit {
     studyInstitution: new FormControl('', Validators.required),
     faculty: new FormControl('', Validators.required),
     department: new FormControl('', Validators.required),
-    studyYear:  new FormControl('', Validators.required),
+    studyYear: new FormControl('', Validators.required),
     maxNoOfStudentsPerTimetable: new FormControl('', Validators.required),
     timetable: new FormArray([])
   });
@@ -31,9 +30,9 @@ export class AdminAddDisciplineDialogComponent implements OnInit {
 
   addTimetable() {
     const timetableForm = new FormGroup({
-      option: new FormControl(''),
+      option: new FormControl('')
       //assistent teacher name could be another control
-    })
+    });
     this.dynamicTimetable.push(timetableForm);
   }
 
@@ -41,29 +40,37 @@ export class AdminAddDisciplineDialogComponent implements OnInit {
     this.dynamicTimetable.removeAt(optionIndex);
   }
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data, 
-              private dialogRef: MatDialogRef<AdminAddDisciplineDialogComponent>,
-              private apiService: ApiService) { }
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data,
+    private dialogRef: MatDialogRef<AdminAddDisciplineDialogComponent>,
+    private apiService: ApiService
+  ) {}
 
   ngOnInit(): void {
     this.fetchInstitutions();
   }
 
   fetchInstitutions() {
-    this.apiService.getIntitutions().subscribe(result => {
+    this.apiService.getIntitutions().subscribe((result) => {
       const res = result as Institution[];
       this.institutions = [...res];
-    })
+    });
   }
 
-  getStudyInstitution(institutionName) { 
-    const selected = this.institutions?.find(institution => institution.studyInstitution === institutionName);
+  getStudyInstitution(institutionName) {
+    const selected = this.institutions?.find(
+      (institution) => institution.studyInstitution === institutionName
+    );
     return selected;
   }
 
   getFaculty(institutionName, facultyName) {
-    const selectedInstitution = this.institutions?.find(institution => institution.studyInstitution === institutionName);
-    const selectedFaculty = selectedInstitution?.faculties.find(faculty => faculty.faculty === facultyName);
+    const selectedInstitution = this.institutions?.find(
+      (institution) => institution.studyInstitution === institutionName
+    );
+    const selectedFaculty = selectedInstitution?.faculties.find(
+      (faculty) => faculty.faculty === facultyName
+    );
     return selectedFaculty;
   }
 
@@ -73,5 +80,4 @@ export class AdminAddDisciplineDialogComponent implements OnInit {
     //   }, 1000);
     this.dialogRef.close(this.disciplineDetailsForm.value);
   }
-
 }

@@ -1,9 +1,9 @@
 export interface Institution {
-    studyInstitution: string;
-    faculties: Faculty[]
+  studyInstitution: string;
+  faculties: Faculty[];
 }
 
 export interface Faculty {
-    faculty: string;
-    departments: string[];
+  faculty: string;
+  departments: string[];
 }

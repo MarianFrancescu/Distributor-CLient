@@ -33,7 +33,7 @@ export class AdminEditDisciplineComponent implements OnInit {
     studyInstitution: new FormControl('', Validators.required),
     faculty: new FormControl('', Validators.required),
     department: new FormControl('', Validators.required),
-    studyYear:  new FormControl('', Validators.required),
+    studyYear: new FormControl('', Validators.required),
     maxNoOfStudentsPerTimetable: new FormControl('', Validators.required),
     timetable: new FormArray([])
   });
@@ -44,17 +44,17 @@ export class AdminEditDisciplineComponent implements OnInit {
 
   addTimetable() {
     const timetableForm = new FormGroup({
-      option: new FormControl(''),
+      option: new FormControl('')
       //assistent teacher name could be another control
-    })
+    });
     this.dynamicTimetable.push(timetableForm);
   }
 
   updateTimetableForm(value: string) {
     const timetableForm = new FormGroup({
-      option: new FormControl(value),
+      option: new FormControl(value)
       //assistent teacher name could be another control
-    })
+    });
     this.dynamicTimetable.push(timetableForm);
   }
 
@@ -64,10 +64,11 @@ export class AdminEditDisciplineComponent implements OnInit {
   }
 
   constructor(
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
     private apiService: ApiService,
-    private snackBar: MatSnackBar, 
-    public dialog: MatDialog) {}
+    private snackBar: MatSnackBar,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.getDiscipline();
@@ -79,10 +80,10 @@ export class AdminEditDisciplineComponent implements OnInit {
   }
 
   fetchInstitutions() {
-    this.apiService.getIntitutions().subscribe(result => {
+    this.apiService.getIntitutions().subscribe((result) => {
       const res = result as Institution[];
       this.institutions = [...res];
-    })
+    });
   }
 
   fetchDisciplineForm() {
@@ -102,12 +103,12 @@ export class AdminEditDisciplineComponent implements OnInit {
       );
     }
   }
-  
+
   updateTimetable() {
-    this.discipline.timetable.forEach(timetable => {
+    this.discipline.timetable.forEach((timetable) => {
       this.updateTimetableForm(timetable.option);
-    })
-  }  
+    });
+  }
 
   getDiscipline() {
     const disciplineId = this.route.snapshot.paramMap.get('id');
@@ -128,31 +129,41 @@ export class AdminEditDisciplineComponent implements OnInit {
     ).students.length;
   }
 
-  getStudyInstitution(institutionName) { 
-    const selected = this.institutions?.find(institution => institution.studyInstitution === institutionName);
+  getStudyInstitution(institutionName) {
+    const selected = this.institutions?.find(
+      (institution) => institution.studyInstitution === institutionName
+    );
     return selected;
   }
 
   getFaculty(institutionName, facultyName) {
-    const selectedInstitution = this.institutions?.find(institution => institution.studyInstitution === institutionName);
-    const selectedFaculty = selectedInstitution?.faculties.find(faculty => faculty.faculty === facultyName);
+    const selectedInstitution = this.institutions?.find(
+      (institution) => institution.studyInstitution === institutionName
+    );
+    const selectedFaculty = selectedInstitution?.faculties.find(
+      (faculty) => faculty.faculty === facultyName
+    );
     return selectedFaculty;
   }
 
   getStudents() {
-    this.apiService.getUsers().subscribe(
-      response => {
-        const res = response as User[];
-        this.users = [...res];
-      }
-    )
+    this.apiService.getUsers().subscribe((response) => {
+      const res = response as User[];
+      this.users = [...res];
+    });
   }
 
   openDialog(optionIndex: string): void {
-    let timetable = this.discipline.timetable.find(element => element.option === optionIndex);
+    const timetable = this.discipline.timetable.find(
+      (element) => element.option === optionIndex
+    );
     const dialogRef = this.dialog.open(StudentCardDialogComponent, {
       width: '350px',
-      data: {timetable: timetable, discipline: this.discipline, users: this.users},
+      data: {
+        timetable: timetable,
+        discipline: this.discipline,
+        users: this.users
+      }
     });
   }
 
@@ -161,45 +172,54 @@ export class AdminEditDisciplineComponent implements OnInit {
     const disciplineId = this.route.snapshot.paramMap.get('id');
 
     if (this.disciplineDetailsForm.controls.name.touched) {
-      updatedDisciplineDetails.name = this.disciplineDetailsForm.controls.name.value;
+      updatedDisciplineDetails.name =
+        this.disciplineDetailsForm.controls.name.value;
     }
     if (this.disciplineDetailsForm.controls.teacher.touched) {
-      updatedDisciplineDetails.teacher = this.disciplineDetailsForm.controls.teacher.value;
+      updatedDisciplineDetails.teacher =
+        this.disciplineDetailsForm.controls.teacher.value;
     }
     if (this.disciplineDetailsForm.controls.studyInstitution.touched) {
       updatedDisciplineDetails.studyInstitution =
         this.disciplineDetailsForm.controls.studyInstitution.value;
     }
     if (this.disciplineDetailsForm.controls.faculty.touched) {
-      updatedDisciplineDetails.faculty = this.disciplineDetailsForm.controls.faculty.value;
+      updatedDisciplineDetails.faculty =
+        this.disciplineDetailsForm.controls.faculty.value;
     }
     if (this.disciplineDetailsForm.controls.department.touched) {
-      updatedDisciplineDetails.department = this.disciplineDetailsForm.controls.department.value;
+      updatedDisciplineDetails.department =
+        this.disciplineDetailsForm.controls.department.value;
     }
     if (this.disciplineDetailsForm.controls.studyYear.touched) {
-      updatedDisciplineDetails.studyYear = this.disciplineDetailsForm.controls.studyYear.value;
+      updatedDisciplineDetails.studyYear =
+        this.disciplineDetailsForm.controls.studyYear.value;
     }
-    if (this.disciplineDetailsForm.controls.maxNoOfStudentsPerTimetable.touched) {
-      updatedDisciplineDetails.maxNoOfStudentsPerTimetable = this.disciplineDetailsForm.controls.maxNoOfStudentsPerTimetable.value;
+    if (
+      this.disciplineDetailsForm.controls.maxNoOfStudentsPerTimetable.touched
+    ) {
+      updatedDisciplineDetails.maxNoOfStudentsPerTimetable =
+        this.disciplineDetailsForm.controls.maxNoOfStudentsPerTimetable.value;
     }
-    if(this.dynamicTimetable.touched) {
+    if (this.dynamicTimetable.touched) {
       updatedDisciplineDetails.timetable = this.dynamicTimetable.value;
     }
 
-    this.apiService.updateDiscipline(disciplineId, updatedDisciplineDetails).subscribe(
-      (response) => {
-        this.update.next(true);
-        this.snackBar.open(`${response}`, 'Close', {
-          duration: 2000
-        });
-        
-      },
-      (error) => {
-        this.disciplineDetailsForm.reset();
-      }
-    );
-    this.apiService.deletePreferencesByDiscipline(disciplineId).subscribe(
-      (response) => console.log(response)
-    )
+    this.apiService
+      .updateDiscipline(disciplineId, updatedDisciplineDetails)
+      .subscribe(
+        (response) => {
+          this.update.next(true);
+          this.snackBar.open(`${response}`, 'Close', {
+            duration: 2000
+          });
+        },
+        (error) => {
+          this.disciplineDetailsForm.reset();
+        }
+      );
+    this.apiService
+      .deletePreferencesByDiscipline(disciplineId)
+      .subscribe((response) => console.log(response));
   }
 }

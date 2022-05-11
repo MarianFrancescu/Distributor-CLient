@@ -45,17 +45,23 @@ export class ProfileDetailsComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.fetchUserData();  
+    this.fetchUserData();
   }
 
-  getStudyInstitution(institutionName) { 
-    const selected = this.institutionsData?.find(institution => institution.studyInstitution === institutionName);
+  getStudyInstitution(institutionName) {
+    const selected = this.institutionsData?.find(
+      (institution) => institution.studyInstitution === institutionName
+    );
     return selected;
   }
 
   getFaculty(institutionName, facultyName) {
-    const selectedInstitution = this.institutionsData?.find(institution => institution.studyInstitution === institutionName);
-    const selectedFaculty = selectedInstitution?.faculties.find(faculty => faculty.faculty === facultyName);
+    const selectedInstitution = this.institutionsData?.find(
+      (institution) => institution.studyInstitution === institutionName
+    );
+    const selectedFaculty = selectedInstitution?.faculties.find(
+      (faculty) => faculty.faculty === facultyName
+    );
     return selectedFaculty;
   }
 
@@ -106,7 +112,6 @@ export class ProfileDetailsComponent implements OnChanges {
         this.snackBar.open(`${response}`, 'Close', {
           duration: 2000
         });
-        
       },
       (error) => {
         this.detailsForm.reset();

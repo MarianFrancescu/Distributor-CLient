@@ -1,4 +1,13 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+  ViewEncapsulation
+} from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
@@ -20,7 +29,7 @@ export class DisciplinePreferencesComponent implements OnInit {
 
   hasSelectedPreferences = false;
   wasPressed = false;
-  
+
   preferencesForm = new FormGroup({
     options: new FormArray([])
   });
@@ -31,27 +40,31 @@ export class DisciplinePreferencesComponent implements OnInit {
 
   addOptionForm() {
     const optionForm = new FormGroup({
-      option: new FormControl('', [Validators.required, RxwebValidators.unique(
-        { message: 'You must enter a unique option' }
-      )]),
-    })
+      option: new FormControl('', [
+        Validators.required,
+        RxwebValidators.unique({ message: 'You must enter a unique option' })
+      ])
+    });
     this.dynamicOptions.push(optionForm);
   }
 
   updateOptionForm(value: string) {
     const optionForm = new FormGroup({
-      option: new FormControl(value),
-    })
+      option: new FormControl(value)
+    });
     this.dynamicOptions.push(optionForm);
   }
 
-  constructor(private apiService: ApiService, private snackBar: MatSnackBar, private route: ActivatedRoute) {}
+  constructor(
+    private apiService: ApiService,
+    private snackBar: MatSnackBar,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
+    this.route.paramMap.subscribe((params) => {
       const disciplineID = params.get('disciplineID');
-      this.apiService.getDiscipline(disciplineID)
-      .subscribe(
+      this.apiService.getDiscipline(disciplineID).subscribe(
         (response) => {
           const res = response as Discipline;
           this.discipline = res;
@@ -66,25 +79,26 @@ export class DisciplinePreferencesComponent implements OnInit {
 
   getUserPreferences() {
     this.hasSelectedPreferences = false;
-    this.apiService.getUserPreferenceByDiscipline(this.discipline._id)
-    .subscribe(
-      (response) => {
-        const res = response as Preference;
-        if(!!res) {
-          this.hasSelectedPreferences = true;
-          this.dynamicOptions.clear();
-          res.options.forEach(option => this.updateOptionForm(option));
-          // if(this.discipline.timetable.length === this.dynamicOptions.value.length) {
-          //   this.hasSelectedPreferences = true;
-          // } 
-          return;
+    this.apiService
+      .getUserPreferenceByDiscipline(this.discipline._id)
+      .subscribe(
+        (response) => {
+          const res = response as Preference;
+          if (res) {
+            this.hasSelectedPreferences = true;
+            this.dynamicOptions.clear();
+            res.options.forEach((option) => this.updateOptionForm(option));
+            // if(this.discipline.timetable.length === this.dynamicOptions.value.length) {
+            //   this.hasSelectedPreferences = true;
+            // }
+            return;
+          }
+          this.initializeDisciplineOptions();
+        },
+        (error) => {
+          console.log(error);
         }
-        this.initializeDisciplineOptions();
-      },
-      (error) => {
-        console.log(error)
-      }
-    );
+      );
   }
 
   initializeDisciplineOptions() {
@@ -95,8 +109,7 @@ export class DisciplinePreferencesComponent implements OnInit {
   }
 
   addUserPreference(disciplineID: string, userOptions: string[]) {
-    this.apiService.addUserPreference(disciplineID, userOptions)
-    .subscribe(
+    this.apiService.addUserPreference(disciplineID, userOptions).subscribe(
       (response) => {
         this.snackBar.open(`${response}`, 'Close', {
           duration: 2000
@@ -109,7 +122,8 @@ export class DisciplinePreferencesComponent implements OnInit {
   }
 
   editUserPreference(disciplineID: string, options: string[]) {
-    this.apiService.updateUserDisciplinePreference(disciplineID, options)
+    this.apiService
+      .updateUserDisciplinePreference(disciplineID, options)
       .subscribe(
         (response) => {
           this.snackBar.open(`${response}`, 'Close', {
@@ -119,7 +133,7 @@ export class DisciplinePreferencesComponent implements OnInit {
         (error) => {
           console.log(error);
         }
-      )
+      );
   }
 
   getAvailablePlaces(option: string) {
@@ -130,16 +144,18 @@ export class DisciplinePreferencesComponent implements OnInit {
 
   getStudentOption() {
     const userID = localStorage.getItem('userID');
-    return this.discipline?.timetable.find(
-      (timetable) => timetable.students.find(student => student === userID)
+    return this.discipline?.timetable.find((timetable) =>
+      timetable.students.find((student) => student === userID)
     );
   }
 
   submit() {
-    let userOptions: string[] = [];
-    this.dynamicOptions.value.forEach(element => userOptions.push(element.option));
+    const userOptions: string[] = [];
+    this.dynamicOptions.value.forEach((element) =>
+      userOptions.push(element.option)
+    );
     this.wasPressed = true;
-    if(!this.hasSelectedPreferences) {
+    if (!this.hasSelectedPreferences) {
       this.addUserPreference(this.discipline._id, userOptions);
       return;
     }
@@ -183,15 +199,18 @@ export class DisciplinePreferencesComponent implements OnInit {
   }
 
   getOccupancy(option: string) {
-    return this.getAvailablePlaces(option) * 100 / this.discipline.maxNoOfStudentsPerTimetable;
+    return (
+      (this.getAvailablePlaces(option) * 100) /
+      this.discipline.maxNoOfStudentsPerTimetable
+    );
   }
 
   determineColor(option: string) {
     let color = 'green';
-    if(this.getOccupancy(option) >= 33 && this.getOccupancy(option) < 70) {
+    if (this.getOccupancy(option) >= 33 && this.getOccupancy(option) < 70) {
       color = 'orange';
     }
-    if(this.getOccupancy(option) >= 70) {
+    if (this.getOccupancy(option) >= 70) {
       color = 'red';
     }
     return color;

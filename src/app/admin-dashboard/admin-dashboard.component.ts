@@ -17,18 +17,19 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./admin-dashboard.component.scss']
 })
 export class AdminDashboardComponent implements OnInit {
-
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   mockDisciplines = mockedDisciplines;
   disciplines: Discipline[];
   myDataSource: MatTableDataSource<Discipline>;
   update = new BehaviorSubject<boolean>(false);
-  
-  constructor(private dialog: MatDialog,
-              private apiService: ApiService,
-              private router: Router,
-              private snackBar: MatSnackBar) { }
+
+  constructor(
+    private dialog: MatDialog,
+    private apiService: ApiService,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.fetchDisciplines();
@@ -40,20 +41,22 @@ export class AdminDashboardComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(AdminAddDisciplineDialogComponent, {
       width: '600px',
-      data: {  }
+      data: {}
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        let discipline: Discipline= {
+        const discipline: Discipline = {
           studyInstitution: result.studyInstitution,
           faculty: result.faculty,
           department: result.department,
           studyYear: result.studyYear,
           name: result.name,
           teacher: result.teacher,
-          timetable:  result.timetable,
-          maxNoOfStudentsPerTimetable: parseInt(result.maxNoOfStudentsPerTimetable)
+          timetable: result.timetable,
+          maxNoOfStudentsPerTimetable: parseInt(
+            result.maxNoOfStudentsPerTimetable
+          )
         };
         this.addDiscipline(discipline);
       }
@@ -79,11 +82,9 @@ export class AdminDashboardComponent implements OnInit {
       }
     });
   }
-  
+
   makeTable() {
-    this.myDataSource = new MatTableDataSource<Discipline>(
-      this.disciplines
-    );
+    this.myDataSource = new MatTableDataSource<Discipline>(this.disciplines);
     this.myDataSource.paginator = this.paginator;
   }
 
@@ -142,8 +143,7 @@ export class AdminDashboardComponent implements OnInit {
           }
         );
       }
-    }); 
+    });
     e.stopPropagation();
   }
-
 }

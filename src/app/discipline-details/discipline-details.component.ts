@@ -16,11 +16,11 @@ export class DisciplineDetailsComponent implements OnInit {
   users: User[];
   fileName = 'ExcelSheet.xlsx';
 
-  constructor(private route: ActivatedRoute, private apiService: ApiService) { }
+  constructor(private route: ActivatedRoute, private apiService: ApiService) {}
 
   ngOnInit(): void {
     this.getDiscipline();
-    this.getStudents()
+    this.getStudents();
   }
 
   getDiscipline() {
@@ -42,23 +42,19 @@ export class DisciplineDetailsComponent implements OnInit {
   }
 
   getStudent(userID: string) {
-    return this.users?.find(
-      user => user._id === userID
-    );
+    return this.users?.find((user) => user._id === userID);
   }
 
   getStudents() {
-    this.apiService.getUsers().subscribe(
-      response => {
-        const res = response as User[];
-        this.users = [...res];
-      }
-    )
+    this.apiService.getUsers().subscribe((response) => {
+      const res = response as User[];
+      this.users = [...res];
+    });
   }
 
   exportExcel(option: string, disciplineName: string) {
     let filename = '';
-    let element = document.getElementById(option);
+    const element = document.getElementById(option);
     filename = disciplineName + '_' + option + '.xlsx';
     const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
 
