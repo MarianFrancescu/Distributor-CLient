@@ -66,14 +66,15 @@
     <span class="tooltip">
       *HINT: In order to send the preferences to validation you have to save them first
     </span>
-    <div class="action-buttons">
-
-      <button class="submit-button" mat-raised-button (click)="submit()"
+    <span class="tooltip center">
+    <button class="submit-button" mat-raised-button (click)="submit()"
         [disabled]="preferencesForm.invalid">SAVE</button>
-      <button class="submit-button" mat-raised-button (click)="sendPreference()"
+      </span>
+    <div class="action-buttons">
+      <button class="submit-button" color="primary" mat-raised-button (click)="sendPreference()"
         [disabled]="isSentOptionDisabled()">Send
         preference</button>
-      <button class="submit-button" mat-raised-button (click)="resetPreferences()" [disabled]="isResetDisabled()">Delete
+      <button class="submit-button" color="warn" mat-raised-button (click)="resetPreferences()" [disabled]="isResetDisabled()">Delete
         option</button>
     </div>
   </div>

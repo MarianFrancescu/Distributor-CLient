@@ -12,6 +12,7 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
+import { BehaviorSubject } from 'rxjs';
 import { Discipline } from '../models/discipline.interface';
 import { Preference } from '../models/preference.interface';
 import { ApiService } from '../services/api.service';
@@ -23,9 +24,9 @@ import { ApiService } from '../services/api.service';
   encapsulation: ViewEncapsulation.None
 })
 export class DisciplinePreferencesComponent implements OnInit {
-  @Output() updateDetails = new EventEmitter<boolean>();
   viableTimetables = [];
   discipline: Discipline;
+  update = new BehaviorSubject<boolean>(false);
 
   hasSelectedPreferences = false;
   wasPressed = false;
@@ -62,6 +63,14 @@ export class DisciplinePreferencesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.fetchUserPreferences();
+    this.update.subscribe((update) =>
+      update === true ? this.fetchUserPreferences() : ''
+    );
+    
+  }
+
+  fetchUserPreferences() {
     this.route.paramMap.subscribe((params) => {
       const disciplineID = params.get('disciplineID');
       this.apiService.getDiscipline(disciplineID).subscribe(
@@ -165,7 +174,7 @@ export class DisciplinePreferencesComponent implements OnInit {
   sendPreference() {
     this.apiService.insertUserOptionOnDiscipline(this.discipline._id).subscribe(
       (response) => {
-        this.updateDetails.emit(true);
+        this.update.next(true);
         this.snackBar.open(`${response}`, 'Close', {
           duration: 2000
         });
@@ -179,7 +188,7 @@ export class DisciplinePreferencesComponent implements OnInit {
   resetPreferences() {
     this.apiService.resetDisciplinePreferences(this.discipline._id).subscribe(
       (response) => {
-        this.updateDetails.emit(true);
+        this.update.next(true);
         this.snackBar.open(`${response}`, 'Close', {
           duration: 2000
         });
@@ -188,6 +197,9 @@ export class DisciplinePreferencesComponent implements OnInit {
         console.log(error);
       }
     );
+    this.apiService
+      .deletePreferencesByDiscipline(this.discipline._id)
+      .subscribe((response) => console.log(response));
   }
 
   isSentOptionDisabled() {
