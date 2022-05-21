@@ -52,6 +52,12 @@ export class DisciplinesComponent implements OnInit {
     );
   }
 
+  getDisciplineInitials(disciplineName: string) {
+    const copyString = disciplineName.replace(' a ' , ' ').replace(' cu ', ' ').replace(' si ', ' ');
+    let match = copyString.match(/\b(\w)/g);
+    return match.join('');
+  }
+
   enrollUser(disciplineId: string) {
     const subscription = this.apiService.enrollToDiscipline(disciplineId);
     subscription.subscribe(() => {

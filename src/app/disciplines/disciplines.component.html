@@ -36,7 +36,7 @@
                         <div class="header-container">
                             <a (click)="navigateToDiscipline(discipline)">
                                 <div class="content">
-                                    <mat-card-title>{{ discipline.name }}</mat-card-title>
+                                    <mat-card-title>{{ getDisciplineInitials(discipline.name) | uppercase }}</mat-card-title>
                                     <mat-card-subtitle>Teacher: {{ discipline.teacher }}</mat-card-subtitle>
                                 </div>
                             </a>
