@@ -1,7 +1,6 @@
 <div class="discipline-preferences">
   <div class="panel">
     <div class="left-pannel">
-      <!-- <h2>{{ discipline?.name }}</h2> -->
 
       <mat-card class="discipline-card">
         <div class="header-container">
@@ -35,13 +34,6 @@
         </mat-card-content>
       </mat-card>
 
-      <!-- <div *ngFor="let timetable of discipline?.timetable">
-        {{ timetable.option }}
-        {{ getAvailablePlaces(timetable.option) }} / {{ discipline.maxNoOfStudentsPerTimetable }}
-        <span *ngIf="getStudentOption()?.option === timetable.option">
-          Your current option
-        </span>
-      </div> -->
     </div>
     <div class="right-pannel">
       <form [formGroup]="preferencesForm">

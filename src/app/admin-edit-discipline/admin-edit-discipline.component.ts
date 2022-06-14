@@ -45,7 +45,6 @@ export class AdminEditDisciplineComponent implements OnInit {
   addTimetable() {
     const timetableForm = new FormGroup({
       option: new FormControl('')
-      //assistent teacher name could be another control
     });
     this.dynamicTimetable.push(timetableForm);
   }
@@ -53,7 +52,6 @@ export class AdminEditDisciplineComponent implements OnInit {
   updateTimetableForm(value: string) {
     const timetableForm = new FormGroup({
       option: new FormControl(value)
-      //assistent teacher name could be another control
     });
     this.dynamicTimetable.push(timetableForm);
   }
@@ -165,6 +163,12 @@ export class AdminEditDisciplineComponent implements OnInit {
         users: this.users
       }
     });
+  }
+
+  getDisciplineInitials(disciplineName: string) {
+    const copyString = disciplineName.replace(' a ' , ' ').replace(' cu ', ' ').replace(' si ', ' ');
+    let match = copyString.match(/\b(\w)/g);
+    return match.join('');
   }
 
   submit() {
